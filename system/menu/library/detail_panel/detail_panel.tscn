@@ -1,0 +1,188 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccx5uldv5ys2n"]
+
+[ext_resource type="Script" path="res://system/menu/library/detail_panel/detail_panel.gd" id="1_7fl2n"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_lumbd"]
+[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_qyu1u"]
+[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
+[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wcsw"]
+font = ExtResource("2_lumbd")
+font_size = 25
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_fqcba"]
+script = ExtResource("4_ups23")
+icon_font = "MaterialIcons"
+icon_name = "tag"
+icon_size = 25
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7114"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_epgg4"]
+script = ExtResource("4_ups23")
+icon_font = "MaterialIcons"
+icon_name = "playlist-edit"
+icon_size = 36
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7j1wf"]
+
+[sub_resource type="Resource" id="Resource_h2p0x"]
+script = ExtResource("4_ups23")
+icon_font = "MaterialIcons"
+icon_name = "play"
+icon_size = 72
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mhra0"]
+
+[node name="DetailPanel" type="Control"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_7fl2n")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.111197, 0.111197, 0.111197, 1)
+
+[node name="Details" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="Details"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME NAME"
+autowrap_mode = 2
+
+[node name="Year" type="HBoxContainer" parent="Details"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Details/Year"]
+layout_mode = 2
+text = "Release Year: "
+
+[node name="Year" type="Label" parent="Details/Year"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Developer" type="HBoxContainer" parent="Details"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Details/Developer"]
+layout_mode = 2
+text = "Developer:"
+
+[node name="Developer" type="Label" parent="Details/Developer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Tags" type="HBoxContainer" parent="Details"]
+layout_mode = 2
+
+[node name="FontIcon" type="Label" parent="Details/Tags"]
+layout_mode = 2
+text = "󰓹"
+label_settings = SubResource("LabelSettings_5wcsw")
+script = ExtResource("3_ybtc4")
+icon_settings = SubResource("Resource_fqcba")
+
+[node name="TagsList" type="ItemList" parent="Details/Tags"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+max_columns = 100
+
+[node name="FilePath" type="RichTextLabel" parent="Details"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/table_border = Color(0, 0, 0, 0)
+theme_override_colors/default_color = Color(0.470076, 0.470076, 0.470076, 1)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+drag_and_drop_selection_enabled = false
+
+[node name="EditButton" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -31.0
+offset_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7114")
+script = ExtResource("3_qyu1u")
+icon_settings = SubResource("Resource_epgg4")
+label_settings = SubResource("LabelSettings_7j1wf")
+
+[node name="PlayButton" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.5
+offset_top = -31.0
+offset_right = 54.5
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7114")
+script = ExtResource("3_qyu1u")
+icon_settings = SubResource("Resource_h2p0x")
+label_settings = SubResource("LabelSettings_mhra0")

@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="SudoLauncher"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=100
+boot_splash/show_image=false
+config/icon="res://system/texture/icon.svg"
+addons/icon_finder/preview_size=32
+
+[autoload]
+
+Global="*res://global.gd"
+IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
+
+[display]
+
+window/energy_saving/keep_screen_on=false
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/icons-fonts/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

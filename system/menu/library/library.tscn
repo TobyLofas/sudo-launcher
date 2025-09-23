@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5tcq3u6018i5"]
+
+[ext_resource type="Script" path="res://system/menu/library/library.gd" id="1_qdehd"]
+[ext_resource type="PackedScene" uid="uid://bwp2plyvy6aql" path="res://system/menu/library/top_bar/top_bar.tscn" id="2_eg0do"]
+[ext_resource type="PackedScene" uid="uid://ccx5uldv5ys2n" path="res://system/menu/library/detail_panel/detail_panel.tscn" id="2_oi2bc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
+
+[node name="Library" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_qdehd")
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Library" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopBar" parent="HBoxContainer/Library" instance=ExtResource("2_eg0do")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GameList" type="ItemList" parent="HBoxContainer/Library"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
+allow_search = false
+max_columns = 15
+same_column_width = true
+icon_mode = 0
+
+[node name="DetailPanel" parent="HBoxContainer" instance=ExtResource("2_oi2bc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[connection signal="item_selected" from="HBoxContainer/Library/GameList" to="." method="_on_game_list_item_selected"]
