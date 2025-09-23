@@ -34,7 +34,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/icons-fonts/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
+enabled=PackedStringArray("res://addons/csv-data-importer/plugin.cfg", "res://addons/icons-fonts/plugin.cfg", "res://addons/native_dialogs/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
 
 [rendering]
 

@@ -7,7 +7,7 @@ class_name Game extends Resource
 @export var developer: String
 @export var tags: Array[String]
 
-func _init(p_name = "default", p_path = Global.base_dir, p_icon = "res://system/texture/godot.svg", p_year = 0000, p_dev = ""):
+func _init(p_name = "default", p_path = Global.base_dir, p_icon = Global.default_icon_path, p_year = 0000, p_dev = ""):
 	name = p_name
 	path = p_path
 	icon = p_icon

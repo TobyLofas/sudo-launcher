@@ -7,97 +7,86 @@ extends Control
 var library : Array[Game] = []
 var filtered_library : Array[Game] = []
 var selected : Game
+var tags : Array = []
 
-var search_filtered : Array[Game]
-var tag_filtered : Array[Game]
+var _search_filtered : Array[Game]
+var _tag_filtered : Array[Game]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	top_bar.search_bar.text_changed.connect(search_library)
+	var data = load(Global.base_dir + "tags.csv")
+	if data: tags = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
+	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.toggled.connect(toggle_images)
-	read_directory("C:\\Users\\tobyl\\Desktop\\Games")
-	create_game_list_from_library()
-	#save_library()
-	load_test()
-	_on_game_list_item_selected(0)
+	create_register_from_dirs(["C:\\Users\\tobyl\\Desktop\\Games"])
 	load_library_from_register()
-
-func read_directory(directory : String) -> void:
-	var dir = DirAccess.open(directory)
-	var t_dir = directory + "\\"
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-			else:
-				#print("Found file: " + file_name)
-				var extension : String = file_name.get_slice(".",1)
-				var title : String = file_name.get_slice(".",0)
-				if extension == "exe" or extension == "lnk":
-					var tgame = Game.new(title, t_dir + file_name)
-					library.append(tgame)
-					var library_path = Global.base_dir + Global.library_dir + title
-					if FileAccess.get_sha256(library_path) != "":
-						ResourceSaver.save(tgame, library_path + ".tres")
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+	refresh_game_list()
+	_on_game_list_item_selected(0)
+	
+func build(directories : Array[String]) -> void:
+	create_register_from_dirs(directories)
+	load_library_from_register()
+	refresh_game_list()
+	_on_game_list_item_selected(0)
 
 func create_game_list_from_library() -> void:
 	game_list.clear()
 	for item in library:
 		game_list.add_item(item.name, load(item.icon))
 
-
 func _on_game_list_item_selected(index: int) -> void:
-	selected = library[index]
+	selected = filtered_library[index]
 	detail_panel._refresh_from_data(selected)
 
-func save_library() -> void:
-	var register = Register.new()
-	register.register = library
-	ResourceSaver.save(register, "res://system/register/register.tres")
-	
-
-func load_test() -> void:
-		var t : Register = load("res://system/register/register.tres") as Register
-		library = t.register
-
-func search_library(term : String) -> void:
+func filter_by_search(term : String) -> void:
+	_search_filtered = []
 	if term == "":
-		create_game_list_from_library()
+		create_game_list_from_filtered_library()
 	else:
 		game_list.clear()
 		for item in library:
 			if item.name.containsn(term):
-				game_list.add_item(item.name, load(item.icon))
-				search_filtered.append(item)
+				_search_filtered.append(item)
+	refresh_game_list()
 
 func filter_by_tag(tags : Array[String]) -> void:
-	print(tags)
+	_tag_filtered = []
 	if tags.is_empty():
-		create_game_list_from_library()
+		create_game_list_from_filtered_library()
 	else:
 		game_list.clear()
 		var library_filtered: Array[Game]  
 		for item in library:
 			for tag in tags:
 				if tag in item.tags:
-					game_list.add_item(item.name, load(item.icon))
-					tag_filtered.append(item)
+					_tag_filtered.append(item)
+	refresh_game_list()
 
-func apply_filters() -> void:
-	game_list.clear()
-	for item in tag_filtered:
-		for s_item in search_filtered:
-			if item == s_item:
-				filtered_library.append(item)
+func refresh_game_list() -> void:
+	_apply_filters()
+	_apply_ordering()
+
+func _apply_filters() -> void:
+	filtered_library = []
+	if (_search_filtered != [] and _tag_filtered != []):
+		for s_item in _search_filtered:
+			for t_item in _tag_filtered:
+				if t_item == s_item:
+					filtered_library.append(t_item)
+	elif (_search_filtered != []):
+		for s_item in _search_filtered:
+			filtered_library.append(s_item)
+	elif (_tag_filtered != []):
+		for t_item in _tag_filtered:
+			filtered_library.append(t_item)
+	else:
+		if top_bar.search_bar.text == "":
+			filtered_library = library
+			
 	create_game_list_from_filtered_library()
 
-func apply_ordering() -> void:
+func _apply_ordering() -> void:
 	pass
 
 func create_game_list_from_filtered_library() -> void:
@@ -116,8 +105,10 @@ func toggle_images(state: bool) -> void:
 func create_register_from_dirs(directories : Array[String]) -> void:
 	for directory in directories:
 		var dir = DirAccess.open(directory)
-		var t_dir = directory + "\\"
-		if dir:
+		var t_dir : String = directory + "\\"
+		if !dir:
+			print("An error occurred when trying to access the path.")
+		else:
 			dir.list_dir_begin()
 			var file_name = dir.get_next()
 			while file_name != "":
@@ -128,17 +119,14 @@ func create_register_from_dirs(directories : Array[String]) -> void:
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
 					if extension == "exe" or extension == "lnk":
-						var tgame = Game.new(title, t_dir + file_name)
-						#library.append(tgame)
-						print(Global.base_dir + "library//" + title)
-						if FileAccess.get_sha256(Global.base_dir + "library//" + title) != "":
-							ResourceSaver.save(tgame, Global.base_dir + "library//" + title + ".tres")
+						var tgame : Game = Game.new(title, t_dir + file_name)
+						var library_path = Global.base_dir + Global.library_dir + title
+						if FileAccess.get_sha256(library_path + ".tres") == "":
+							ResourceSaver.save(tgame, library_path + ".tres")
 				file_name = dir.get_next()
-		else:
-			print("An error occurred when trying to access the path.")
 
 func load_library_from_register() -> void:
-	var directory : String = Global.base_dir + "library//"
+	var directory : String = Global.base_dir + Global.library_dir
 	var dir = DirAccess.open(directory)
 	if dir:
 		dir.list_dir_begin()
@@ -147,9 +135,11 @@ func load_library_from_register() -> void:
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
 			else:
-				print("Found file: " + file_name)
-				var game = load(directory + file_name) as Game
-				library.append(game)
+				#print("Found file: " + file_name)
+				var extension : String = file_name.get_slice(".",1)
+				if extension == "tres":
+					var game : Game = load(directory + file_name) as Game
+					library.append(game)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")

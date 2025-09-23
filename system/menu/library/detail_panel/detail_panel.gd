@@ -17,7 +17,9 @@ func _process(delta: float) -> void:
 
 func _refresh_from_data(selected : Game) -> void:
 	name_display.text = selected.name
-	year_display = selected.year
+	year_display.text = str(selected.year)
 	developer_display.text = selected.developer
-	tags_list = selected.tags
+	tags_list.clear()
+	for tag in selected.tags:
+		tags_list.add_item(tag)
 	file_path.set_text("[i]" + selected.path)

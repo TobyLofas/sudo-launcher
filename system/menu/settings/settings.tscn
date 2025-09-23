@@ -69,3 +69,4 @@ text = "(Re)Build Library
 
 [connection signal="dir_selected" from="NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]
 [connection signal="pressed" from="VBoxContainer/AddDirectory" to="." method="_on_add_directory_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuildLibrary" to="." method="_on_build_library_pressed"]

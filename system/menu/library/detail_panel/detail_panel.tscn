@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7114"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3i2v"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -36,20 +36,6 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
-
-[sub_resource type="Resource" id="Resource_epgg4"]
-script = ExtResource("4_ups23")
-icon_font = "MaterialIcons"
-icon_name = "playlist-edit"
-icon_size = 36
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7j1wf"]
 
 [sub_resource type="Resource" id="Resource_h2p0x"]
 script = ExtResource("4_ups23")
@@ -64,6 +50,20 @@ shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mhra0"]
+
+[sub_resource type="Resource" id="Resource_epgg4"]
+script = ExtResource("4_ups23")
+icon_font = "MaterialIcons"
+icon_name = "playlist-edit"
+icon_size = 36
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7j1wf"]
 
 [node name="DetailPanel" type="Control"]
 custom_minimum_size = Vector2(480, 0)
@@ -138,6 +138,8 @@ icon_settings = SubResource("Resource_fqcba")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
+auto_height = true
 max_columns = 100
 
 [node name="FilePath" type="RichTextLabel" parent="Details"]
@@ -152,23 +154,6 @@ scroll_active = false
 autowrap_mode = 1
 drag_and_drop_selection_enabled = false
 
-[node name="EditButton" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = -31.0
-offset_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_k7114")
-script = ExtResource("3_qyu1u")
-icon_settings = SubResource("Resource_epgg4")
-label_settings = SubResource("LabelSettings_7j1wf")
-
 [node name="PlayButton" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -182,7 +167,25 @@ offset_right = 54.5
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_k7114")
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3i2v")
 script = ExtResource("3_qyu1u")
 icon_settings = SubResource("Resource_h2p0x")
 label_settings = SubResource("LabelSettings_mhra0")
+
+[node name="EditButton" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3i2v")
+script = ExtResource("3_qyu1u")
+icon_settings = SubResource("Resource_epgg4")
+label_settings = SubResource("LabelSettings_7j1wf")
