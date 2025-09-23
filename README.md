@@ -54,9 +54,14 @@ Metadata files can also be manually edited by opening the file in a text editor.
 
 # Credits
 Created using ***Godot 4.3***.
+
 *Godot Git Plugin* by **The Godot Engine community**, licensed under the MIT License.
+
 *Godot Icons Fonts* & *Rakugo Nodes* by **Jeremi Biernacki**, licensed under the MIT License.
+
 *Native Dialogues* by **Tomás Espejo Gómez**, licensed under the MIT License.
+
 *CSV Data Importer* by **Haoyu Qiu**.
+
 
 License files can be found in the relevant directories.
