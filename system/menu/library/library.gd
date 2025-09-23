@@ -19,6 +19,7 @@ func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.toggled.connect(toggle_images)
+	detail_panel.play_button.pressed.connect(play_game)
 	create_register_from_dirs(["C:\\Users\\tobyl\\Desktop\\Games"])
 	load_library_from_register()
 	refresh_game_list()
@@ -50,15 +51,14 @@ func filter_by_search(term : String) -> void:
 				_search_filtered.append(item)
 	refresh_game_list()
 
-func filter_by_tag(tags : Array[String]) -> void:
+func filter_by_tag(_tags : Array[String]) -> void:
 	_tag_filtered = []
-	if tags.is_empty():
+	if _tags.is_empty():
 		create_game_list_from_filtered_library()
 	else:
 		game_list.clear()
-		var library_filtered: Array[Game]  
 		for item in library:
-			for tag in tags:
+			for tag in _tags:
 				if tag in item.tags:
 					_tag_filtered.append(item)
 	refresh_game_list()
@@ -143,3 +143,7 @@ func load_library_from_register() -> void:
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
+
+func play_game() -> void:
+	#var args : Array[String] = []
+	OS.create_process("cmd.exe", ["/c", selected.path])

@@ -12,14 +12,8 @@ signal tags_changed(tags)
 func _ready() -> void:
 	tags_list.id_pressed.connect(_on_tags_list_pressed)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func load_tags(_tags : Array[String]) -> void:
 	pass
-
-func load_tags(tags : Array[String]) -> void:
-	pass
-
-
 
 func _on_tags_list_pressed(id : int) -> void:
 	if tags_list.is_item_checked(id):
