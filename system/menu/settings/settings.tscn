@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dliso8lp1b3b7"]
+[gd_scene load_steps=2 format=3 uid="uid://dliso8lp1b3b7"]
 
 [ext_resource type="Script" path="res://system/menu/settings/settings.gd" id="1_6hu3a"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q40pa"]
 
 [node name="Settings" type="Control"]
 custom_minimum_size = Vector2(300, 0)
@@ -16,7 +14,8 @@ script = ExtResource("1_6hu3a")
 metadata/_tab_index = 1
 
 [node name="NativeFileDialog" type="NativeFileDialog" parent="."]
-title = "Open a Directory"
+title = "Open a Directory..."
+mode_overrides_title = false
 file_mode = 2
 access = 2
 
@@ -44,14 +43,11 @@ text = "Library Directories"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="DirectoryList" type="RichTextLabel" parent="VBoxContainer"]
+[node name="DirectoryDisplay" type="ItemList" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-focus_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_q40pa")
-selection_enabled = true
-drag_and_drop_selection_enabled = false
+allow_search = false
 
 [node name="AddDirectory" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -68,5 +64,7 @@ text = "(Re)Build Library
 "
 
 [connection signal="dir_selected" from="NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]
+[connection signal="item_activated" from="VBoxContainer/DirectoryDisplay" to="." method="_on_directory_display_item_activated"]
 [connection signal="pressed" from="VBoxContainer/AddDirectory" to="." method="_on_add_directory_pressed"]
+[connection signal="pressed" from="VBoxContainer/RemoveDirectory" to="." method="_on_remove_directory_pressed"]
 [connection signal="pressed" from="VBoxContainer/BuildLibrary" to="." method="_on_build_library_pressed"]

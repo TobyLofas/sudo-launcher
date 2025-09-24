@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SudoLauncher"
+config/name="SudoLauncher (4.3)"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=100

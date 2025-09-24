@@ -4,10 +4,12 @@ extends Control
 @onready var detail_panel = %DetailPanel
 @onready var top_bar = %TopBar
 
-var library : Array[Game] = []
-var filtered_library : Array[Game] = []
+var library : Array[Game]
+var filtered_library : Array[Game]
 var selected : Game
-var tags : Array = []
+
+var tags : Array
+var directories : Array
 
 var _search_filtered : Array[Game]
 var _tag_filtered : Array[Game]
@@ -21,6 +23,7 @@ func _ready() -> void:
 	top_bar.image_toggle.toggled.connect(toggle_images)
 	detail_panel.play_button.pressed.connect(play_game)
 	create_register_from_dirs(["C:\\Users\\tobyl\\Desktop\\Games"])
+	#create_register_from_dirs(["C:\\Games"])
 	load_library_from_register()
 	refresh_game_list()
 	_on_game_list_item_selected(0)
@@ -146,4 +149,5 @@ func load_library_from_register() -> void:
 
 func play_game() -> void:
 	#var args : Array[String] = []
-	OS.create_process("cmd.exe", ["/c", selected.path])
+	#OS.create_process("cmd.exe", ["/c", selected.path])
+	OS.execute("cmd.exe", ["/c", selected.path])
