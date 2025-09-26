@@ -21,11 +21,6 @@ func _ready() -> void:
 	top_bar.image_toggle.toggled.connect(toggle_images)
 	detail_panel.play_button.pressed.connect(play_game)
 
-func create_game_list_from_library() -> void:
-	game_list.clear()
-	for item in library:
-		game_list.add_item(item.name, load(item.icon))
-
 func _on_game_list_item_selected(index: int) -> void:
 	selected = filtered_library[index]
 	detail_panel._refresh_from_data(selected)
@@ -56,6 +51,7 @@ func filter_by_tag(_tags : Array[String]) -> void:
 func refresh_game_list() -> void:
 	_apply_filters()
 	_apply_ordering()
+	create_game_list_from_filtered_library()
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -73,8 +69,6 @@ func _apply_filters() -> void:
 	else:
 		if top_bar.search_bar.text == "":
 			filtered_library = library
-			
-	create_game_list_from_filtered_library()
 
 func _apply_ordering() -> void:
 	pass
@@ -82,7 +76,7 @@ func _apply_ordering() -> void:
 func create_game_list_from_filtered_library() -> void:
 	game_list.clear()
 	for item in filtered_library:
-		game_list.add_item(item.name, load(item.icon))
+		game_list.add_item(item.name, load(item.icon) as Texture2D)
 
 func toggle_images(state: bool) -> void:
 	for index in game_list.item_count:
@@ -112,8 +106,6 @@ func load_from_register() -> void:
 		print("An error occurred when trying to access the path.")
 
 func play_game() -> void:
-	#var args : Array[String] = []
-	#OS.create_process("cmd.exe", ["/c", selected.path])
 	OS.execute("cmd.exe", ["/c", selected.path])
 
 func load_tags() -> void:

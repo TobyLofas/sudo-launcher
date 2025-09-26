@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="1_jg7cf"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="2_gp0uk"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d7qt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ll0u"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -107,7 +107,7 @@ editable = false
 
 [node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Path"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1d7qt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ll0u")
 script = ExtResource("1_jg7cf")
 icon_settings = SubResource("Resource_v4utu")
 label_settings = SubResource("LabelSettings_6euxt")
@@ -125,7 +125,7 @@ editable = false
 
 [node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Icons"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1d7qt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ll0u")
 script = ExtResource("1_jg7cf")
 icon_settings = SubResource("Resource_x2uvv")
 label_settings = SubResource("LabelSettings_18h7x")
@@ -163,7 +163,7 @@ layout_mode = 2
 
 [node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1d7qt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ll0u")
 script = ExtResource("1_jg7cf")
 icon_settings = SubResource("Resource_cxqar")
 label_settings = SubResource("LabelSettings_86uq3")

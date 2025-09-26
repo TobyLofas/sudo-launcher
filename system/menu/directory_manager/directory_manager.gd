@@ -30,6 +30,7 @@ func _on_native_file_dialog_dir_selected(dir: String) -> void:
 
 func _on_build_library_pressed() -> void:
 	build_library.emit(directories)
+	create_register_from_directories(directories)
 
 func _on_directory_display_item_activated(index: int) -> void:
 	OS.execute("explorer.exe", ["/select,", directories[index]])
@@ -50,7 +51,6 @@ func load_directories() -> void:
 		if file.get_as_text() != "":
 			var line = file.get_csv_line()
 			directories = line
-	file.close()
 	refresh_directory_display(directories)
 
 func save_directories() -> void:
@@ -60,13 +60,12 @@ func save_directories() -> void:
 	else:
 		file.seek(0)
 		file.store_csv_line(directories)
-	file.close()
 	refresh_directory_display(directories)
 
 func create_register_from_directories(directories : Array[String]) -> void:
 	for directory in directories:
 		var dir = DirAccess.open(directory)
-		var t_dir : String = directory + "\\"
+		var t_dir : String = directory + "/"
 		if !dir:
 			print("An error occurred when trying to access the path.")
 		else:
