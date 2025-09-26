@@ -6,6 +6,7 @@ extends Control
 var directory_list : PackedStringArray = []
 var file
 signal build_library(directories)
+signal directory_added(directories)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _on_native_file_dialog_dir_selected(dir: String) -> void:
 	directory_list.append(dir)
 	file.seek(0)
 	file.store_csv_line(directory_list)
+	directory_added.emit(directory_list)
 	refresh_directory_display()
 
 func _on_build_library_pressed() -> void:

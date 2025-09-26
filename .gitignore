@@ -1,7 +1,38 @@
+#
+# Git ignore for Godot projects
+#
+# Compiled from the following sources:
+# https://github.com/github/gitignore/blob/main/Godot.gitignore
+# https://gist.github.com/hmans/78c056f26e3df52abe755163eb4b7ea5
+#
+# Latest version: https://gist.github.com/rkrahn/b37cdc243fb96f033c29726c1f68182e
+#
+
 # Godot 4+ specific ignores
 .godot/
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Visual Studio cache directory
+.vs/
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Temporary file ignores
+.DS_Store
+*.blend?
+*.kra~
 *.tmp
+
+# Other
 *.csv
 *.csv.import
-*.exe
-*.exe.import

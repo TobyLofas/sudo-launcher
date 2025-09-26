@@ -16,23 +16,11 @@ var _tag_filtered : Array[Game]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var data = load(Global.base_dir + "tags.csv")
-	if data: tags = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.toggled.connect(toggle_images)
 	detail_panel.play_button.pressed.connect(play_game)
-	create_register_from_dirs(["C:\\Users\\tobyl\\Desktop\\Games"])
-	#create_register_from_dirs(["C:\\Games"])
-	load_library_from_register()
-	refresh_game_list()
-	_on_game_list_item_selected(0)
-	
-func build(directories : Array[String]) -> void:
-	create_register_from_dirs(directories)
-	load_library_from_register()
-	refresh_game_list()
-	_on_game_list_item_selected(0)
+
 
 func create_game_list_from_library() -> void:
 	game_list.clear()
@@ -105,30 +93,7 @@ func toggle_images(state: bool) -> void:
 			var icon = load(library[index].icon)
 			game_list.set_item_icon(index, icon)
 
-func create_register_from_dirs(directories : Array[String]) -> void:
-	for directory in directories:
-		var dir = DirAccess.open(directory)
-		var t_dir : String = directory + "\\"
-		if !dir:
-			print("An error occurred when trying to access the path.")
-		else:
-			dir.list_dir_begin()
-			var file_name = dir.get_next()
-			while file_name != "":
-				if dir.current_is_dir():
-					print("Found directory: " + file_name)
-				else:
-					#print("Found file: " + file_name)
-					var extension : String = file_name.get_slice(".",1)
-					var title : String = file_name.get_slice(".",0)
-					if extension == "exe" or extension == "lnk":
-						var tgame : Game = Game.new(title, t_dir + file_name)
-						var library_path = Global.base_dir + Global.library_dir + title
-						if FileAccess.get_sha256(library_path + ".tres") == "":
-							ResourceSaver.save(tgame, library_path + ".tres")
-				file_name = dir.get_next()
-
-func load_library_from_register() -> void:
+func load_from_register() -> void:
 	var directory : String = Global.base_dir + Global.library_dir
 	var dir = DirAccess.open(directory)
 	if dir:
@@ -151,3 +116,7 @@ func play_game() -> void:
 	#var args : Array[String] = []
 	#OS.create_process("cmd.exe", ["/c", selected.path])
 	OS.execute("cmd.exe", ["/c", selected.path])
+
+func load_tags() -> void:
+	var data = load(Global.base_dir + Global.data_dir + "tags.csv")
+	if data: tags = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
