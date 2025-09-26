@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_0p4gv"]
 [ext_resource type="PackedScene" uid="uid://b5tcq3u6018i5" path="res://system/menu/library/library.tscn" id="2_kai27"]
-[ext_resource type="PackedScene" uid="uid://dliso8lp1b3b7" path="res://system/menu/settings/settings.tscn" id="3_l643o"]
+[ext_resource type="PackedScene" uid="uid://dliso8lp1b3b7" path="res://system/menu/directory_manager/directory_manager.tscn" id="3_l643o"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -26,7 +26,11 @@ current_tab = 0
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Settings" parent="TabContainer" instance=ExtResource("3_l643o")]
-unique_name_in_owner = true
+[node name="Settings" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="DirectoryManager" parent="TabContainer/Settings" instance=ExtResource("3_l643o")]
+unique_name_in_owner = true
+layout_mode = 1

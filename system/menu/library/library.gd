@@ -21,7 +21,6 @@ func _ready() -> void:
 	top_bar.image_toggle.toggled.connect(toggle_images)
 	detail_panel.play_button.pressed.connect(play_game)
 
-
 func create_game_list_from_library() -> void:
 	game_list.clear()
 	for item in library:

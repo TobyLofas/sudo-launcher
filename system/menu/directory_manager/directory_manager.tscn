@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dliso8lp1b3b7"]
 
-[ext_resource type="Script" path="res://system/menu/settings/settings.gd" id="1_6hu3a"]
+[ext_resource type="Script" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
 
-[node name="Settings" type="Control"]
+[node name="DirectoryManager" type="Control"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6hu3a")
+script = ExtResource("1_12u0k")
 metadata/_tab_index = 1
 
 [node name="NativeFileDialog" type="NativeFileDialog" parent="."]

@@ -1,24 +1,22 @@
 extends Control
 
 @onready var library = %Library
-@onready var settings = %Settings
+@onready var directory_manager = %DirectoryManager
 
-var directories : Array[String]
+var directories : PackedStringArray
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	settings.build_library.connect(build_library)
+	directory_manager.build_library.connect(build_library)
+	directory_manager.directory_added.connect(_on_directory_added)
+	directory_manager.directories_changed.connect(_on_directories_changed)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
 	
-	load_directories()
+	directory_manager.load_directories()
 	create_register_from_dirs(directories)
-	build_library(directories)
-	
-func load_directories() -> void:
-	var data = load(Global.base_dir + Global.data_dir + "directories.csv")
-	if data: directories = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
+	build_library()
 
-func build_library(directories : Array[String]) -> void:
+func build_library() -> void:
 	library.load_tags()
 	library.load_from_register()
 	library.refresh_game_list()
@@ -46,3 +44,9 @@ func create_register_from_dirs(directories : Array[String]) -> void:
 						if FileAccess.get_sha256(library_path + ".tres") == "":
 							ResourceSaver.save(tgame, library_path + ".tres")
 				file_name = dir.get_next()
+
+func _on_directory_added(dir) -> void:
+	directory_manager.refresh_directory_display(directories)
+
+func _on_directories_changed(dirs) -> void:
+	directory_manager.save_directories()
