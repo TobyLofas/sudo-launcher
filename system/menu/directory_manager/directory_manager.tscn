@@ -63,6 +63,7 @@ layout_mode = 2
 text = "(Re)Build Library
 "
 
+[connection signal="directories_changed" from="." to="." method="_on_directories_changed"]
 [connection signal="dir_selected" from="NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]
 [connection signal="item_activated" from="VBoxContainer/DirectoryDisplay" to="." method="_on_directory_display_item_activated"]
 [connection signal="pressed" from="VBoxContainer/AddDirectory" to="." method="_on_add_directory_pressed"]
