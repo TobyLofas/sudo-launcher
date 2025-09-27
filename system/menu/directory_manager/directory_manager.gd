@@ -4,11 +4,8 @@ extends Control
 @onready var directory_display = %DirectoryDisplay
 
 var directories : PackedStringArray = []
-var file
 
 signal build_library(directories)
-signal directory_added(directories : PackedStringArray)
-signal directory_removed(directories : PackedStringArray)
 signal directories_changed(directories : PackedStringArray)
 
 # Called when the node enters the scene tree for the first time.
@@ -16,9 +13,9 @@ func _ready() -> void:
 	load_directories()
 	create_register_from_directories(directories)
 
-func refresh_directory_display(directories) -> void:
+func refresh_directory_display(dirs) -> void:
 	directory_display.clear()
-	for dir in directories:
+	for dir in dirs:
 		directory_display.add_item(dir)
 
 func _on_add_directory_pressed() -> void:
@@ -62,8 +59,8 @@ func save_directories() -> void:
 		file.store_csv_line(directories)
 	refresh_directory_display(directories)
 
-func create_register_from_directories(directories : Array[String]) -> void:
-	for directory in directories:
+func create_register_from_directories(dirs : Array[String]) -> void:
+	for directory in dirs:
 		var dir = DirAccess.open(directory)
 		var t_dir : String = directory + "/"
 		if !dir:
@@ -75,7 +72,7 @@ func create_register_from_directories(directories : Array[String]) -> void:
 				if dir.current_is_dir():
 					print("Found directory: " + file_name)
 				else:
-					#print("Found file: " + file_name)
+					print("Found file: " + file_name)
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
 					if extension == "exe" or extension == "lnk":
@@ -85,7 +82,7 @@ func create_register_from_directories(directories : Array[String]) -> void:
 							ResourceSaver.save(tgame, library_path + ".tres")
 				file_name = dir.get_next()
 
-func _on_directories_changed(directories: PackedStringArray) -> void:
+func _on_directories_changed(dirs: PackedStringArray) -> void:
 	save_directories()
-	refresh_directory_display(directories)
+	refresh_directory_display(dirs)
 	
