@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5tcq3u6018i5"]
 
 [ext_resource type="Script" path="res://system/menu/library/library.gd" id="1_qdehd"]
-[ext_resource type="PackedScene" uid="uid://bwp2plyvy6aql" path="res://system/menu/library/top_bar/top_bar.tscn" id="2_eg0do"]
-[ext_resource type="PackedScene" uid="uid://ccx5uldv5ys2n" path="res://system/menu/library/detail_panel/detail_panel.tscn" id="2_oi2bc"]
+[ext_resource type="PackedScene" uid="uid://bwp2plyvy6aql" path="res://system/menu/top_bar/top_bar.tscn" id="2_eg0do"]
+[ext_resource type="PackedScene" uid="uid://ccx5uldv5ys2n" path="res://system/menu/detail_panel/detail_panel.tscn" id="2_oi2bc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
 

@@ -1,0 +1,22 @@
+extends Control
+
+@onready var play_button = %PlayButton
+
+signal edit_details
+
+
+func _refresh_from_data(selected : Game) -> void:
+	%Name.text = selected.name
+	%Year.text = str(selected.year)
+	%Developer.text = selected.developer
+	%TagsList.clear()
+	for tag in selected.tags:
+		%TagsList.add_item(tag)
+	%FilePath.set_text("[i]" + selected.path)
+
+func _on_edit_button_pressed() -> void:
+	edit_details.emit()
+
+
+func _on_edit_window_close_requested() -> void:
+	edit_details.emit()

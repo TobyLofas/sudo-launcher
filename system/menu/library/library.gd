@@ -14,12 +14,12 @@ var directories : Array
 var _search_filtered : Array[Game]
 var _tag_filtered : Array[Game]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.toggled.connect(toggle_images)
-	detail_panel.play_button.pressed.connect(play_game)
+	detail_panel.play_button.pressed.connect(start_game)
+	game_list.item_activated.connect(start_game)
 
 func _on_game_list_item_selected(index: int) -> void:
 	selected = filtered_library[index]
@@ -27,25 +27,17 @@ func _on_game_list_item_selected(index: int) -> void:
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
-	if term == "":
-		create_game_list_from_filtered_library()
-	else:
-		game_list.clear()
-		for item in library:
-			if item.name.containsn(term):
-				_search_filtered.append(item)
+	for item in library:
+		if item.name.containsn(term):
+			_search_filtered.append(item)
 	refresh_game_list()
 
 func filter_by_tag(_tags : Array[String]) -> void:
 	_tag_filtered = []
-	if _tags.is_empty():
-		create_game_list_from_filtered_library()
-	else:
-		game_list.clear()
-		for item in library:
-			for tag in _tags:
-				if tag in item.tags:
-					_tag_filtered.append(item)
+	for item in library:
+		for tag in _tags:
+			if tag in item.tags:
+				_tag_filtered.append(item)
 	refresh_game_list()
 
 func refresh_game_list() -> void:
@@ -105,9 +97,17 @@ func load_from_register() -> void:
 	else:
 		print("An error occurred when trying to access the path.")
 
-func play_game() -> void:
+func start_game(_id: int = 0) -> void:
 	OS.execute("cmd.exe", ["/c", selected.path])
 
 func load_tags() -> void:
 	var data = load(Global.base_dir + Global.data_dir + "tags.csv")
 	if data: tags = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
+
+func build_library() -> void:
+	load_tags()
+	load_from_register()
+	refresh_game_list()
+	
+func save_metadata_for_selected() -> void:
+	ResourceSaver.save(selected, Global.library_dir + selected.name + ".tres")

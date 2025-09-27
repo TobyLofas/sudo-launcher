@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://bwp2plyvy6aql"]
 
-[ext_resource type="Script" path="res://system/menu/library/top_bar/top_bar.gd" id="1_qis7v"]
+[ext_resource type="Script" path="res://system/menu/top_bar/top_bar.gd" id="1_qis7v"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
-[ext_resource type="Script" path="res://system/menu/library/top_bar/tag_list.gd" id="6_umyo7"]
+[ext_resource type="Script" path="res://system/menu/top_bar/tag_list.gd" id="6_umyo7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_707k8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6km5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -158,7 +158,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_707k8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
@@ -193,16 +193,18 @@ layout_mode = 2
 
 [node name="Search" type="PanelContainer" parent="SF/Filters"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_707k8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
 script = ExtResource("2_uxnv1")
+layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
 label_settings = SubResource("LabelSettings_2uydc")
 
 [node name="TagButton" type="PanelContainer" parent="SF/Filters"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_707k8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
 script = ExtResource("2_uxnv1")
+layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
 label_settings = SubResource("LabelSettings_m7ns8")
 
@@ -219,6 +221,10 @@ item_1/checkable = 1
 item_1/id = 1
 script = ExtResource("6_umyo7")
 
+[node name="Control" type="Control" parent="SF"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
 [node name="Sorting" type="HBoxContainer" parent="SF"]
 layout_mode = 2
 
@@ -228,11 +234,11 @@ text = "Sort:"
 
 [node name="AlphaSort" type="PanelContainer" parent="SF/Sorting"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_707k8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_r2ldb")
 off_icon_settings = SubResource("Resource_0yaop")
-layout_order = "Label-Icon-Toggle"
+layout_order = "Toggle"
 icon_settings = SubResource("Resource_pgtyd")
 label_settings = SubResource("LabelSettings_4rx8q")
 toggle_mode = true
