@@ -7,7 +7,7 @@
 Once downloaded, place SudoLauncher.exe in a directory on it's own, and run it. 
 The first time it is run, it will create three folders by default:
 
-- **data** - contains metadeta files for the games SudoLauncher can launch, as well as the tags and directories files
+- **data** - contains metadata files for the games SudoLauncher can launch, as well as the tags and directories files
 - **games** - an optional folder that can be used to install games into.
 - **icons** - an optional folder that can be used to library icons.
 

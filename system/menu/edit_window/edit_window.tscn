@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6km5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp4b5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -15,34 +15,6 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
-
-[sub_resource type="Resource" id="Resource_v4utu"]
-script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
-icon_name = "folder"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6euxt"]
-
-[sub_resource type="Resource" id="Resource_x2uvv"]
-script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
-icon_name = "folder"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_18h7x"]
 
 [sub_resource type="Resource" id="Resource_cxqar"]
 script = ExtResource("3_aitlv")
@@ -58,6 +30,34 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_86uq3"]
 
+[sub_resource type="Resource" id="Resource_x2uvv"]
+script = ExtResource("3_aitlv")
+icon_font = "MaterialIcons"
+icon_name = "folder"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_18h7x"]
+
+[sub_resource type="Resource" id="Resource_v4utu"]
+script = ExtResource("3_aitlv")
+icon_font = "MaterialIcons"
+icon_name = "folder"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6euxt"]
+
 [sub_resource type="Resource" id="Resource_og0sr"]
 script = ExtResource("3_aitlv")
 icon_font = "MaterialIcons"
@@ -72,7 +72,8 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6non"]
 
-[node name="EditWindow" type="Window"]
+[node name="DetailEditWindow" type="Window"]
+position = Vector2i(0, 36)
 size = Vector2i(400, 400)
 transient = true
 script = ExtResource("1_lqnf1")
@@ -121,7 +122,7 @@ layout_mode = 2
 
 [node name="EditTitle" type="Label" parent="EditDetails/VBoxContainer/Title"]
 layout_mode = 2
-text = "Edit Title:"
+text = "Title:"
 
 [node name="Control" type="Control" parent="EditDetails/VBoxContainer/Title"]
 custom_minimum_size = Vector2(53, 0)
@@ -131,54 +132,6 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Exe" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Exe"]
-layout_mode = 2
-text = "Executable Path:"
-
-[node name="ExePathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Exe"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
-
-[node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_pakpl")
-layout_order = "Icon"
-icon_settings = SubResource("Resource_v4utu")
-label_settings = SubResource("LabelSettings_6euxt")
-
-[node name="Icon" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Icon"]
-layout_mode = 2
-text = "Icon Path:"
-
-[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Icon"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-
-[node name="IconPathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Icon"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
-
-[node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_pakpl")
-layout_order = "Icon"
-icon_settings = SubResource("Resource_x2uvv")
-label_settings = SubResource("LabelSettings_18h7x")
 
 [node name="Year" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
 layout_mode = 2
@@ -213,26 +166,93 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer"]
+[node name="Tags" type="VBoxContainer" parent="EditDetails/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Tags"]
 layout_mode = 2
 text = "Tags:"
 
-[node name="Tags" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Tags" type="HBoxContainer" parent="EditDetails/VBoxContainer/Tags"]
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="EditDetails/VBoxContainer/Tags"]
+[node name="TagDisplayList" type="ItemList" parent="EditDetails/VBoxContainer/Tags/Tags"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+allow_search = false
+auto_height = true
+max_columns = 255
 
-[node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags"]
+[node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
 label_settings = SubResource("LabelSettings_86uq3")
 
+[node name="Icon" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Icon"]
+layout_mode = 2
+text = "Icon Path:"
+
+[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Icon"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="IconPathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Icon"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_pakpl")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_x2uvv")
+label_settings = SubResource("LabelSettings_18h7x")
+
+[node name="Exe" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Exe"]
+layout_mode = 2
+text = "Executable Path:"
+
+[node name="ExePathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Exe"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_pakpl")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_v4utu")
+label_settings = SubResource("LabelSettings_6euxt")
+
+[node name="Args" type="VBoxContainer" parent="EditDetails/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Args"]
+layout_mode = 2
+text = "Launch Arguments:"
+
+[node name="LaunchArguments" type="LineEdit" parent="EditDetails/VBoxContainer/Args"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="SaveButton" type="PanelContainer" parent="EditDetails"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -244,7 +264,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
@@ -255,6 +275,7 @@ button_margin = -3
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="file_selected" from="EditDetails/ExePathDialog" to="." method="_on_exe_path_dialog_file_selected"]
 [connection signal="file_selected" from="EditDetails/IconPathDialog" to="." method="_on_icon_path_dialog_file_selected"]
-[connection signal="pressed" from="EditDetails/VBoxContainer/Exe/ExePathButton" to="." method="_on_exe_path_button_pressed"]
+[connection signal="pressed" from="EditDetails/VBoxContainer/Tags/Tags/AddTagButton" to="." method="_on_add_tag_button_pressed"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Icon/IconPathButton" to="." method="_on_icon_path_button_pressed"]
+[connection signal="pressed" from="EditDetails/VBoxContainer/Exe/ExePathButton" to="." method="_on_exe_path_button_pressed"]
 [connection signal="pressed" from="EditDetails/SaveButton" to="." method="_on_save_button_pressed"]

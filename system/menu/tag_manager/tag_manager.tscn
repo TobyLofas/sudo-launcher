@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cni81h2wunn0y"]
+[gd_scene load_steps=13 format=3 uid="uid://cni81h2wunn0y"]
 
-[ext_resource type="Script" path="res://system/menu/tag_select/tag_select.gd" id="1_k8biu"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_y1j42"]
-[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_sxd3e"]
+[ext_resource type="Script" path="res://system/menu/tag_manager/tag_manager.gd" id="1_xdhcn"]
+[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_qlgf2"]
+[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_3ilns"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6km5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp4b5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -17,7 +17,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_yim4j"]
-script = ExtResource("3_sxd3e")
+script = ExtResource("3_3ilns")
 icon_font = "MaterialIcons"
 icon_name = "tag-plus"
 icon_size = 16
@@ -28,8 +28,10 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
+[sub_resource type="LabelSettings" id="LabelSettings_giqeq"]
+
 [sub_resource type="Resource" id="Resource_gmslm"]
-script = ExtResource("3_sxd3e")
+script = ExtResource("3_3ilns")
 icon_font = "MaterialIcons"
 icon_name = "tag-remove"
 icon_size = 16
@@ -43,7 +45,7 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_3a1id"]
 
 [sub_resource type="Resource" id="Resource_61xp5"]
-script = ExtResource("3_sxd3e")
+script = ExtResource("3_3ilns")
 icon_font = "MaterialIcons"
 icon_name = "tag-arrow-down"
 icon_size = 16
@@ -57,7 +59,7 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_upgav"]
 
 [sub_resource type="Resource" id="Resource_6ek0u"]
-script = ExtResource("3_sxd3e")
+script = ExtResource("3_3ilns")
 icon_font = "MaterialIcons"
 icon_name = "tag-arrow-up"
 icon_size = 16
@@ -70,19 +72,17 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g7tfi"]
 
-[node name="TagSelect" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_k8biu")
+[node name="TagManager" type="Window"]
+initial_position = 2
+size = Vector2i(500, 300)
+wrap_controls = true
+transient = true
+exclusive = true
+script = ExtResource("1_xdhcn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 custom_minimum_size = Vector2(0, 24)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -91,7 +91,6 @@ grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 1)
 
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -100,7 +99,6 @@ grow_vertical = 2
 split_offset = 300
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -121,13 +119,13 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/AvailableTags/VBoxContainer"]
 layout_mode = 2
-text = "Available tags:"
+text = "Select tags to apply:"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AvailableTags/VBoxContainer"]
+[node name="TagsList" type="HBoxContainer" parent="VBoxContainer/AvailableTags/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AvailableTagsDisplay" type="ItemList" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer"]
+[node name="AvailableTagsDisplay" type="ItemList" parent="VBoxContainer/AvailableTags/VBoxContainer/TagsList"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -135,24 +133,34 @@ size_flags_vertical = 3
 select_mode = 1
 allow_search = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/TagsList"]
 layout_mode = 2
 
-[node name="AddAvailableTag" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="AddTag" type="HBoxContainer" parent="VBoxContainer/AvailableTags/VBoxContainer"]
+layout_mode = 2
+
+[node name="TagName" type="LineEdit" parent="VBoxContainer/AvailableTags/VBoxContainer/AddTag"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter tag name to add..."
+
+[node name="AddTag" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/AddTag"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Create new tag."
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_y1j42")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_qlgf2")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yim4j")
+label_settings = SubResource("LabelSettings_giqeq")
 
-[node name="RemoveAvailableTag" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="DeleteTag" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/AddTag"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove a tag from the available tags."
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_y1j42")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_qlgf2")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_gmslm")
 label_settings = SubResource("LabelSettings_3a1id")
@@ -163,20 +171,11 @@ layout_mode = 2
 [node name="ApplyTags" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_y1j42")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_qlgf2")
 icon_settings = SubResource("Resource_61xp5")
 label_text = "Apply Selected"
 label_settings = SubResource("LabelSettings_upgav")
-
-[node name="RemoveTags" type="PanelContainer" parent="VBoxContainer/AvailableTags/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
-script = ExtResource("2_y1j42")
-icon_settings = SubResource("Resource_6ek0u")
-label_text = "Remove Selected"
-label_settings = SubResource("LabelSettings_g7tfi")
 
 [node name="SelectedTags" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -190,9 +189,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/SelectedTags/VBoxContainer"]
+[node name="AppliedTagsTitle" type="Label" parent="VBoxContainer/SelectedTags/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Selected tags:"
+text = "Applied tags:"
 
 [node name="SelectedTagsDisplay" type="ItemList" parent="VBoxContainer/SelectedTags/VBoxContainer"]
 unique_name_in_owner = true
@@ -200,3 +200,19 @@ layout_mode = 2
 size_flags_vertical = 3
 select_mode = 1
 allow_search = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SelectedTags/VBoxContainer"]
+layout_mode = 2
+
+[node name="RemoveTags" type="PanelContainer" parent="VBoxContainer/SelectedTags/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+script = ExtResource("2_qlgf2")
+icon_settings = SubResource("Resource_6ek0u")
+label_text = "Remove Selected"
+label_settings = SubResource("LabelSettings_g7tfi")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/AvailableTags/VBoxContainer/AddTag/AddTag" to="." method="_on_add_tag_pressed"]
+[connection signal="pressed" from="VBoxContainer/AvailableTags/VBoxContainer/AddTag/DeleteTag" to="." method="_on_delete_tag_pressed"]

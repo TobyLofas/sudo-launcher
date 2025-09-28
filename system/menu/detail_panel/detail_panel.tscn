@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6km5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp4b5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -140,7 +140,7 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 auto_height = true
-max_columns = 100
+max_columns = 255
 
 [node name="FilePath" type="RichTextLabel" parent="Details"]
 unique_name_in_owner = true
@@ -168,7 +168,7 @@ offset_right = 54.5
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_h2p0x")
@@ -188,7 +188,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6km5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")

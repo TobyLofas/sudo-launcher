@@ -22,8 +22,10 @@ func _ready() -> void:
 	game_list.item_activated.connect(start_game)
 
 func _on_game_list_item_selected(index: int) -> void:
-	selected = filtered_library[index]
+	if filtered_library.size() != 0:
+		selected = filtered_library[index]
 	detail_panel._refresh_from_data(selected)
+	#Global.selected_game = selected
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
@@ -32,12 +34,18 @@ func filter_by_search(term : String) -> void:
 			_search_filtered.append(item)
 	refresh_game_list()
 
-func filter_by_tag(_tags : Array[String]) -> void:
+func filter_by_tag(filter_tags : PackedStringArray) -> void:
 	_tag_filtered = []
+	filter_tags.sort()
 	for item in library:
-		for tag in _tags:
-			if tag in item.tags:
+		item.tags.sort()
+		if filter_tags == item.tags:
+			for tag in filter_tags:
 				_tag_filtered.append(item)
+		elif filter_tags.size() < item.tags.size():
+			for tag in filter_tags:
+				if item.tags.has(tag):
+					_tag_filtered.append(item)
 	refresh_game_list()
 
 func refresh_game_list() -> void:
@@ -47,20 +55,19 @@ func refresh_game_list() -> void:
 
 func _apply_filters() -> void:
 	filtered_library = []
-	if (_search_filtered != [] and _tag_filtered != []):
+	if top_bar.search_bar.text != "" and !top_bar.selected_tags.is_empty():
 		for s_item in _search_filtered:
 			for t_item in _tag_filtered:
 				if t_item == s_item:
 					filtered_library.append(t_item)
-	elif (_search_filtered != []):
+	elif top_bar.search_bar.text != "":
 		for s_item in _search_filtered:
 			filtered_library.append(s_item)
-	elif (_tag_filtered != []):
+	elif !top_bar.selected_tags.is_empty():
 		for t_item in _tag_filtered:
 			filtered_library.append(t_item)
 	else:
-		if top_bar.search_bar.text == "":
-			filtered_library = library
+		filtered_library = library
 
 func _apply_ordering() -> void:
 	pass
@@ -78,8 +85,8 @@ func toggle_images(state: bool) -> void:
 			var icon = load(library[index].icon)
 			game_list.set_item_icon(index, icon)
 
-func load_from_register() -> void:
-	var directory : String = Global.base_dir + Global.library_dir
+func create_library_from_metadata(directory : String) -> void:
+	library.clear()
 	var dir = DirAccess.open(directory)
 	if dir:
 		dir.list_dir_begin()
@@ -98,16 +105,21 @@ func load_from_register() -> void:
 		print("An error occurred when trying to access the path.")
 
 func start_game(_id: int = 0) -> void:
-	OS.execute("cmd.exe", ["/c", selected.path])
+	OS.execute("cmd.exe", ["/c", selected.path, selected.args])
 
-func load_tags() -> void:
-	var data = load(Global.base_dir + Global.data_dir + "tags.csv")
-	if data: tags = data.records ##ADD SYSTEM TO CREATE TAGS.CSV IF NONE EXISTS
+func load_tags(_tags : Array[String]) -> void:
+	tags = _tags
+	top_bar.load_tags(_tags)
 
 func build_library() -> void:
-	load_tags()
-	load_from_register()
+	create_library_from_metadata(Global.base_dir + Global.library_dir)
 	refresh_game_list()
-	
+	game_list.select(0)
+	_on_game_list_item_selected(0)
+
 func save_metadata_for_selected() -> void:
 	ResourceSaver.save(selected, Global.library_dir + selected.name + ".tres")
+
+
+func _on_tag_manager_tags_updated(_tags: Variant) -> void:
+	top_bar.load_tags(_tags)

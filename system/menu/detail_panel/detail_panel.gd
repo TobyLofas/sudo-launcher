@@ -4,7 +4,6 @@ extends Control
 
 signal edit_details
 
-
 func _refresh_from_data(selected : Game) -> void:
 	%Name.text = selected.name
 	%Year.text = str(selected.year)

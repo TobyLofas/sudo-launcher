@@ -60,8 +60,7 @@ text = "Remove"
 
 [node name="BuildLibrary" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "(Re)Build Library
-"
+text = "Scan Directories"
 
 [connection signal="directories_changed" from="." to="." method="_on_directories_changed"]
 [connection signal="dir_selected" from="NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]

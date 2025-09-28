@@ -26,12 +26,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Library" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(480, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TopBar" parent="HBoxContainer/Library" instance=ExtResource("2_eg0do")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 
 [node name="GameList" type="ItemList" parent="HBoxContainer/Library"]
@@ -41,6 +42,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
 allow_search = false
+text_overrun_behavior = 4
 max_columns = 15
 same_column_width = true
 icon_mode = 0

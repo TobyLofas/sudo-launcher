@@ -5,7 +5,7 @@ extends Control
 
 var directories : PackedStringArray = []
 signal directories_changed(directories : PackedStringArray)
-signal register_updated
+signal metadata_updated
 
 func refresh_directory_display(dirs) -> void:
 	directory_display.clear()
@@ -13,7 +13,7 @@ func refresh_directory_display(dirs) -> void:
 		directory_display.add_item(dir)
 
 func load_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.READ_WRITE)
+	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.READ)
 	if !file:
 		print("does not exist")
 	else:
@@ -23,7 +23,7 @@ func load_directories() -> void:
 	refresh_directory_display(directories)
 
 func save_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.READ_WRITE)
+	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.WRITE)
 	if !file:
 		print("does not exist")
 	else:
@@ -31,18 +31,19 @@ func save_directories() -> void:
 		file.store_csv_line(directories)
 	refresh_directory_display(directories)
 
-func create_register_from_directories(dirs : PackedStringArray = directories) -> void: ##FIX THIS FUNCTION TO WORK WITH SUBFOLDERS
+func create_metadata_from_directories(dirs : PackedStringArray = directories) -> void:
 	for directory in dirs:
 		var dir = DirAccess.open(directory)
 		var t_dir : String = directory + "/"
 		if !dir:
-			print("An error occurred when trying to access the path.")
+			print("An error occurred when trying to access the path: " + directory)
 		else:
 			dir.list_dir_begin()
 			var file_name = dir.get_next()
 			while file_name != "":
 				if dir.current_is_dir():
-					print("Found directory: " + file_name)
+					#print("Found directory: " + file_name)
+					create_metadata_from_directories([directory + "/" + file_name])
 				else:
 					#print("Found file: " + file_name)
 					var extension : String = file_name.get_slice(".",1)
@@ -62,8 +63,8 @@ func _on_native_file_dialog_dir_selected(dir: String) -> void:
 	directories_changed.emit(directories)
 
 func _on_build_library_pressed() -> void:
-	create_register_from_directories(directories)
-	register_updated.emit()
+	create_metadata_from_directories(directories)
+	metadata_updated.emit()
 
 func _on_directory_display_item_activated(index: int) -> void:
 	OS.execute("explorer.exe", ["/select,", directories[index]])
