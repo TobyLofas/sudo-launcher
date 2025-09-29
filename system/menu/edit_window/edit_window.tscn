@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0tn6dttci0wc"]
+[gd_scene load_steps=15 format=3 uid="uid://d0tn6dttci0wc"]
 
 [ext_resource type="Script" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp4b5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl08l"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -44,6 +44,20 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_18h7x"]
 
+[sub_resource type="Resource" id="Resource_jkcvw"]
+script = ExtResource("3_aitlv")
+icon_font = "MaterialIcons"
+icon_name = "undo-variant"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nhbci"]
+
 [sub_resource type="Resource" id="Resource_v4utu"]
 script = ExtResource("3_aitlv")
 icon_font = "MaterialIcons"
@@ -76,6 +90,7 @@ shadow_offset = Vector2(0, 0)
 position = Vector2i(0, 36)
 size = Vector2i(400, 400)
 transient = true
+exclusive = true
 script = ExtResource("1_lqnf1")
 
 [node name="EditDetails" type="Control" parent="."]
@@ -186,7 +201,7 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -212,11 +227,20 @@ editable = false
 [node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
 label_settings = SubResource("LabelSettings_18h7x")
+
+[node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+script = ExtResource("2_pakpl")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_jkcvw")
+label_settings = SubResource("LabelSettings_nhbci")
 
 [node name="Exe" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
 layout_mode = 2
@@ -234,7 +258,7 @@ editable = false
 [node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -264,7 +288,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
@@ -277,5 +301,6 @@ button_margin = -3
 [connection signal="file_selected" from="EditDetails/IconPathDialog" to="." method="_on_icon_path_dialog_file_selected"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Tags/Tags/AddTagButton" to="." method="_on_add_tag_button_pressed"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Icon/IconPathButton" to="." method="_on_icon_path_button_pressed"]
+[connection signal="pressed" from="EditDetails/VBoxContainer/Icon/IconResetButton" to="." method="_on_icon_reset_button_pressed"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Exe/ExePathButton" to="." method="_on_exe_path_button_pressed"]
 [connection signal="pressed" from="EditDetails/SaveButton" to="." method="_on_save_button_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp4b5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl08l"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -86,7 +86,7 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="Resource" id="Resource_r2ldb"]
 script = ExtResource("3_mq51i")
 icon_font = "MaterialIcons"
-icon_name = "sort-alphabetical-descending"
+icon_name = "arrow-up-thick"
 icon_size = 32
 icon_color = Color(1, 1, 1, 1)
 outline_color = Color(1, 1, 1, 1)
@@ -98,7 +98,7 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="Resource" id="Resource_0yaop"]
 script = ExtResource("3_mq51i")
 icon_font = "MaterialIcons"
-icon_name = "sort-alphabetical-ascending"
+icon_name = "arrow-down-thick"
 icon_size = 32
 icon_color = Color(1, 1, 1, 1)
 outline_color = Color(1, 1, 1, 1)
@@ -157,7 +157,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
@@ -176,6 +176,13 @@ offset_right = 442.0
 offset_bottom = 20.0
 grow_vertical = 2
 
+[node name="Control2" type="Control" parent="SF"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="SF"]
+layout_mode = 2
+
 [node name="Filters" type="HBoxContainer" parent="SF"]
 layout_mode = 2
 
@@ -192,7 +199,7 @@ layout_mode = 2
 
 [node name="Search" type="PanelContainer" parent="SF/Filters"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
@@ -201,7 +208,7 @@ label_settings = SubResource("LabelSettings_2uydc")
 [node name="TagButton" type="PanelContainer" parent="SF/Filters"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
@@ -214,8 +221,14 @@ hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 allow_search = false
 
+[node name="VSeparator2" type="VSeparator" parent="SF"]
+layout_mode = 2
+
 [node name="Control" type="Control" parent="SF"]
 custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="SF"]
 layout_mode = 2
 
 [node name="Sorting" type="HBoxContainer" parent="SF"]
@@ -225,9 +238,20 @@ layout_mode = 2
 layout_mode = 2
 text = "Sort:"
 
-[node name="AlphaSort" type="PanelContainer" parent="SF/Sorting"]
+[node name="SortType" type="OptionButton" parent="SF/Sorting"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bp4b5")
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "Name"
+popup/item_1/text = "Date"
+popup/item_1/id = 1
+
+[node name="SortButton" type="PanelContainer" parent="SF/Sorting"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_r2ldb")
 off_icon_settings = SubResource("Resource_0yaop")
@@ -238,3 +262,5 @@ toggle_mode = true
 
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
+[connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]
+[connection signal="pressed" from="SF/Sorting/SortButton" to="." method="_on_sort_button_pressed"]

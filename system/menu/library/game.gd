@@ -4,7 +4,6 @@ class_name Game extends Resource
 @export var path: String
 @export var year: int
 @export var developer: String
-
 @export var icon: String
 @export var tags: PackedStringArray
 @export var args: String

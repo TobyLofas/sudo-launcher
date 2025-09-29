@@ -26,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Library" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -46,6 +46,7 @@ text_overrun_behavior = 4
 max_columns = 15
 same_column_width = true
 icon_mode = 0
+fixed_icon_size = Vector2i(64, 64)
 
 [node name="DetailPanel" parent="HBoxContainer" instance=ExtResource("2_oi2bc")]
 unique_name_in_owner = true

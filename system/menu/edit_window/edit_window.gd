@@ -3,6 +3,7 @@ extends Window
 var selected_game : Game
 
 signal details_saved
+signal icon_updated
 
 func _on_icon_path_button_pressed() -> void:
 	%IconPathDialog.add_filter("*.svg, *.png, *.jpg, *.jpeg", "Image (.svg, .png, .jpg, .jpeg)")
@@ -15,6 +16,7 @@ func _on_exe_path_button_pressed() -> void:
 func _on_icon_path_dialog_file_selected(path: String) -> void:
 	%IconPathDisplay.text = path
 	selected_game.icon = path
+	icon_updated.emit()
 
 func _on_exe_path_dialog_file_selected(path: String) -> void:
 	%ExePathDisplay.text = path
@@ -34,6 +36,7 @@ func load_details() -> void:
 	%YearEdit.text = str(selected_game.year)
 	%DeveloperEdit.text = selected_game.developer
 	%LaunchArguments.text = selected_game.args
+	%TagDisplayList.clear()
 	for tag in selected_game.tags:
 		%TagDisplayList.add_item(tag)
 
@@ -49,10 +52,11 @@ func save_details() -> void:
 func _on_save_button_pressed() -> void:
 	save_details()
 
-
 func _on_add_tag_button_pressed() -> void:
 	%TagManager.selected_game = selected_game
 	%TagManager.show()
-	
 
-	
+func _on_icon_reset_button_pressed() -> void:
+	selected_game.icon = Global.default_icon_path
+	%IconPathDisplay.text = Global.default_icon_path
+	details_saved.emit()

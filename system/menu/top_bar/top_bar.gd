@@ -4,10 +4,16 @@ extends Control
 @onready var tags_list = %TagsList
 @onready var tag_button = %TagButton
 @onready var image_toggle = %ImageDisplay
+@onready var sort_type = %SortType
+@onready var sort_button = %SortButton
 
 var tags
 var selected_tags : Array[String]
+
+var invert_sort : bool = false
+
 signal tags_changed(tags)
+signal sort_changed
 
 func load_tags(_tags : Array[String]) -> void:
 	tags = _tags
@@ -22,9 +28,12 @@ func _on_tag_button_pressed() -> void:
 		tags_list.hide()
 
 func update_tag_display_list() -> void:
+	if tags.is_empty():
+		tag_button.hide()
+	else: 
+		tag_button.show()
 	for index in len(tags):
 		tags_list.add_check_item(tags[index],index)
-
 
 func _on_tags_list_index_pressed(index: int) -> void:
 	tags_list.toggle_item_checked(index)
@@ -34,3 +43,10 @@ func _on_tags_list_index_pressed(index: int) -> void:
 	else:
 		selected_tags.remove_at(selected_tags.find(tags_list.get_item_text(index)))
 		tags_changed.emit(selected_tags)
+
+func _on_sort_button_pressed() -> void:
+	invert_sort = not invert_sort
+	sort_changed.emit()
+
+func _on_sort_type_item_selected(index: int) -> void:
+	sort_changed.emit()

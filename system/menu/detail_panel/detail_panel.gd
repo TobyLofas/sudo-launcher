@@ -3,6 +3,7 @@ extends Control
 @onready var play_button = %PlayButton
 
 signal edit_details
+signal add_to_blacklist(game : Game)
 
 func _refresh_from_data(selected : Game) -> void:
 	%Name.text = selected.name
@@ -16,6 +17,5 @@ func _refresh_from_data(selected : Game) -> void:
 func _on_edit_button_pressed() -> void:
 	edit_details.emit()
 
-
-func _on_edit_window_close_requested() -> void:
-	edit_details.emit()
+func _on_blacklist_button_pressed() -> void:
+	add_to_blacklist.emit()

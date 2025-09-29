@@ -4,6 +4,7 @@ extends Control
 @onready var directory_display = %DirectoryDisplay
 
 var directories : PackedStringArray = []
+var blacklist : PackedStringArray = []
 signal directories_changed(directories : PackedStringArray)
 signal metadata_updated
 
@@ -13,7 +14,7 @@ func refresh_directory_display(dirs) -> void:
 		directory_display.add_item(dir)
 
 func load_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.READ)
+	var file = FileAccess.open(Global.base_dir + Global.data_dir + "directories.csv", FileAccess.READ)
 	if !file:
 		print("does not exist")
 	else:
@@ -23,18 +24,18 @@ func load_directories() -> void:
 	refresh_directory_display(directories)
 
 func save_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + "/data/directories.csv", FileAccess.WRITE)
+	var file = FileAccess.open(Global.base_dir + Global.data_dir + "directories.csv", FileAccess.WRITE)
 	if !file:
-		print("does not exist")
+		print("directories.csv does not exist")
 	else:
 		file.seek(0)
 		file.store_csv_line(directories)
 	refresh_directory_display(directories)
 
 func create_metadata_from_directories(dirs : PackedStringArray = directories) -> void:
+	load_blacklist()
 	for directory in dirs:
 		var dir = DirAccess.open(directory)
-		var t_dir : String = directory + "/"
 		if !dir:
 			print("An error occurred when trying to access the path: " + directory)
 		else:
@@ -49,10 +50,11 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
 					if extension == "exe" or extension == "lnk":
-						var tgame : Game = Game.new(title, t_dir + file_name)
-						var library_path = Global.base_dir + Global.library_dir + title
-						if FileAccess.get_sha256(library_path + ".tres") == "":
-							ResourceSaver.save(tgame, library_path + ".tres")
+						if not blacklist.has(file_name):
+							var tgame : Game = Game.new(title, directory + "/" + file_name)
+							var library_path = Global.base_dir + Global.library_dir + title
+							if FileAccess.get_sha256(library_path + ".tres") == "":
+								ResourceSaver.save(tgame, library_path + ".tres")
 				file_name = dir.get_next()
 
 func _on_add_directory_pressed() -> void:
@@ -80,3 +82,12 @@ func _on_remove_directory_pressed() -> void:
 func _on_directories_changed(dirs: PackedStringArray) -> void:
 	save_directories()
 	refresh_directory_display(dirs)
+
+func load_blacklist() -> void:
+	var file = FileAccess.open(Global.base_dir + Global.data_dir + "blacklist.csv", FileAccess.READ)
+	if !file:
+		print("blacklist.csv does not exist")
+	else:
+		if file.get_as_text() != "":
+			var line = file.get_csv_line()
+			blacklist = line

@@ -6,6 +6,7 @@ extends Control
 
 var library : Array[Game]
 var filtered_library : Array[Game]
+var display_library : Array[Game]
 var selected : Game
 
 var tags : Array
@@ -18,6 +19,9 @@ func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.toggled.connect(toggle_images)
+	
+	top_bar.sort_changed.connect(refresh_game_list)
+	
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
 
@@ -70,19 +74,44 @@ func _apply_filters() -> void:
 		filtered_library = library
 
 func _apply_ordering() -> void:
-	pass
+	var sort_type = top_bar.sort_type.get_item_text(top_bar.sort_type.get_selected_id())
+	if sort_type == "Name":
+		filtered_library.sort_custom(_sort_by_name)
+	elif sort_type == "Date":
+		filtered_library.sort_custom(_sort_by_year)
+	if top_bar.invert_sort:
+		filtered_library.reverse()
 
 func create_game_list_from_filtered_library() -> void:
 	game_list.clear()
 	for item in filtered_library:
-		game_list.add_item(item.name, load(item.icon) as Texture2D)
+		var icon
+		if item.icon.contains("res://"):
+			icon = load(item.icon)
+		else:
+			var image
+			var image_path = item.icon
+			image = Image.new()
+			image.load(image_path)
+			icon = ImageTexture.new()
+			icon.set_image(image)
+		game_list.add_item(item.name, icon)
 
 func toggle_images(state: bool) -> void:
 	for index in game_list.item_count:
 		if state:
 			game_list.set_item_icon(index, null)
-		else: 
-			var icon = load(library[index].icon)
+		else:
+			var icon
+			if library[index].icon.contains("res://"):
+				icon = load(library[index].icon)
+			else:
+				var image
+				var image_path = library[index].icon
+				image = Image.new()
+				image.load(image_path)
+				icon = ImageTexture.new()
+				icon.set_image(image)
 			game_list.set_item_icon(index, icon)
 
 func create_library_from_metadata(directory : String) -> void:
@@ -105,7 +134,7 @@ func create_library_from_metadata(directory : String) -> void:
 		print("An error occurred when trying to access the path.")
 
 func start_game(_id: int = 0) -> void:
-	OS.execute("cmd.exe", ["/c", selected.path, selected.args])
+	OS.create_process("cmd.exe", ["/c", selected.path, selected.args])
 
 func load_tags(_tags : Array[String]) -> void:
 	tags = _tags
@@ -120,6 +149,15 @@ func build_library() -> void:
 func save_metadata_for_selected() -> void:
 	ResourceSaver.save(selected, Global.library_dir + selected.name + ".tres")
 
-
 func _on_tag_manager_tags_updated(_tags: Variant) -> void:
 	top_bar.load_tags(_tags)
+
+func _sort_by_name(a : Game, b : Game):
+	if a.name < b.name:
+		return true
+	return false
+	
+func _sort_by_year(a : Game, b : Game):
+	if a.year < b.year:
+		return true
+	return false

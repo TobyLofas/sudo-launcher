@@ -7,6 +7,7 @@ extends Control
 
 func _ready() -> void:
 	library.detail_panel.edit_details.connect(_on_edit_details)
+	library.detail_panel.add_to_blacklist.connect(remove_game)
 	
 	DisplayServer.window_set_min_size(Vector2i(960,540))
 	
@@ -39,12 +40,33 @@ func check_directory_in_directory(dir, base_dir) -> void:
 
 func check_file_in_directory(file_name, directory) -> void:
 	var base_directory = DirAccess.open(directory)
-	var file
 	if !base_directory.file_exists(file_name):
-		file = FileAccess.open(Global.data_dir + file_name, FileAccess.WRITE)
+		var _file = FileAccess.open(Global.data_dir + file_name, FileAccess.WRITE)
 
 func create_metadata() -> void:
 	library.load_tags(tag_manager.tags)
 	directory_manager.load_directories()
 	directory_manager.create_metadata_from_directories()
-	
+
+func _on_tag_manager_close_requested() -> void:
+	edit_window.load_details()
+
+func _on_edit_window_close_requested() -> void:
+	library.refresh_game_list()
+
+func remove_game() -> void:
+	var file_name = library.selected.path.get_slice("/", library.selected.path.get_slice_count("/")-1)
+	var name : String = file_name.get_slice(".",0)
+	var dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+name+".tres")
+	directory_manager.blacklist.append(file_name)
+	save_blacklist()
+	library.build_library()
+
+func save_blacklist() -> void:
+	var file = FileAccess.open(Global.base_dir + Global.data_dir + "blacklist.csv", FileAccess.WRITE)
+	if !file:
+		print("blacklist.csv does not exist")
+	else:
+		file.seek(0)
+		file.store_csv_line(directory_manager.blacklist)
+		print(directory_manager.blacklist)
