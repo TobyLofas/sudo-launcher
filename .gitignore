@@ -39,3 +39,4 @@ mono_crash.*.json
 *.csv.import
 games/
 icons/
+*.build

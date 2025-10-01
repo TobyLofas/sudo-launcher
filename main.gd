@@ -18,13 +18,14 @@ func _on_metadata_updated() -> void:
 	library.build_library()
 
 func check_for_files() -> void:
-	check_directory_in_directory(Global.library_dir, Global.base_dir)
 	check_directory_in_directory(Global.data_dir, Global.base_dir)
 	check_directory_in_directory(Global.games_dir, Global.base_dir)
 	check_directory_in_directory(Global.icons_dir, Global.base_dir)
+	check_directory_in_directory(Global.lib_dir, Global.base_dir + Global.data_dir)
 	check_file_in_directory("directories.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("tags.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("blacklist.csv", Global.base_dir + Global.data_dir)
+	check_file_in_directory("settings.cfg", Global.base_dir)
 
 func _on_edit_details() -> void:
 	edit_window.selected_game = library.selected
@@ -35,14 +36,16 @@ func _on_edit_window_details_saved() -> void:
 	library.detail_panel._refresh_from_data(library.selected)
 
 func check_directory_in_directory(dir, base_dir) -> void:
+	print("Checking: " + base_dir + " for: " + dir)
 	var base_directory = DirAccess.open(base_dir)
 	if !base_directory.dir_exists(dir):
+		print("Creating directory: " + dir)
 		base_directory.make_dir(dir)
 
 func check_file_in_directory(file_name, directory) -> void:
 	var base_directory = DirAccess.open(directory)
 	if !base_directory.file_exists(file_name):
-		var _file = FileAccess.open(Global.data_dir + file_name, FileAccess.WRITE)
+		var _file = FileAccess.open(directory + file_name, FileAccess.WRITE)
 
 func create_metadata() -> void:
 	library.load_tags(tag_manager.tags)

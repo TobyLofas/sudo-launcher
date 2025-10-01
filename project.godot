@@ -13,6 +13,7 @@ config_version=5
 config/name="SudoLauncher"
 run/main_scene="res://main.tscn"
 run/print_header=false
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=100
 boot_splash/show_image=false

@@ -4,6 +4,7 @@ extends Node
 var base_dir : String = "res://" if OS.has_feature("editor") else OS.get_executable_path().get_base_dir() + "/"
 var data_dir : String = "data/"
 var library_dir : String = data_dir + "library/"
+var lib_dir : String = "library/"
 var games_dir : String = "games/"
 var icons_dir : String = "icons/"
 
@@ -44,6 +45,7 @@ func load_settings() -> void:
 	var file = ConfigFile.new()
 	var err = file.load(base_dir + settings_file_name)
 	if err != OK:
+		print(base_dir + settings_file_name, " does not exist")
 		return
 	library_list_mode = file.get_value("Library", "list_mode")
 	library_display_images = file.get_value("Library", "display_images")
