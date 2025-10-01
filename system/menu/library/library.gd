@@ -3,11 +3,17 @@ extends Control
 @onready var game_list = %GameList
 @onready var detail_panel = %DetailPanel
 @onready var top_bar = %TopBar
+@onready var divider = %Divider
 
 var library : Array[Game]
 var filtered_library : Array[Game]
 var display_library : Array[Game]
 var selected : Game
+
+var display_images : bool = true
+var list_mode : bool = false
+var open_to_last_selected : bool
+var last_selected : int
 
 var tags : Array
 var directories : Array
@@ -18,18 +24,21 @@ var _tag_filtered : Array[Game]
 func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
-	top_bar.image_toggle.toggled.connect(toggle_images)
+	top_bar.image_toggle.pressed.connect(refresh_game_list)
+	top_bar.list_mode_toggle.pressed.connect(refresh_game_list)
 	
 	top_bar.sort_changed.connect(refresh_game_list)
 	
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
+	
+	divider.split_offset = Global.library_divider_offset
 
 func _on_game_list_item_selected(index: int) -> void:
 	if filtered_library.size() != 0:
 		selected = filtered_library[index]
 	detail_panel._refresh_from_data(selected)
-	#Global.selected_game = selected
+	Global.library_last_index = index
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
@@ -56,6 +65,13 @@ func refresh_game_list() -> void:
 	_apply_filters()
 	_apply_ordering()
 	create_game_list_from_filtered_library()
+	if game_list.item_count > 0:
+		if open_to_last_selected:
+			game_list.select(last_selected)
+			_on_game_list_item_selected(last_selected)
+		else:
+			game_list.select(0)
+			_on_game_list_item_selected(0)
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -85,34 +101,26 @@ func _apply_ordering() -> void:
 func create_game_list_from_filtered_library() -> void:
 	game_list.clear()
 	for item in filtered_library:
-		var icon
-		if item.icon.contains("res://"):
-			icon = load(item.icon)
-		else:
-			var image
-			var image_path = item.icon
-			image = Image.new()
-			image.load(image_path)
-			icon = ImageTexture.new()
-			icon.set_image(image)
-		game_list.add_item(item.name, icon)
-
-func toggle_images(state: bool) -> void:
-	for index in game_list.item_count:
-		if state:
-			game_list.set_item_icon(index, null)
-		else:
+		if !Global.library_display_images:
+			game_list.add_item(item.name, null)
+		else: 
 			var icon
-			if library[index].icon.contains("res://"):
-				icon = load(library[index].icon)
+			if item.icon.contains("res://"):
+				icon = load(item.icon)
 			else:
 				var image
-				var image_path = library[index].icon
+				var image_path = item.icon
 				image = Image.new()
 				image.load(image_path)
 				icon = ImageTexture.new()
 				icon.set_image(image)
-			game_list.set_item_icon(index, icon)
+			game_list.add_item(item.name, icon)
+	if Global.library_list_mode:
+		game_list.max_columns = 1
+		game_list.icon_mode = game_list.ICON_MODE_LEFT
+	else:
+		game_list.max_columns = 15
+		game_list.icon_mode = game_list.ICON_MODE_TOP
 
 func create_library_from_metadata(directory : String) -> void:
 	library.clear()
@@ -143,11 +151,11 @@ func load_tags(_tags : Array[String]) -> void:
 func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
 	refresh_game_list()
-	game_list.select(0)
-	_on_game_list_item_selected(0)
 
 func save_metadata_for_selected() -> void:
-	ResourceSaver.save(selected, Global.library_dir + selected.name + ".tres")
+	var file_name = selected.path.get_slice("/", selected.path.get_slice_count("/")-1)
+	var _name : String = file_name.get_slice(".",0)
+	ResourceSaver.save(selected, Global.base_dir+Global.library_dir+_name+".tres")
 
 func _on_tag_manager_tags_updated(_tags: Variant) -> void:
 	top_bar.load_tags(_tags)
@@ -156,8 +164,11 @@ func _sort_by_name(a : Game, b : Game):
 	if a.name < b.name:
 		return true
 	return false
-	
+
 func _sort_by_year(a : Game, b : Game):
 	if a.year < b.year:
 		return true
 	return false
+
+func _on_divider_dragged(offset: int) -> void:
+	Global.library_divider_offset = offset

@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl08l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnkw6"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -113,7 +113,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "GAME NAME"
+text = "NO GAME SELECTED"
 autowrap_mode = 2
 
 [node name="Year" type="HBoxContainer" parent="Details"]
@@ -183,29 +183,23 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play the game"
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_h2p0x")
 label_settings = SubResource("LabelSettings_mhra0")
 
-[node name="Edit Buttons" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -44.0
-offset_top = -80.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="BlacklistButton" type="PanelContainer" parent="Edit Buttons"]
+[node name="BlacklistButton" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 44.0
+grow_vertical = 0
 tooltip_text = "Delete & Add to Blacklist"
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 layout_vertical = true
@@ -213,18 +207,26 @@ icon_settings = SubResource("Resource_eyven")
 label_settings = SubResource("LabelSettings_sv6wa")
 button_margin = -1
 
-[node name="EditButton" type="PanelContainer" parent="Edit Buttons"]
+[node name="EditButton" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "Edit game details"
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")
 label_settings = SubResource("LabelSettings_7j1wf")
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="Edit Buttons/BlacklistButton" to="." method="_on_blacklist_button_pressed"]
-[connection signal="pressed" from="Edit Buttons/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="BlacklistButton" to="." method="_on_blacklist_button_pressed"]
+[connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]

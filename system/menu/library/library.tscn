@@ -17,7 +17,8 @@ mouse_filter = 1
 script = ExtResource("1_qdehd")
 metadata/_tab_index = 0
 
-[node name="HBoxContainer" type="HSplitContainer" parent="."]
+[node name="Divider" type="HSplitContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,17 +26,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Library" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Library" type="VBoxContainer" parent="Divider"]
 custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TopBar" parent="HBoxContainer/Library" instance=ExtResource("2_eg0do")]
+[node name="TopBar" parent="Divider/Library" instance=ExtResource("2_eg0do")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 
-[node name="GameList" type="ItemList" parent="HBoxContainer/Library"]
+[node name="GameList" type="ItemList" parent="Divider/Library"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -48,9 +49,10 @@ same_column_width = true
 icon_mode = 0
 fixed_icon_size = Vector2i(64, 64)
 
-[node name="DetailPanel" parent="HBoxContainer" instance=ExtResource("2_oi2bc")]
+[node name="DetailPanel" parent="Divider" instance=ExtResource("2_oi2bc")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[connection signal="item_selected" from="HBoxContainer/Library/GameList" to="." method="_on_game_list_item_selected"]
+[connection signal="dragged" from="Divider" to="." method="_on_divider_dragged"]
+[connection signal="item_selected" from="Divider/Library/GameList" to="." method="_on_game_list_item_selected"]

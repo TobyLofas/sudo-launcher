@@ -76,7 +76,6 @@ func _on_add_tag_pressed() -> void:
 func _on_close_requested() -> void:
 	hide()
 
-
 func _on_delete_tag_pressed() -> void:
 	var tags_to_delete = %AvailableTagsDisplay.get_selected_items()
 	tags_to_delete.reverse()
@@ -84,7 +83,6 @@ func _on_delete_tag_pressed() -> void:
 		tags.remove_at(tags_to_delete[index])
 	save_tags()
 	refresh_tag_displays()
-
 
 func _on_visibility_changed() -> void:
 	selected_tags = selected_game.tags

@@ -6,6 +6,7 @@ extends Control
 @onready var image_toggle = %ImageDisplay
 @onready var sort_type = %SortType
 @onready var sort_button = %SortButton
+@onready var list_mode_toggle = %ListMode
 
 var tags
 var selected_tags : Array[String]
@@ -48,5 +49,13 @@ func _on_sort_button_pressed() -> void:
 	invert_sort = not invert_sort
 	sort_changed.emit()
 
-func _on_sort_type_item_selected(index: int) -> void:
+func _on_sort_type_item_selected(_index: int) -> void:
 	sort_changed.emit()
+
+
+func _on_image_display_toggled(value: bool) -> void:
+	Global.library_display_images = not value
+
+
+func _on_list_mode_toggled(value: bool) -> void:
+	Global.library_list_mode = value

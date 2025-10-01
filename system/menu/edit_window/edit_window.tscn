@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl08l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnkw6"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -201,7 +201,7 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -227,7 +227,7 @@ editable = false
 [node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -236,7 +236,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 [node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -257,8 +257,9 @@ editable = false
 
 [node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -288,7 +289,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vl08l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnkw6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")

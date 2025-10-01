@@ -14,13 +14,15 @@ func _ready() -> void:
 	check_for_files()
 	create_metadata()
 	library.build_library()
+	Global.load_settings()
+	
 	
 func _on_metadata_updated() -> void:
 	library.build_library()
 
 func check_for_files() -> void:
-	check_directory_in_directory(Global.data_dir, Global.base_dir)
 	check_directory_in_directory(Global.library_dir, Global.base_dir)
+	check_directory_in_directory(Global.data_dir, Global.base_dir)
 	check_file_in_directory("directories.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("tags.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("blacklist.csv", Global.base_dir + Global.data_dir)
@@ -56,8 +58,8 @@ func _on_edit_window_close_requested() -> void:
 
 func remove_game() -> void:
 	var file_name = library.selected.path.get_slice("/", library.selected.path.get_slice_count("/")-1)
-	var name : String = file_name.get_slice(".",0)
-	var dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+name+".tres")
+	var _name : String = file_name.get_slice(".",0)
+	var _dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+_name+".tres")
 	directory_manager.blacklist.append(file_name)
 	save_blacklist()
 	library.build_library()
