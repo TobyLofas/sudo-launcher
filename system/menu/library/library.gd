@@ -10,11 +10,6 @@ var filtered_library : Array[Game]
 var display_library : Array[Game]
 var selected : Game
 
-var display_images : bool = true
-var list_mode : bool = false
-var open_to_last_selected : bool
-var last_selected : int
-
 var tags : Array
 var directories : Array
 
@@ -66,9 +61,9 @@ func refresh_game_list() -> void:
 	_apply_ordering()
 	create_game_list_from_filtered_library()
 	if game_list.item_count > 0:
-		if open_to_last_selected:
-			game_list.select(last_selected)
-			_on_game_list_item_selected(last_selected)
+		if Global.library_open_to_last_selected:
+			game_list.select(Global.library_last_index)
+			_on_game_list_item_selected(Global.library_last_index)
 		else:
 			game_list.select(0)
 			_on_game_list_item_selected(0)
@@ -101,7 +96,7 @@ func _apply_ordering() -> void:
 func create_game_list_from_filtered_library() -> void:
 	game_list.clear()
 	for item in filtered_library:
-		if !Global.library_display_images:
+		if not Global.library_display_images:
 			game_list.add_item(item.name, null)
 		else: 
 			var icon
@@ -172,3 +167,7 @@ func _sort_by_year(a : Game, b : Game):
 
 func _on_divider_dragged(offset: int) -> void:
 	Global.library_divider_offset = offset
+
+func _on_visibility_changed() -> void:
+	if top_bar:
+		refresh_game_list()

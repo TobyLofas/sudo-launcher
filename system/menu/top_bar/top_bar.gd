@@ -16,6 +16,10 @@ var invert_sort : bool = false
 signal tags_changed(tags)
 signal sort_changed
 
+func _ready() -> void:
+	list_mode_toggle.button_pressed = Global.library_list_mode
+	image_toggle.button_pressed = not Global.library_display_images
+
 func load_tags(_tags : Array[String]) -> void:
 	tags = _tags
 	update_tag_display_list()
@@ -59,3 +63,8 @@ func _on_image_display_toggled(value: bool) -> void:
 
 func _on_list_mode_toggled(value: bool) -> void:
 	Global.library_list_mode = value
+
+
+func _on_visibility_changed() -> void:
+	list_mode_toggle.button_pressed = Global.library_list_mode
+	image_toggle.button_pressed = not Global.library_display_images

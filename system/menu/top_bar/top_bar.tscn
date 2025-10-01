@@ -318,6 +318,7 @@ icon_settings = SubResource("Resource_1b0u2")
 label_settings = SubResource("LabelSettings_howd3")
 toggle_mode = true
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
 [connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]

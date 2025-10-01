@@ -70,6 +70,7 @@ unresizable = true
 unique_name_in_owner = true
 visible = false
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="metadata_updated" from="SubViewportContainer/MainViewport/TabContainer/Directories/DirectoryManager" to="." method="_on_metadata_updated"]
 [connection signal="close_requested" from="PopupViewport/EditWindow" to="." method="_on_edit_window_close_requested"]
 [connection signal="details_saved" from="PopupViewport/EditWindow" to="." method="_on_edit_window_details_saved"]

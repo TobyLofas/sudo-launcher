@@ -56,6 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="Advanced" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Directories" type="HBoxContainer" parent="VBoxContainer/Advanced"]
@@ -66,8 +67,10 @@ layout_mode = 2
 text = "directories.csv:"
 
 [node name="Directories" type="LineEdit" parent="VBoxContainer/Advanced/Directories"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+editable = false
 
 [node name="Tags" type="HBoxContainer" parent="VBoxContainer/Advanced"]
 layout_mode = 2
@@ -81,8 +84,10 @@ custom_minimum_size = Vector2(47, 0)
 layout_mode = 2
 
 [node name="Tags" type="LineEdit" parent="VBoxContainer/Advanced/Tags"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+editable = false
 
 [node name="Blacklist" type="HBoxContainer" parent="VBoxContainer/Advanced"]
 layout_mode = 2
@@ -96,10 +101,13 @@ custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
 [node name="Blacklist" type="LineEdit" parent="VBoxContainer/Advanced/Blacklist"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+editable = false
 
 [node name="AdvancedToggle" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

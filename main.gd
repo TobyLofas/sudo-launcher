@@ -8,13 +8,10 @@ extends Control
 func _ready() -> void:
 	library.detail_panel.edit_details.connect(_on_edit_details)
 	library.detail_panel.add_to_blacklist.connect(remove_game)
-	
 	DisplayServer.window_set_min_size(Vector2i(960,540))
-	
 	check_for_files()
 	create_metadata()
 	library.build_library()
-	Global.load_settings()
 	
 	
 func _on_metadata_updated() -> void:
@@ -23,6 +20,8 @@ func _on_metadata_updated() -> void:
 func check_for_files() -> void:
 	check_directory_in_directory(Global.library_dir, Global.base_dir)
 	check_directory_in_directory(Global.data_dir, Global.base_dir)
+	check_directory_in_directory(Global.games_dir, Global.base_dir)
+	check_directory_in_directory(Global.icons_dir, Global.base_dir)
 	check_file_in_directory("directories.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("tags.csv", Global.base_dir + Global.data_dir)
 	check_file_in_directory("blacklist.csv", Global.base_dir + Global.data_dir)
@@ -61,7 +60,8 @@ func remove_game() -> void:
 	var _name : String = file_name.get_slice(".",0)
 	var _dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+_name+".tres")
 	directory_manager.blacklist.append(file_name)
-	save_blacklist()
+	#save_blacklist()
+	Global.save_to_csv(directory_manager.blacklist, Global.base_dir + Global.data_dir + Global.blacklist_file_name)
 	library.build_library()
 
 func save_blacklist() -> void:
@@ -72,3 +72,7 @@ func save_blacklist() -> void:
 		file.seek(0)
 		file.store_csv_line(directory_manager.blacklist)
 		print(directory_manager.blacklist)
+
+
+func _on_tree_exiting() -> void:
+	Global.save_settings()

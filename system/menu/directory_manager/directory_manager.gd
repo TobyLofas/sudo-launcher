@@ -14,26 +14,11 @@ func refresh_directory_display(dirs) -> void:
 		directory_display.add_item(dir)
 
 func load_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + Global.data_dir + "directories.csv", FileAccess.READ)
-	if !file:
-		print("does not exist")
-	else:
-		if file.get_as_text() != "":
-			var line = file.get_csv_line()
-			directories = line
-	refresh_directory_display(directories)
-
-func save_directories() -> void:
-	var file = FileAccess.open(Global.base_dir + Global.data_dir + "directories.csv", FileAccess.WRITE)
-	if !file:
-		print("directories.csv does not exist")
-	else:
-		file.seek(0)
-		file.store_csv_line(directories)
+	directories = Global.load_csv(Global.base_dir + Global.data_dir + Global.directories_file_name)
 	refresh_directory_display(directories)
 
 func create_metadata_from_directories(dirs : PackedStringArray = directories) -> void:
-	load_blacklist()
+	blacklist = Global.load_csv(Global.base_dir + Global.data_dir + Global.blacklist_file_name)
 	for directory in dirs:
 		var dir = DirAccess.open(directory)
 		if !dir:
@@ -43,10 +28,8 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 			var file_name = dir.get_next()
 			while file_name != "":
 				if dir.current_is_dir():
-					#print("Found directory: " + file_name)
 					create_metadata_from_directories([directory + "/" + file_name])
 				else:
-					#print("Found file: " + file_name)
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
 					if extension == "exe" or extension == "lnk":
@@ -80,14 +63,5 @@ func _on_remove_directory_pressed() -> void:
 	directories_changed.emit(directories)
 
 func _on_directories_changed(dirs: PackedStringArray) -> void:
-	save_directories()
+	Global.save_to_csv(directories, Global.base_dir + Global.data_dir + Global.directories_file_name)
 	refresh_directory_display(dirs)
-
-func load_blacklist() -> void:
-	var file = FileAccess.open(Global.base_dir + Global.data_dir + "blacklist.csv", FileAccess.READ)
-	if !file:
-		print("blacklist.csv does not exist")
-	else:
-		if file.get_as_text() != "":
-			var line = file.get_csv_line()
-			blacklist = line

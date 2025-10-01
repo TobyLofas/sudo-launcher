@@ -54,5 +54,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="dragged" from="Divider" to="." method="_on_divider_dragged"]
 [connection signal="item_selected" from="Divider/Library/GameList" to="." method="_on_game_list_item_selected"]
