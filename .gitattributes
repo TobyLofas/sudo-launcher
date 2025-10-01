@@ -117,3 +117,6 @@
 *.gz lfs-file
 *.rar lfs-file
 *.tar lfs-file
+
+*.css linguist-detectable=false
+*.ttf linguist-detectable=false
