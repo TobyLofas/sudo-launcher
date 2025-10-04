@@ -66,15 +66,16 @@ initial_position = 2
 visible = false
 unresizable = true
 
-[node name="TagManager" parent="PopupViewport/EditWindow" instance=ExtResource("5_idiyu")]
+[node name="TagManager" parent="PopupViewport" instance=ExtResource("5_idiyu")]
 unique_name_in_owner = true
 visible = false
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="directory_removed" from="SubViewportContainer/MainViewport/TabContainer/Directories/DirectoryManager" to="." method="_on_directory_manager_directory_removed"]
 [connection signal="metadata_updated" from="SubViewportContainer/MainViewport/TabContainer/Directories/DirectoryManager" to="." method="_on_metadata_updated"]
 [connection signal="close_requested" from="PopupViewport/EditWindow" to="." method="_on_edit_window_close_requested"]
 [connection signal="details_saved" from="PopupViewport/EditWindow" to="." method="_on_edit_window_details_saved"]
 [connection signal="icon_updated" from="PopupViewport/EditWindow" to="." method="_on_edit_window_icon_updated"]
-[connection signal="close_requested" from="PopupViewport/EditWindow/TagManager" to="." method="_on_tag_manager_close_requested"]
-[connection signal="tags_updated" from="PopupViewport/EditWindow/TagManager" to="SubViewportContainer/MainViewport/TabContainer/Library" method="_on_tag_manager_tags_updated"]
-[connection signal="visibility_changed" from="PopupViewport/EditWindow/TagManager" to="PopupViewport/EditWindow/TagManager" method="_on_visibility_changed"]
+[connection signal="close_requested" from="PopupViewport/TagManager" to="." method="_on_tag_manager_close_requested"]
+[connection signal="tags_updated" from="PopupViewport/TagManager" to="SubViewportContainer/MainViewport/TabContainer/Library" method="_on_tag_manager_tags_updated"]
+[connection signal="visibility_changed" from="PopupViewport/TagManager" to="PopupViewport/TagManager" method="_on_visibility_changed"]

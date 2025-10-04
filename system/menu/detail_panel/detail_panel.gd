@@ -4,6 +4,7 @@ extends Control
 
 signal edit_details
 signal add_to_blacklist(game : Game)
+signal edit_tags
 
 func _refresh_from_data(selected : Game) -> void:
 	%Name.text = selected.name
@@ -19,3 +20,7 @@ func _on_edit_button_pressed() -> void:
 
 func _on_blacklist_button_pressed() -> void:
 	add_to_blacklist.emit()
+
+
+func _on_tag_button_pressed() -> void:
+	edit_tags.emit()

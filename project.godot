@@ -27,6 +27,7 @@ IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 
 [display]
 
+window/size/initial_position_type=3
 window/energy_saving/keep_screen_on=false
 window/subwindows/embed_subwindows=false
 

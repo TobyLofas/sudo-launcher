@@ -48,13 +48,18 @@ func save_tags() -> void:
 	refresh_tag_displays()
 
 func _on_apply_tags(selected = %AvailableTagsDisplay.get_selected_items()) -> void:
-	for index in len(selected):
-		if not selected_tags.has(filtered_tags[selected[index]]):
-			selected_tags.append(filtered_tags[selected[index]])
+	if selected is int:
+		selected_tags.append(filtered_tags[selected])
+	else:
+		for index in len(selected):
+			if not selected_tags.has(filtered_tags[selected[index]]):
+				selected_tags.append(filtered_tags[selected[index]])
 	selected_game.tags = selected_tags
 	refresh_tag_displays()
 
 func _on_remove_tags(selected = %SelectedTagsDisplay.get_selected_items()) -> void:
+	if selected is int:
+		selected_tags.remove_at(selected_tags.find(selected))
 	selected.reverse()
 	for index in len(selected):
 		selected_tags.remove_at(selected[index])
@@ -68,8 +73,9 @@ func filter_available_tags() -> void:
 
 func _on_add_tag_pressed() -> void:
 	if %TagName.text != "":
-		tags.append(%TagName.text)
-		%TagName.clear()
+		if not tags.has(%TagName.text):
+			tags.append(%TagName.text)
+			%TagName.clear()
 	save_tags()
 	tags_updated.emit(tags)
 
@@ -87,3 +93,7 @@ func _on_delete_tag_pressed() -> void:
 func _on_visibility_changed() -> void:
 	selected_tags = selected_game.tags
 	refresh_tag_displays()
+
+
+func _on_available_tags_display_item_activated(_index: int) -> void:
+	pass # Replace with function body.

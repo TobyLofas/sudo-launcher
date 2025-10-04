@@ -8,6 +8,7 @@ extends Control
 func _ready() -> void:
 	library.detail_panel.edit_details.connect(_on_edit_details)
 	library.detail_panel.add_to_blacklist.connect(remove_game)
+	library.detail_panel.edit_tags.connect(_on_edit_tags)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
 	check_for_files()
 	create_metadata()
@@ -54,18 +55,19 @@ func create_metadata() -> void:
 
 func _on_tag_manager_close_requested() -> void:
 	edit_window.load_details()
+	library.refresh_game_list(true)
 
 func _on_edit_window_close_requested() -> void:
-	library.refresh_game_list()
+	library.refresh_game_list(true)
 
 func remove_game() -> void:
 	var file_name = library.selected.path.get_slice("/", library.selected.path.get_slice_count("/")-1)
 	var _name : String = file_name.get_slice(".",0)
 	var _dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+_name+".tres")
 	directory_manager.blacklist.append(file_name)
-	#save_blacklist()
 	Global.save_to_csv(directory_manager.blacklist, Global.base_dir + Global.data_dir + Global.blacklist_file_name)
-	library.build_library()
+	library.library.remove_at(library.game_list.get_selected_items()[0])
+	library.refresh_game_list(true)
 
 func save_blacklist() -> void:
 	var file = FileAccess.open(Global.base_dir + Global.data_dir + "blacklist.csv", FileAccess.WRITE)
@@ -76,6 +78,21 @@ func save_blacklist() -> void:
 		file.store_csv_line(directory_manager.blacklist)
 		print(directory_manager.blacklist)
 
-
 func _on_tree_exiting() -> void:
 	Global.save_settings()
+	
+func _on_edit_tags() -> void:
+	%TagManager.selected_game = library.selected
+	%TagManager.show()
+
+func _on_directory_manager_directory_removed(directory: String) -> void:
+	var for_removal = []
+	for game in library.library:
+		if game.path.contains(directory):
+			var file_name = game.path.get_slice("/", game.path.get_slice_count("/")-1)
+			var _name : String = file_name.get_slice(".",0)
+			var _dir = DirAccess.remove_absolute(Global.base_dir+Global.library_dir+_name+".tres")
+			for_removal.append(game)
+	for game in for_removal:
+		library.library.remove_at(library.library.find(game))
+	library.refresh_game_list(true)

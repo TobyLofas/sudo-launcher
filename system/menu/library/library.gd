@@ -40,7 +40,7 @@ func filter_by_search(term : String) -> void:
 	for item in library:
 		if item.name.containsn(term):
 			_search_filtered.append(item)
-	refresh_game_list()
+	refresh_game_list(true)
 
 func filter_by_tag(filter_tags : PackedStringArray) -> void:
 	_tag_filtered = []
@@ -54,14 +54,14 @@ func filter_by_tag(filter_tags : PackedStringArray) -> void:
 			for tag in filter_tags:
 				if item.tags.has(tag):
 					_tag_filtered.append(item)
-	refresh_game_list()
+	refresh_game_list(true)
 
-func refresh_game_list() -> void:
+func refresh_game_list(keep_selected : bool) -> void:
 	_apply_filters()
 	_apply_ordering()
 	create_game_list_from_filtered_library()
 	if game_list.item_count > 0:
-		if Global.library_open_to_last_selected:
+		if keep_selected:
 			game_list.select(Global.library_last_index)
 			_on_game_list_item_selected(Global.library_last_index)
 		else:
@@ -145,7 +145,7 @@ func load_tags(_tags : Array[String]) -> void:
 
 func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
-	refresh_game_list()
+	refresh_game_list(Global.library_open_to_last_selected)
 
 func save_metadata_for_selected() -> void:
 	var file_name = selected.path.get_slice("/", selected.path.get_slice_count("/")-1)
@@ -170,4 +170,4 @@ func _on_divider_dragged(offset: int) -> void:
 
 func _on_visibility_changed() -> void:
 	if top_bar:
-		refresh_game_list()
+		refresh_game_list(true)

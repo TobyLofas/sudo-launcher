@@ -8,7 +8,7 @@ extends Control
 @onready var sort_button = %SortButton
 @onready var list_mode_toggle = %ListMode
 
-var tags
+var tags = []
 var selected_tags : Array[String]
 
 var invert_sort : bool = false
@@ -21,6 +21,7 @@ func _ready() -> void:
 	image_toggle.button_pressed = not Global.library_display_images
 
 func load_tags(_tags : Array[String]) -> void:
+	tags.clear()
 	tags = _tags
 	update_tag_display_list()
 
