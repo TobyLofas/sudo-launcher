@@ -64,7 +64,11 @@ License files can be found in the relevant directories.
 
 ## Testers
 Aidan Stevens
+
 Vasaesia
+
 Ellie/Lirie
+
 Ziffel
+
 And0ch/Scaralus

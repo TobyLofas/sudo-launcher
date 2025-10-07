@@ -44,6 +44,8 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 							var library_path = Global.base_dir + Global.library_dir + title
 							if FileAccess.get_sha256(library_path + ".tres") == "":
 								ResourceSaver.save(tgame, library_path + ".tres")
+					else:
+						print_rich("[color=yellow]Found file: " + file_name + "[/color]")
 				file_name = dir.get_next()
 
 func _on_add_directory_pressed() -> void:
