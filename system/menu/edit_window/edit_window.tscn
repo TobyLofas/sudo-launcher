@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0tn6dttci0wc"]
+[gd_scene load_steps=16 format=3 uid="uid://d0tn6dttci0wc"]
 
 [ext_resource type="Script" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_s0sy3"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5yjr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ythy6"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -91,6 +92,7 @@ initial_position = 4
 size = Vector2i(400, 400)
 transient = true
 exclusive = true
+theme = ExtResource("1_s0sy3")
 script = ExtResource("1_lqnf1")
 
 [node name="EditDetails" type="Control" parent="."]
@@ -201,7 +203,7 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -227,7 +229,7 @@ editable = false
 [node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -236,7 +238,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 [node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -259,7 +261,7 @@ editable = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -289,7 +291,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")

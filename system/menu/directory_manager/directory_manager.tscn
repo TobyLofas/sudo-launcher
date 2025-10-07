@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dliso8lp1b3b7"]
+[gd_scene load_steps=3 format=3 uid="uid://dliso8lp1b3b7"]
 
 [ext_resource type="Script" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_h3yw1"]
 
 [node name="DirectoryManager" type="Control"]
 custom_minimum_size = Vector2(300, 0)
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_h3yw1")
 script = ExtResource("1_12u0k")
 metadata/_tab_index = 1
 

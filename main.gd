@@ -83,6 +83,7 @@ func _on_tree_exiting() -> void:
 	Global.save_settings()
 	
 func _on_edit_tags() -> void:
+	%EditWindow.selected_game = library.selected
 	%TagManager.selected_game = library.selected
 	%TagManager.show()
 
@@ -97,3 +98,7 @@ func _on_directory_manager_directory_removed(directory: String) -> void:
 	for game in for_removal:
 		library.library.remove_at(library.library.find(game))
 	library.refresh_game_list(true)
+
+
+func _on_edit_window_icon_updated() -> void:
+	pass # Replace with function body.
