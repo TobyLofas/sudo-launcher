@@ -21,19 +21,20 @@ func _ready() -> void:
 	top_bar.tags_changed.connect(filter_by_tag)
 	top_bar.image_toggle.pressed.connect(refresh_game_list)
 	top_bar.list_mode_toggle.pressed.connect(refresh_game_list)
-	
 	top_bar.sort_changed.connect(refresh_game_list)
-	
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
 	
 	divider.split_offset = Global.library_divider_offset
+	
 
 func _on_game_list_item_selected(index: int) -> void:
 	if filtered_library.size() != 0:
 		selected = filtered_library[index]
 	detail_panel._refresh_from_data(selected)
-	Global.library_last_index = index
+	Global.library_last_index = library.find(selected)
+	Global.library_last_game = selected
+	
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
@@ -48,25 +49,25 @@ func filter_by_tag(filter_tags : PackedStringArray) -> void:
 	for item in library:
 		item.tags.sort()
 		if filter_tags == item.tags:
-			for tag in filter_tags:
-				_tag_filtered.append(item)
+			_tag_filtered.append(item)
 		elif filter_tags.size() < item.tags.size():
 			for tag in filter_tags:
 				if item.tags.has(tag):
 					_tag_filtered.append(item)
 	refresh_game_list(true)
 
-func refresh_game_list(keep_selected : bool) -> void:
+func refresh_game_list(keep_selected : bool = true) -> void:
 	_apply_filters()
 	_apply_ordering()
 	create_game_list_from_filtered_library()
-	if game_list.item_count > 0:
-		if keep_selected:
-			game_list.select(Global.library_last_index)
-			_on_game_list_item_selected(Global.library_last_index)
-		else:
-			game_list.select(0)
-			_on_game_list_item_selected(0)
+	if game_list.item_count > 0 and keep_selected and game_list.item_count > Global.library_last_index:
+		var selected_index = filtered_library.find(library[Global.library_last_index])
+		if selected_index > 0:
+			game_list.select(selected_index)
+			_on_game_list_item_selected(selected_index)
+			return
+	if game_list.item_count > 0: game_list.select(0)
+	_on_game_list_item_selected(0)
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -90,6 +91,8 @@ func _apply_ordering() -> void:
 		filtered_library.sort_custom(_sort_by_name)
 	elif sort_type == "Date":
 		filtered_library.sort_custom(_sort_by_year)
+	elif sort_type == "Path":
+		filtered_library.sort_custom(_sort_by_path)
 	if top_bar.invert_sort:
 		filtered_library.reverse()
 
@@ -113,9 +116,12 @@ func create_game_list_from_filtered_library() -> void:
 	if Global.library_list_mode:
 		game_list.max_columns = 1
 		game_list.icon_mode = game_list.ICON_MODE_LEFT
+		game_list.fixed_icon_size = Vector2i(32,32)
 	else:
 		game_list.max_columns = 15
 		game_list.icon_mode = game_list.ICON_MODE_TOP
+		game_list.fixed_icon_size = Vector2i(64,64)
+	
 
 func create_library_from_metadata(directory : String) -> void:
 	library.clear()
@@ -125,9 +131,8 @@ func create_library_from_metadata(directory : String) -> void:
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("Found directory: " + file_name)
+				pass
 			else:
-				#print("Found file: " + file_name)
 				var extension : String = file_name.get_slice(".",1)
 				if extension == "tres":
 					var game : Game = load(directory + file_name) as Game
@@ -145,6 +150,7 @@ func load_tags(_tags : Array[String]) -> void:
 
 func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
+	Global.library_last_game = library[Global.library_last_index]
 	refresh_game_list(Global.library_open_to_last_selected)
 
 func save_metadata_for_selected() -> void:
@@ -162,6 +168,13 @@ func _sort_by_name(a : Game, b : Game):
 
 func _sort_by_year(a : Game, b : Game):
 	if a.year < b.year:
+		return true
+	if a.year == b.year:
+		return _sort_by_name(a, b)
+	return false
+
+func _sort_by_path(a : Game, b : Game):
+	if a.path < b.path:
 		return true
 	return false
 

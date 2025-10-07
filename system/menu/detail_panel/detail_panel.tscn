@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2dx2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5yjr"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -157,7 +157,7 @@ layout_mode = 2
 
 [node name="TagButton" type="PanelContainer" parent="Details/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_l2dx2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yrucj")
@@ -205,7 +205,7 @@ offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play the game"
-theme_override_styles/panel = SubResource("StyleBoxFlat_l2dx2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 layout_vertical = true
@@ -222,7 +222,7 @@ offset_top = -43.0
 offset_right = 44.0
 grow_vertical = 0
 tooltip_text = "Delete & Add to Blacklist"
-theme_override_styles/panel = SubResource("StyleBoxFlat_l2dx2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 layout_vertical = true
@@ -245,12 +245,18 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "Edit game details"
-theme_override_styles/panel = SubResource("StyleBoxFlat_l2dx2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5yjr")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")
 label_settings = SubResource("LabelSettings_7j1wf")
 
+[node name="BlacklistConfirm" type="NativeConfirmationDialog" parent="."]
+buttons_texts = 1
+dialog_text = "Are you sure you want to add this game to the blacklist?"
+unique_name_in_owner = true
+
 [connection signal="pressed" from="Details/Tags/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="pressed" from="BlacklistButton" to="." method="_on_blacklist_button_pressed"]
 [connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="confirmed" from="BlacklistConfirm" to="." method="_on_blacklist_confirm_confirmed"]

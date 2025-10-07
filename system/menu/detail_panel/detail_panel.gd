@@ -19,8 +19,12 @@ func _on_edit_button_pressed() -> void:
 	edit_details.emit()
 
 func _on_blacklist_button_pressed() -> void:
-	add_to_blacklist.emit()
-
+	%BlacklistConfirm.show()
+	
 
 func _on_tag_button_pressed() -> void:
 	edit_tags.emit()
+
+
+func _on_blacklist_confirm_confirmed() -> void:
+	add_to_blacklist.emit()

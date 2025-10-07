@@ -12,7 +12,10 @@ func _ready() -> void:
 	DisplayServer.window_set_min_size(Vector2i(960,540))
 	check_for_files()
 	create_metadata()
+	
 	library.build_library()
+	
+	
 	
 	
 func _on_metadata_updated() -> void:
@@ -37,10 +40,8 @@ func _on_edit_window_details_saved() -> void:
 	library.detail_panel._refresh_from_data(library.selected)
 
 func check_directory_in_directory(dir, base_dir) -> void:
-	print("Checking: " + base_dir + " for: " + dir)
 	var base_directory = DirAccess.open(base_dir)
 	if !base_directory.dir_exists(dir):
-		print("Creating directory: " + dir)
 		base_directory.make_dir(dir)
 
 func check_file_in_directory(file_name, directory) -> void:

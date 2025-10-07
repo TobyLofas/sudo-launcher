@@ -9,19 +9,18 @@ extends Control
 @onready var list_mode_toggle = %ListMode
 
 var tags = []
-var selected_tags : Array[String]
+var selected_tags : PackedStringArray
 
 var invert_sort : bool = false
 
 signal tags_changed(tags)
-signal sort_changed
+signal sort_changed(keep_selected)
 
 func _ready() -> void:
 	list_mode_toggle.button_pressed = Global.library_list_mode
 	image_toggle.button_pressed = not Global.library_display_images
 
-func load_tags(_tags : Array[String]) -> void:
-	tags.clear()
+func load_tags(_tags : PackedStringArray) -> void:
 	tags = _tags
 	update_tag_display_list()
 
@@ -34,12 +33,14 @@ func _on_tag_button_pressed() -> void:
 		tags_list.hide()
 
 func update_tag_display_list() -> void:
+	tags_list.clear()
 	if tags.is_empty():
 		tag_button.hide()
 	else: 
 		tag_button.show()
-	for index in len(tags):
+	for index in tags.size():
 		tags_list.add_check_item(tags[index],index)
+	tags_list.reset_size()
 
 func _on_tags_list_index_pressed(index: int) -> void:
 	tags_list.toggle_item_checked(index)
@@ -52,10 +53,10 @@ func _on_tags_list_index_pressed(index: int) -> void:
 
 func _on_sort_button_pressed() -> void:
 	invert_sort = not invert_sort
-	sort_changed.emit()
+	sort_changed.emit(true)
 
 func _on_sort_type_item_selected(_index: int) -> void:
-	sort_changed.emit()
+	sort_changed.emit(true)
 
 
 func _on_image_display_toggled(value: bool) -> void:

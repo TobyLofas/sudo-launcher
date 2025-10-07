@@ -62,12 +62,12 @@ metadata/_tab_index = 2
 [node name="EditWindow" parent="PopupViewport" instance=ExtResource("4_oynk0")]
 unique_name_in_owner = true
 title = "Edit Game Details"
-initial_position = 2
 visible = false
 unresizable = true
 
 [node name="TagManager" parent="PopupViewport" instance=ExtResource("5_idiyu")]
 unique_name_in_owner = true
+title = "Manage Tags"
 visible = false
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

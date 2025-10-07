@@ -23,7 +23,7 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 	for directory in dirs:
 		var dir = DirAccess.open(directory)
 		if !dir:
-			print("An error occurred when trying to access the path: " + directory)
+			pass
 		else:
 			dir.list_dir_begin()
 			var file_name = dir.get_next()
@@ -32,6 +32,8 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 					if file_name != "mods" or file_name != "addons" or file_name != "plugins":
 						print_rich("[color=purple]Found directory: " + file_name + "[/color]")
 						create_metadata_from_directories([directory + "/" + file_name])
+					else:
+						print_rich("[color=blue]Found directory: " + file_name + "[/color]")
 				else:
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
@@ -42,8 +44,6 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 							var library_path = Global.base_dir + Global.library_dir + title
 							if FileAccess.get_sha256(library_path + ".tres") == "":
 								ResourceSaver.save(tgame, library_path + ".tres")
-						else:
-							print_rich("[color=red]Found exe: " + file_name + "[/color]")
 				file_name = dir.get_next()
 
 func _on_add_directory_pressed() -> void:

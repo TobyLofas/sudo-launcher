@@ -84,9 +84,11 @@ func _on_close_requested() -> void:
 
 func _on_delete_tag_pressed() -> void:
 	var tags_to_delete = %AvailableTagsDisplay.get_selected_items()
+	
 	tags_to_delete.reverse()
 	for index in len(tags_to_delete):
 		tags.remove_at(tags_to_delete[index])
+	tags_updated.emit(tags)
 	save_tags()
 	refresh_tag_displays()
 

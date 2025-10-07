@@ -28,6 +28,7 @@ var library_display_images : bool
 var library_divider_offset : int
 var library_open_to_last_selected : bool
 var library_last_index : int
+var library_last_game : Game
 
 func _ready() -> void:
 	load_settings()

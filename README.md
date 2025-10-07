@@ -9,9 +9,9 @@ The first time it is run, it will create three folders by default:
 
 - **data** - contains metadata files for the games SudoLauncher can launch, as well as the tags and directories files
 - **games** - an optional folder that can be used to install games into.
-- **icons** - an optional folder that can be used to library icons.
+- **icons** - an optional folder that can be used to store library icons.
 
-By default, these subfolders will be empty. The **data** folder will automatically populate with metadeta files as games are added.
+By default, these subfolders will be empty. The **data** folder will automatically populate with metadata files as games are added.
 
 ## Library
 
@@ -30,9 +30,9 @@ The size of the **Library** & **Details Panel** can be adjusted by dragging the 
 
 Library folders can be added in the **Settings** tab. In the library directories section, click the **Add** button, and select the folder you wish to add.
 
-To remove a library folder, select a directory from the list, and click the **Remove** button.
+To remove a library folder, select the directory(s) from the list, and click the **Remove** button.
 
-Finally, ensure you click the **(Re)Build** button to initialize the library from the set directories. This will populate the **library** folder with metadata files for the game(s) detected in the set directories.
+Finally, ensure you click the **Scan Directories** button to initialize the library from the set directories. This will populate the **library** folder with metadata files for the game(s) detected in the set directories.
 
 ## Metadata files
 
@@ -43,6 +43,7 @@ To display and store information about the games in the library, **SudoLauncher*
 - **year** - the year the game was originally released in. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
 - **developer** - the name of the developer that created the game. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
 - **tags** - a list of strings that representing the assigned categories for the game.
+- **args** - a string of launch arguments
 
 > **Note:** The **name** and **path** properties will be automatically assigned using the name of each executable found. If you have added a library directory that contains subfolders for each game, and those games have multiple executables in the subfolder (e.g. a level editor), you will need to ensure unwanted executables are deleted from the library.
 
@@ -59,5 +60,11 @@ Created using ***Godot 4.3***.
 
 *Native Dialogues* by **Tomás Espejo Gómez**, licensed under the MIT License.
 
-
 License files can be found in the relevant directories.
+
+## Testers
+Aidan Stevens
+Vasaesia
+Ellie/Lirie
+Ziffel
+And0ch/Scaralus
