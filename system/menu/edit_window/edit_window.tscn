@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://d0tn6dttci0wc"]
 
-[ext_resource type="Script" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
+[ext_resource type="Script" uid="uid://bc371s4g3iee6" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_s0sy3"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
-[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
+[ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ythy6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -19,75 +19,37 @@ corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_cxqar"]
 script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
 icon_name = "tag-plus"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_86uq3"]
 
 [sub_resource type="Resource" id="Resource_x2uvv"]
 script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
 icon_name = "folder"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_18h7x"]
 
 [sub_resource type="Resource" id="Resource_jkcvw"]
 script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
 icon_name = "undo-variant"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhbci"]
 
 [sub_resource type="Resource" id="Resource_v4utu"]
 script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
 icon_name = "folder"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6euxt"]
 
 [sub_resource type="Resource" id="Resource_og0sr"]
 script = ExtResource("3_aitlv")
-icon_font = "MaterialIcons"
 icon_name = "content-save"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6non"]
 
 [node name="DetailEditWindow" type="Window"]
+oversampling_override = 1.0
 initial_position = 4
 size = Vector2i(400, 400)
 transient = true
@@ -168,11 +130,11 @@ size_flags_horizontal = 3
 
 [node name="Developer" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="EditDetails/VBoxContainer/Developer"]
 layout_mode = 2
-text = "Developer: 
-"
+text = "Developer:"
 
 [node name="Control" type="Control" parent="EditDetails/VBoxContainer/Developer"]
 custom_minimum_size = Vector2(41, 0)
@@ -182,6 +144,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 
 [node name="Tags" type="VBoxContainer" parent="EditDetails/VBoxContainer"]
 layout_mode = 2
@@ -203,7 +166,7 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -229,7 +192,7 @@ editable = false
 [node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -238,7 +201,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 [node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -261,7 +224,7 @@ editable = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -291,7 +254,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ythy6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
