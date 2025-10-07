@@ -1,21 +1,15 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b3cndw47m37di"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b3cndw47m37di"]
+
+[ext_resource type="StyleBox" uid="uid://dvav1p8gqkico" path="res://system/menu/new_style_box_empty.tres" id="1_dvokp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b83yx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnerb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pamyw"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3yfa"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuxow"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vremt"]
 
 [resource]
 CheckBox/styles/focus = SubResource("StyleBoxEmpty_b83yx")
-ItemList/styles/focus = SubResource("StyleBoxEmpty_dnerb")
-LineEdit/styles/focus = SubResource("StyleBoxEmpty_pamyw")
+ItemList/styles/focus = ExtResource("1_dvokp")
+LineEdit/styles/focus = ExtResource("1_dvokp")
 OptionButton/styles/focus = SubResource("StyleBoxEmpty_t3yfa")
-TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_uuxow")
-TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_vremt")
+TabBar/styles/tab_focus = ExtResource("1_dvokp")
+TabContainer/styles/tab_focus = ExtResource("1_dvokp")
