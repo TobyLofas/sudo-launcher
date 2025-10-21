@@ -63,7 +63,7 @@ shadow_offset = Vector2(0, 0)
 
 [node name="TagManager" type="Window"]
 initial_position = 4
-size = Vector2i(500, 300)
+size = Vector2i(500, 500)
 wrap_controls = true
 transient = true
 exclusive = true
@@ -71,14 +71,13 @@ theme = ExtResource("1_h711q")
 script = ExtResource("1_xdhcn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 custom_minimum_size = Vector2(0, 24)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.109804, 0.109804, 0.109804, 1)
+color = Color(0.184314, 0.184314, 0.184314, 1)
 
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 anchors_preset = 15
