@@ -1,150 +1,64 @@
 [gd_scene load_steps=22 format=3 uid="uid://bwp2plyvy6aql"]
 
-[ext_resource type="Script" path="res://system/menu/top_bar/top_bar.gd" id="1_qis7v"]
+[ext_resource type="Script" uid="uid://du8xws6njx1t8" path="res://system/menu/top_bar/top_bar.gd" id="1_qis7v"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_rroad"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
-[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
+[ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
+[ext_resource type="Script" uid="uid://c4n2aki4724e4" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
 [sub_resource type="Resource" id="Resource_xxsci"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "text-search-variant"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2uydc"]
 
 [sub_resource type="Resource" id="Resource_c8tc3"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "tag"
-icon_size = 24
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
+icon_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7ns8"]
 
 [sub_resource type="Resource" id="Resource_r2ldb"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "chevron-up"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_0yaop"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "chevron-down"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_pgtyd"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "format-list-bulleted"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rx8q"]
 
 [sub_resource type="Resource" id="Resource_7ks3p"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "close"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_cl8kw"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "check"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ha7ms"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
-icon_name = "image-outline"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7bxor"]
 
 [sub_resource type="Resource" id="Resource_aml8d"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "format-list-bulleted"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_tdt6k"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
 icon_name = "dots-grid"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_1b0u2"]
 script = ExtResource("3_mq51i")
-icon_font = "MaterialIcons"
-icon_name = "image-outline"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_howd3"]
 
@@ -176,9 +90,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 585.0
-offset_bottom = 20.0
+offset_top = -24.5
+offset_right = 541.0
+offset_bottom = 24.5
 grow_vertical = 2
 
 [node name="Control2" type="Control" parent="SF"]
@@ -190,17 +104,20 @@ layout_mode = 2
 
 [node name="Filters" type="HBoxContainer" parent="SF"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Filter" type="Label" parent="SF/Filters"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Filter:
-"
+text = "Filter:"
 
 [node name="SearchBar" type="LineEdit" parent="SF/Filters"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 16)
 layout_mode = 2
+size_flags_vertical = 4
+placeholder_text = "Search..."
+clear_button_enabled = true
 
 [node name="Search" type="PanelContainer" parent="SF/Filters"]
 visible = false
@@ -237,6 +154,8 @@ layout_mode = 2
 
 [node name="Sorting" type="HBoxContainer" parent="SF"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="SF/Sorting"]
 layout_mode = 2
@@ -249,6 +168,7 @@ selected = 0
 allow_reselect = true
 item_count = 3
 popup/item_0/text = "Name"
+popup/item_0/id = 0
 popup/item_1/text = "Date"
 popup/item_1/id = 1
 popup/item_2/text = "Path"
