@@ -1,21 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0tn6dttci0wc"]
+[gd_scene load_steps=15 format=3 uid="uid://d0tn6dttci0wc"]
 
 [ext_resource type="Script" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_s0sy3"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ht424"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_cxqar"]
 script = ExtResource("3_aitlv")
@@ -203,7 +191,6 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ht424")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")

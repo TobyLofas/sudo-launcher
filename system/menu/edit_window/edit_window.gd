@@ -36,9 +36,7 @@ func load_details() -> void:
 	%YearEdit.text = str(selected_game.year)
 	%DeveloperEdit.text = selected_game.developer
 	%LaunchArguments.text = selected_game.args
-	%TagDisplayList.clear()
-	for tag in selected_game.tags:
-		%TagDisplayList.add_item(tag)
+	load_tags()
 
 func save_details() -> void:
 	selected_game.name = %TitleEdit.text
@@ -60,3 +58,8 @@ func _on_icon_reset_button_pressed() -> void:
 	selected_game.icon = Global.default_icon_path
 	%IconPathDisplay.text = Global.default_icon_path
 	details_saved.emit()
+
+func load_tags() -> void:
+	%TagDisplayList.clear()
+	for tag in selected_game.tags:
+		%TagDisplayList.add_item(tag)

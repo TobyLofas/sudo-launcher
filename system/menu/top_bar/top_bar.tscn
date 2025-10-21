@@ -305,6 +305,10 @@ icon_settings = SubResource("Resource_1b0u2")
 label_settings = SubResource("LabelSettings_howd3")
 toggle_mode = true
 
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
