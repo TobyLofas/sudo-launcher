@@ -60,7 +60,7 @@ func refresh_game_list(keep_selected : bool = true) -> void:
 	_apply_filters()
 	_apply_ordering()
 	create_game_list_from_filtered_library()
-	if game_list.item_count > 0 and keep_selected and game_list.item_count > Global.library_last_index:
+	if game_list.item_count > 0 and keep_selected:
 		var selected_index = filtered_library.find(library[Global.library_last_index])
 		if selected_index > 0:
 			game_list.select(selected_index)
@@ -109,9 +109,14 @@ func create_game_list_from_filtered_library() -> void:
 				var image
 				var image_path = item.icon
 				image = Image.new()
-				image.load(image_path)
-				icon = ImageTexture.new()
-				icon.set_image(image)
+				var error = image.load(image_path)
+				if error:
+					item.icon = Global.default_icon_path
+					icon = load(item.icon)
+				else:
+					icon = ImageTexture.new()
+					icon.set_image(image)
+					
 			game_list.add_item(item.name, icon)
 	if Global.library_list_mode:
 		game_list.max_columns = 1

@@ -55,7 +55,7 @@ func create_metadata() -> void:
 	directory_manager.create_metadata_from_directories()
 
 func _on_tag_manager_close_requested() -> void:
-	edit_window.load_details()
+	edit_window.load_tags()
 	library.refresh_game_list(true)
 
 func _on_edit_window_close_requested() -> void:

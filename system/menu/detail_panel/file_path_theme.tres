@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://cpmlnjjpqxqbk"]
+
+[resource]
+RichTextLabel/colors/default_color = Color(0.470588, 0.470588, 0.470588, 1)
+RichTextLabel/colors/table_border = Color(0, 0, 0, 0)
