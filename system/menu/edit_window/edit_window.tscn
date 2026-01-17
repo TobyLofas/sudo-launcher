@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwua"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08f2c"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -65,19 +65,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExePathDialog" type="NativeFileDialog" parent="EditDetails"]
-title = "Select an .exe file..."
-mode_overrides_title = false
+[node name="ExeFileDialog" type="FileDialog" parent="EditDetails"]
+unique_name_in_owner = true
+title = "Open a File"
 file_mode = 0
 access = 2
-unique_name_in_owner = true
+use_native_dialog = true
 
-[node name="IconPathDialog" type="NativeFileDialog" parent="EditDetails"]
-title = "Select an icon file..."
-mode_overrides_title = false
+[node name="IconFileDialog" type="FileDialog" parent="EditDetails"]
+unique_name_in_owner = true
+title = "Open a File"
 file_mode = 0
 access = 2
-unique_name_in_owner = true
+use_native_dialog = true
 
 [node name="ColorRect" type="ColorRect" parent="EditDetails"]
 layout_mode = 1
@@ -166,7 +166,7 @@ max_columns = 255
 
 [node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -192,7 +192,7 @@ editable = false
 [node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -201,7 +201,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 [node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -224,7 +224,7 @@ editable = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -254,7 +254,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
@@ -263,8 +263,8 @@ button_margin = -3
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="file_selected" from="EditDetails/ExePathDialog" to="." method="_on_exe_path_dialog_file_selected"]
-[connection signal="file_selected" from="EditDetails/IconPathDialog" to="." method="_on_icon_path_dialog_file_selected"]
+[connection signal="file_selected" from="EditDetails/ExeFileDialog" to="." method="_on_exe_file_dialog_file_selected"]
+[connection signal="file_selected" from="EditDetails/IconFileDialog" to="." method="_on_icon_file_dialog_file_selected"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Tags/Tags/AddTagButton" to="." method="_on_add_tag_button_pressed"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Icon/IconPathButton" to="." method="_on_icon_path_button_pressed"]
 [connection signal="pressed" from="EditDetails/VBoxContainer/Icon/IconResetButton" to="." method="_on_icon_reset_button_pressed"]

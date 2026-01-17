@@ -40,3 +40,4 @@ mono_crash.*.json
 games/
 icons/
 *.build
+data/

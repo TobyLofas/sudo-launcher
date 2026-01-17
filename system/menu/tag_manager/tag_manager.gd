@@ -48,6 +48,7 @@ func save_tags() -> void:
 	refresh_tag_displays()
 
 func _on_apply_tags(selected = %AvailableTagsDisplay.get_selected_items()) -> void:
+	if not selected_game: return
 	if selected is int:
 		selected_tags.append(filtered_tags[selected])
 	else:
@@ -93,6 +94,7 @@ func _on_delete_tag_pressed() -> void:
 	refresh_tag_displays()
 
 func _on_visibility_changed() -> void:
+	if not selected_game: return
 	selected_tags = selected_game.tags
 	refresh_tag_displays()
 

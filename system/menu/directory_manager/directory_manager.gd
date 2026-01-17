@@ -1,6 +1,6 @@
 extends Control
 
-@onready var directory_select = $NativeFileDialog
+@onready var directory_select = %FileDialog
 @onready var directory_display = %DirectoryDisplay
 
 var directories : PackedStringArray = []
@@ -75,3 +75,8 @@ func _on_remove_directory_pressed() -> void:
 func _on_directories_changed(dirs: PackedStringArray) -> void:
 	Global.save_to_csv(directories, Global.base_dir + Global.data_dir + Global.directories_file_name)
 	refresh_directory_display(dirs)
+
+
+func _on_file_dialog_dir_selected(dir: String) -> void:
+	directories.append(dir)
+	directories_changed.emit(directories)

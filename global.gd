@@ -48,11 +48,12 @@ func load_settings() -> void:
 	if err != OK:
 		print(base_dir + settings_file_name, " does not exist")
 		return
-	library_list_mode = file.get_value("Library", "list_mode")
-	library_display_images = file.get_value("Library", "display_images")
-	library_divider_offset = file.get_value("Library", "divider_offset")
-	library_open_to_last_selected = file.get_value("Library", "open_last_selected")
-	library_last_index = file.get_value("Library", "last_selected_index")
+	if file.get_value("Library", "list_mode"): 
+		library_list_mode = file.get_value("Library", "list_mode")
+		library_display_images = file.get_value("Library", "display_images")
+		library_divider_offset = file.get_value("Library", "divider_offset")
+		library_open_to_last_selected = file.get_value("Library", "open_last_selected")
+		library_last_index = file.get_value("Library", "last_selected_index")
 
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)

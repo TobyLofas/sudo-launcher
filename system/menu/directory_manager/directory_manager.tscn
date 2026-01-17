@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dliso8lp1b3b7"]
 
-[ext_resource type="Script" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
+[ext_resource type="Script" uid="uid://bvowjusd7ir4a" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_h3yw1"]
 
 [node name="DirectoryManager" type="Control"]
@@ -14,12 +14,6 @@ grow_vertical = 2
 theme = ExtResource("1_h3yw1")
 script = ExtResource("1_12u0k")
 metadata/_tab_index = 1
-
-[node name="NativeFileDialog" type="NativeFileDialog" parent="."]
-title = "Open a Directory..."
-mode_overrides_title = false
-file_mode = 2
-access = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -64,9 +58,16 @@ text = "Remove"
 layout_mode = 2
 text = "Scan Directories"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a Directory"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
 [connection signal="directories_changed" from="." to="." method="_on_directories_changed"]
-[connection signal="dir_selected" from="NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]
 [connection signal="item_activated" from="Interface/DirectoryDisplay" to="." method="_on_directory_display_item_activated"]
 [connection signal="pressed" from="Interface/AddDirectory" to="." method="_on_add_directory_pressed"]
 [connection signal="pressed" from="Interface/RemoveDirectory" to="." method="_on_remove_directory_pressed"]
 [connection signal="pressed" from="Interface/BuildLibrary" to="." method="_on_build_library_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

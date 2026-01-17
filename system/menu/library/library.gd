@@ -147,6 +147,7 @@ func create_library_from_metadata(directory : String) -> void:
 		print("An error occurred when trying to access the path.")
 
 func start_game(_id: int = 0) -> void:
+	if not selected: return
 	OS.create_process("cmd.exe", ["/c", selected.path, selected.args])
 
 func load_tags(_tags : Array[String]) -> void:
@@ -167,7 +168,7 @@ func _on_tag_manager_tags_updated(_tags: Variant) -> void:
 	top_bar.load_tags(_tags)
 
 func _sort_by_name(a : Game, b : Game):
-	if a.name < b.name:
+	if _trim_articles(a.name) < _trim_articles(b.name):
 		return true
 	return false
 
@@ -182,6 +183,13 @@ func _sort_by_path(a : Game, b : Game):
 	if a.path < b.path:
 		return true
 	return false
+
+func _trim_articles(str : String) -> String:
+	if str.left(4).to_lower() == "the ":
+		return str.substr(4,-1)
+	if str.left(2).to_lower() == "a ":
+		return str.substr(2,-1)
+	return str
 
 func _on_divider_dragged(offset: int) -> void:
 	Global.library_divider_offset = offset

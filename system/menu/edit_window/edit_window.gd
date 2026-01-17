@@ -6,12 +6,12 @@ signal details_saved
 signal icon_updated
 
 func _on_icon_path_button_pressed() -> void:
-	%IconPathDialog.add_filter("*.svg, *.png, *.jpg, *.jpeg", "Image (.svg, .png, .jpg, .jpeg)")
-	%IconPathDialog.show()
+	%IconFileDialog.add_filter("*.svg, *.png, *.jpg, *.jpeg", "Image (.svg, .png, .jpg, .jpeg)")
+	%IconFileDialog.show()
 
 func _on_exe_path_button_pressed() -> void:
-	%ExePathDialog.add_filter("*.exe, *.lnk", "Executable (.exe, .lnk)")
-	%ExePathDialog.show()
+	%ExeFileDialog.add_filter("*.exe, *.lnk", "Executable (.exe, .lnk)")
+	%ExeFileDialog.show()
 
 func _on_icon_path_dialog_file_selected(path: String) -> void:
 	%IconPathDisplay.text = path
@@ -22,6 +22,16 @@ func _on_exe_path_dialog_file_selected(path: String) -> void:
 	%ExePathDisplay.text = path
 	selected_game.path = path
 
+func _on_exe_file_dialog_file_selected(path: String) -> void:
+	%ExePathDisplay.text = path
+	selected_game.path = path
+
+
+func _on_icon_file_dialog_file_selected(path: String) -> void:
+	%IconPathDisplay.text = path
+	selected_game.icon = path
+	icon_updated.emit()
+
 func _on_close_requested() -> void:
 	save_details()
 	hide()
@@ -30,6 +40,7 @@ func _on_visibility_changed() -> void:
 	load_details()
 
 func load_details() -> void:
+	if not selected_game: return
 	%TitleEdit.text = selected_game.name
 	%ExePathDisplay.text = selected_game.path
 	%IconPathDisplay.text = selected_game.icon
@@ -39,6 +50,7 @@ func load_details() -> void:
 	load_tags()
 
 func save_details() -> void:
+	if not selected_game: return
 	selected_game.name = %TitleEdit.text
 	selected_game.path = %ExePathDisplay.text
 	selected_game.icon = %IconPathDisplay.text
@@ -60,6 +72,7 @@ func _on_icon_reset_button_pressed() -> void:
 	details_saved.emit()
 
 func load_tags() -> void:
+	if not selected_game: return
 	%TagDisplayList.clear()
 	for tag in selected_game.tags:
 		%TagDisplayList.add_item(tag)
