@@ -155,7 +155,7 @@ func load_tags(_tags : Array[String]) -> void:
 
 func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
-	Global.library_last_game = library[Global.library_last_index]
+	if library: Global.library_last_game = library[Global.library_last_index]
 	refresh_game_list(Global.library_open_to_last_selected)
 
 func save_metadata_for_selected() -> void:

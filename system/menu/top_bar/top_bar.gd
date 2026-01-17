@@ -68,5 +68,5 @@ func _on_list_mode_toggled(value: bool) -> void:
 
 
 func _on_visibility_changed() -> void:
-	list_mode_toggle.button_pressed = Global.library_list_mode
-	image_toggle.button_pressed = not Global.library_display_images
+	if list_mode_toggle: list_mode_toggle.button_pressed = Global.library_list_mode
+	if image_toggle: image_toggle.button_pressed = not Global.library_display_images

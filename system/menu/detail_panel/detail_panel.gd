@@ -7,6 +7,7 @@ signal add_to_blacklist(game : Game)
 signal edit_tags
 
 func _refresh_from_data(selected : Game) -> void:
+	if not selected: return
 	%Name.text = selected.name
 	%Year.text = str(selected.year)
 	%Developer.text = selected.developer

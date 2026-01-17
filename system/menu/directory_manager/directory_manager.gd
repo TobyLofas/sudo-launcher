@@ -64,8 +64,8 @@ func _on_directory_display_item_activated(index: int) -> void:
 
 func _on_remove_directory_pressed() -> void:
 	var selected = directory_display.get_selected_items()
-	if !selected:
-		pass
+	if not selected:
+		return
 	else:
 		directories.remove_at(selected[0])
 	directory_removed.emit(directory_display.get_item_text(directory_display.get_selected_items()[0]))
