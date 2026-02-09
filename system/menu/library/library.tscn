@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5tcq3u6018i5"]
+[gd_scene format=3 uid="uid://b5tcq3u6018i5"]
 
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_4qoup"]
 [ext_resource type="Script" uid="uid://nh1is22e8cyb" path="res://system/menu/library/library.gd" id="1_qdehd"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
 
-[node name="Library" type="Control"]
+[node name="Library" type="Control" unique_id=195522111]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ theme = ExtResource("1_4qoup")
 script = ExtResource("1_qdehd")
 metadata/_tab_index = 0
 
-[node name="Divider" type="HSplitContainer" parent="."]
+[node name="Divider" type="HSplitContainer" parent="." unique_id=2094569199]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -28,17 +28,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Library" type="VBoxContainer" parent="Divider"]
+[node name="Library" type="VBoxContainer" parent="Divider" unique_id=1470158283]
 custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TopBar" parent="Divider/Library" instance=ExtResource("2_eg0do")]
+[node name="TopBar" parent="Divider/Library" unique_id=2083442934 instance=ExtResource("2_eg0do")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 
-[node name="GameList" type="ItemList" parent="Divider/Library"]
+[node name="GameList" type="ItemList" parent="Divider/Library" unique_id=1057339529]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,7 +51,7 @@ same_column_width = true
 icon_mode = 0
 fixed_icon_size = Vector2i(64, 64)
 
-[node name="DetailPanel" parent="Divider" instance=ExtResource("2_oi2bc")]
+[node name="DetailPanel" parent="Divider" unique_id=1286831243 instance=ExtResource("2_oi2bc")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2

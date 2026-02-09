@@ -30,22 +30,22 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 			while file_name != "":
 				if dir.current_is_dir():
 					if file_name != "mods" or file_name != "addons" or file_name != "plugins":
-						print_rich("[color=purple]Found directory: " + file_name + "[/color]")
+						#print_rich("[color=purple]Found directory: " + file_name + "[/color]")
 						create_metadata_from_directories([directory + "/" + file_name])
-					else:
-						print_rich("[color=blue]Found directory: " + file_name + "[/color]")
+					#else:
+						#print_rich("[color=blue]Found directory: " + file_name + "[/color]")
 				else:
 					var extension : String = file_name.get_slice(".",1)
 					var title : String = file_name.get_slice(".",0)
 					if extension.to_lower() == "exe" or extension.to_lower() == "lnk":
-						print_rich("[color=green]Found exe: " + file_name + "[/color]")
+						#print_rich("[color=green]Found exe: " + file_name + "[/color]")
 						if not blacklist.has(file_name):
 							var tgame : Game = Game.new(title, directory + "/" + file_name)
 							var library_path = Global.base_dir + Global.library_dir + title
 							if FileAccess.get_sha256(library_path + ".tres") == "":
 								ResourceSaver.save(tgame, library_path + ".tres")
-					else:
-						print_rich("[color=yellow]Found file: " + file_name + "[/color]")
+					#else:
+						#print_rich("[color=yellow]Found file: " + file_name + "[/color]")
 				file_name = dir.get_next()
 
 func _on_add_directory_pressed() -> void:

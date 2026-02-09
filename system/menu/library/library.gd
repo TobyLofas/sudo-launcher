@@ -143,8 +143,8 @@ func create_library_from_metadata(directory : String) -> void:
 					var game : Game = load(directory + file_name) as Game
 					library.append(game)
 			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+	#else:
+		#print("An error occurred when trying to access the path.")
 
 func start_game(_id: int = 0) -> void:
 	if not selected: return
@@ -184,12 +184,12 @@ func _sort_by_path(a : Game, b : Game):
 		return true
 	return false
 
-func _trim_articles(str : String) -> String:
-	if str.left(4).to_lower() == "the ":
-		return str.substr(4,-1)
-	if str.left(2).to_lower() == "a ":
-		return str.substr(2,-1)
-	return str
+func _trim_articles(input_str : String) -> String:
+	if input_str.left(4).to_lower() == "the ":
+		return input_str.substr(4,-1)
+	if input_str.left(2).to_lower() == "a ":
+		return input_str.substr(2,-1)
+	return input_str
 
 func _on_divider_dragged(offset: int) -> void:
 	Global.library_divider_offset = offset

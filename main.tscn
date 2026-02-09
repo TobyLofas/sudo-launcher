@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4kd8mk5u1hsk"]
+[gd_scene format=3 uid="uid://d4kd8mk5u1hsk"]
 
 [ext_resource type="Script" uid="uid://bl43xy2012vuo" path="res://main.gd" id="1_0p4gv"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_oko8u"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2ju6l4ss3115" path="res://system/menu/settings/settings.tscn" id="4_uw12a"]
 [ext_resource type="PackedScene" uid="uid://cni81h2wunn0y" path="res://system/menu/tag_manager/tag_manager.tscn" id="5_idiyu"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=718282450]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_vertical = 2
 theme = ExtResource("1_oko8u")
 script = ExtResource("1_0p4gv")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1627857457]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,13 +28,13 @@ grow_vertical = 2
 theme = ExtResource("1_oko8u")
 stretch = true
 
-[node name="MainViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="MainViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1389971947]
 handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="TabContainer" type="TabContainer" parent="SubViewportContainer/MainViewport"]
+[node name="TabContainer" type="TabContainer" parent="SubViewportContainer/MainViewport" unique_id=160277277]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,33 +42,33 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 
-[node name="Library" parent="SubViewportContainer/MainViewport/TabContainer" instance=ExtResource("2_kai27")]
+[node name="Library" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1298990507 instance=ExtResource("2_kai27")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Directories" type="Control" parent="SubViewportContainer/MainViewport/TabContainer"]
+[node name="Directories" type="Control" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1656738849]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="DirectoryManager" parent="SubViewportContainer/MainViewport/TabContainer/Directories" instance=ExtResource("3_l643o")]
+[node name="DirectoryManager" parent="SubViewportContainer/MainViewport/TabContainer/Directories" unique_id=130938221 instance=ExtResource("3_l643o")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="Settings" parent="SubViewportContainer/MainViewport/TabContainer" instance=ExtResource("4_uw12a")]
+[node name="Settings" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1908909458 instance=ExtResource("4_uw12a")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="PopupViewport" type="SubViewport" parent="."]
+[node name="PopupViewport" type="SubViewport" parent="." unique_id=1667750966]
 
-[node name="EditWindow" parent="PopupViewport" instance=ExtResource("4_oynk0")]
+[node name="EditWindow" parent="PopupViewport" unique_id=438864047 instance=ExtResource("4_oynk0")]
 unique_name_in_owner = true
 title = "Edit Game Details"
 visible = false
 unresizable = true
 
-[node name="TagManager" parent="PopupViewport" instance=ExtResource("5_idiyu")]
+[node name="TagManager" parent="PopupViewport" unique_id=1972672134 instance=ExtResource("5_idiyu")]
 unique_name_in_owner = true
 title = "Manage Tags"
 visible = false

@@ -8,23 +8,34 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="SudoLauncher"
-config/version="1.0.0"
+config/version="1.0.1"
 run/main_scene="res://main.tscn"
 run/print_header=false
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.5", "Forward Plus")
-run/max_fps=100
+config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=60
+run/low_processor_mode=true
+run/delta_smoothing=false
 boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="res://system/texture/icon.svg"
 addons/icon_finder/preview_size=32
+
+[audio]
+
+driver/driver="Dummy"
 
 [autoload]
 
 Global="*res://global.gd"
-IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
+IconsFonts="*uid://c10meeu053bu2"
 
 [display]
 
@@ -40,7 +51,13 @@ enabled=PackedStringArray("res://addons/icons-fonts/plugin.cfg", "res://addons/r
 
 theme/custom="uid://b3cndw47m37di"
 
+[physics]
+
+2d/physics_engine="Dummy"
+3d/physics_engine="Dummy"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
