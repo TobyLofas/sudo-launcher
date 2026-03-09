@@ -15,10 +15,6 @@ func _ready() -> void:
 	
 	library.build_library()
 	
-#func _process(delta: float) -> void:
-	#if library.game_list: 
-	
-	
 func _on_metadata_updated() -> void:
 	library.build_library()
 

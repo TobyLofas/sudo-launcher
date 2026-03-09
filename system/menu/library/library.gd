@@ -67,7 +67,6 @@ func refresh_game_list(keep_selected : bool = true) -> void:
 			game_list.select(selected_index)
 			_on_game_list_item_selected(selected_index)
 			
-			
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
@@ -161,7 +160,8 @@ func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
 	if library: Global.library_last_game = library[Global.library_last_index]
 	refresh_game_list(Global.library_open_to_last_selected)
-	
+	game_list.force_update_list_size() #this has to come before the next line or game list will not scroll correctly until it is updated (moused over)
+	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value(Global.library_scroll_value)
 	
 
 func save_metadata_for_selected() -> void:
@@ -205,6 +205,3 @@ func _on_visibility_changed() -> void:
 
 func _on_list_scroll_changed(new_value: float) -> void:
 	Global.library_scroll_value = new_value
-
-func _on_game_list_draw() -> void:
-	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value_no_signal(Global.library_scroll_value)
