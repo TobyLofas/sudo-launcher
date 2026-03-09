@@ -17,7 +17,20 @@ func _refresh_from_data(selected : Game) -> void:
 	%FilePath.set_text("[i]" + selected.path)
 	if not Global.detail_panel_show_icon: %DetailIcon.hide()
 	else: 
-		var icon = load(selected.icon) as Texture
+		var icon
+		if selected.icon.contains("res://"):
+			icon = load(selected.icon)
+		else:
+			var image
+			var image_path = selected.icon
+			image = Image.new()
+			var error = image.load(image_path)
+			if error:
+				selected.icon = Global.default_icon_path
+				icon = load(selected.icon)
+			else:
+				icon = ImageTexture.new()
+				icon.set_image(image)
 		%DetailIcon.texture = icon
 		%DetailIcon.show()
 
