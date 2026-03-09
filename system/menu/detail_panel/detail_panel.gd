@@ -15,6 +15,11 @@ func _refresh_from_data(selected : Game) -> void:
 	for tag in selected.tags:
 		%TagsList.add_item(tag)
 	%FilePath.set_text("[i]" + selected.path)
+	if not Global.detail_panel_show_icon: %DetailIcon.hide()
+	else: 
+		var icon = load(selected.icon) as Texture
+		%DetailIcon.texture = icon
+		%DetailIcon.show()
 
 func _on_edit_button_pressed() -> void:
 	edit_details.emit()

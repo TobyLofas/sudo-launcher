@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dliso8lp1b3b7"]
+[gd_scene format=3 uid="uid://dliso8lp1b3b7"]
 
 [ext_resource type="Script" uid="uid://bvowjusd7ir4a" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_h3yw1"]
 
-[node name="DirectoryManager" type="Control"]
+[node name="DirectoryManager" type="Control" unique_id=914867453]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -15,7 +15,7 @@ theme = ExtResource("1_h3yw1")
 script = ExtResource("1_12u0k")
 metadata/_tab_index = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=575103628]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.147672, 0.147672, 0.147672, 1)
 
-[node name="Interface" type="VBoxContainer" parent="."]
+[node name="Interface" type="VBoxContainer" parent="." unique_id=1389318070]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,33 +32,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Interface"]
+[node name="Label" type="Label" parent="Interface" unique_id=1850674816]
 layout_mode = 2
 text = "Library Directories"
 
-[node name="HSeparator" type="HSeparator" parent="Interface"]
+[node name="HSeparator" type="HSeparator" parent="Interface" unique_id=279248990]
 layout_mode = 2
 
-[node name="DirectoryDisplay" type="ItemList" parent="Interface"]
+[node name="DirectoryDisplay" type="ItemList" parent="Interface" unique_id=1666448983]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 allow_search = false
 
-[node name="AddDirectory" type="Button" parent="Interface"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface" unique_id=296997194]
+layout_mode = 2
+
+[node name="AddDirectory" type="Button" parent="Interface/HBoxContainer" unique_id=10835776]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Add"
 
-[node name="RemoveDirectory" type="Button" parent="Interface"]
+[node name="RemoveDirectory" type="Button" parent="Interface/HBoxContainer" unique_id=1483549474]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Remove"
 
-[node name="BuildLibrary" type="Button" parent="Interface"]
+[node name="OpenDirectory(s)" type="Button" parent="Interface" unique_id=1832365357]
+layout_mode = 2
+text = "Open Directory"
+
+[node name="BuildLibrary" type="Button" parent="Interface" unique_id=1406087463]
 layout_mode = 2
 text = "Scan Directories"
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="FileDialog" type="FileDialog" parent="." unique_id=996271166]
 unique_name_in_owner = true
 title = "Open a Directory"
 file_mode = 2
@@ -67,7 +76,8 @@ use_native_dialog = true
 
 [connection signal="directories_changed" from="." to="." method="_on_directories_changed"]
 [connection signal="item_activated" from="Interface/DirectoryDisplay" to="." method="_on_directory_display_item_activated"]
-[connection signal="pressed" from="Interface/AddDirectory" to="." method="_on_add_directory_pressed"]
-[connection signal="pressed" from="Interface/RemoveDirectory" to="." method="_on_remove_directory_pressed"]
+[connection signal="pressed" from="Interface/HBoxContainer/AddDirectory" to="." method="_on_add_directory_pressed"]
+[connection signal="pressed" from="Interface/HBoxContainer/RemoveDirectory" to="." method="_on_remove_directory_pressed"]
+[connection signal="pressed" from="Interface/OpenDirectory(s)" to="." method="_on_open_directorys_pressed"]
 [connection signal="pressed" from="Interface/BuildLibrary" to="." method="_on_build_library_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

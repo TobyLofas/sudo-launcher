@@ -24,6 +24,7 @@ func _ready() -> void:
 	top_bar.sort_changed.connect(refresh_game_list)
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
+	game_list.get_v_scroll_bar().value_changed.connect(_on_list_scroll_changed)
 	
 	divider.split_offset = Global.library_divider_offset
 	
@@ -65,6 +66,8 @@ func refresh_game_list(keep_selected : bool = true) -> void:
 		if selected_index > 0:
 			game_list.select(selected_index)
 			_on_game_list_item_selected(selected_index)
+			
+			
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
@@ -158,6 +161,8 @@ func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
 	if library: Global.library_last_game = library[Global.library_last_index]
 	refresh_game_list(Global.library_open_to_last_selected)
+	
+	
 
 func save_metadata_for_selected() -> void:
 	var file_name = selected.path.get_slice("/", selected.path.get_slice_count("/")-1)
@@ -197,3 +202,9 @@ func _on_divider_dragged(offset: int) -> void:
 func _on_visibility_changed() -> void:
 	if top_bar:
 		refresh_game_list(true)
+
+func _on_list_scroll_changed(new_value: float) -> void:
+	Global.library_scroll_value = new_value
+
+func _on_game_list_draw() -> void:
+	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value_no_signal(Global.library_scroll_value)

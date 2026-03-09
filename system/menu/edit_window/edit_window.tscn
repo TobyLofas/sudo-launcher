@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0tn6dttci0wc"]
+[gd_scene format=3 uid="uid://d0tn6dttci0wc"]
 
 [ext_resource type="Script" uid="uid://bc371s4g3iee6" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_s0sy3"]
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08f2c"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwua"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -48,7 +48,7 @@ icon_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6non"]
 
-[node name="DetailEditWindow" type="Window"]
+[node name="DetailEditWindow" type="Window" unique_id=1142991974]
 oversampling_override = 1.0
 initial_position = 4
 size = Vector2i(400, 400)
@@ -57,7 +57,7 @@ exclusive = true
 theme = ExtResource("1_s0sy3")
 script = ExtResource("1_lqnf1")
 
-[node name="EditDetails" type="Control" parent="."]
+[node name="EditDetails" type="Control" parent="." unique_id=1383477261]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,21 +65,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExeFileDialog" type="FileDialog" parent="EditDetails"]
+[node name="ExeFileDialog" type="FileDialog" parent="EditDetails" unique_id=1833330053]
 unique_name_in_owner = true
 title = "Open a File"
 file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="IconFileDialog" type="FileDialog" parent="EditDetails"]
+[node name="IconFileDialog" type="FileDialog" parent="EditDetails" unique_id=1503566996]
 unique_name_in_owner = true
 title = "Open a File"
 file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="ColorRect" type="ColorRect" parent="EditDetails"]
+[node name="ColorRect" type="ColorRect" parent="EditDetails" unique_id=1690735636]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.18359, 0.18359, 0.18359, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditDetails"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EditDetails" unique_id=2121673074]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,67 +96,67 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Title" type="HBoxContainer" parent="EditDetails/VBoxContainer" unique_id=2053970828]
 layout_mode = 2
 
-[node name="EditTitle" type="Label" parent="EditDetails/VBoxContainer/Title"]
+[node name="EditTitle" type="Label" parent="EditDetails/VBoxContainer/Title" unique_id=1943440870]
 layout_mode = 2
 text = "Title:"
 
-[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Title"]
+[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Title" unique_id=794858100]
 custom_minimum_size = Vector2(53, 0)
 layout_mode = 2
 
-[node name="TitleEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Title"]
+[node name="TitleEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Title" unique_id=189306625]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Year" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Year" type="HBoxContainer" parent="EditDetails/VBoxContainer" unique_id=2019710600]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Year"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Year" unique_id=1459505389]
 layout_mode = 2
 text = "Release Year:"
 
-[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Year"]
+[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Year" unique_id=1673856629]
 custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
 
-[node name="YearEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Year"]
+[node name="YearEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Year" unique_id=129600095]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Developer" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Developer" type="HBoxContainer" parent="EditDetails/VBoxContainer" unique_id=1974475557]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Developer"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Developer" unique_id=1425892952]
 layout_mode = 2
 text = "Developer:"
 
-[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Developer"]
+[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Developer" unique_id=1539038559]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
-[node name="DeveloperEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Developer"]
+[node name="DeveloperEdit" type="LineEdit" parent="EditDetails/VBoxContainer/Developer" unique_id=1580734072]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Tags" type="VBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Tags" type="VBoxContainer" parent="EditDetails/VBoxContainer" unique_id=1980958578]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Tags"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Tags" unique_id=66162769]
 layout_mode = 2
 text = "Tags:"
 
-[node name="Tags" type="HBoxContainer" parent="EditDetails/VBoxContainer/Tags"]
+[node name="Tags" type="HBoxContainer" parent="EditDetails/VBoxContainer/Tags" unique_id=764011979]
 layout_mode = 2
 
-[node name="TagDisplayList" type="ItemList" parent="EditDetails/VBoxContainer/Tags/Tags"]
+[node name="TagDisplayList" type="ItemList" parent="EditDetails/VBoxContainer/Tags/Tags" unique_id=755438542]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -164,84 +164,84 @@ allow_search = false
 auto_height = true
 max_columns = 255
 
-[node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags"]
+[node name="AddTagButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Tags/Tags" unique_id=1206834944]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
 label_settings = SubResource("LabelSettings_86uq3")
 
-[node name="Icon" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Icon" type="HBoxContainer" parent="EditDetails/VBoxContainer" unique_id=49967834]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Icon"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Icon" unique_id=707918618]
 layout_mode = 2
 text = "Icon Path:"
 
-[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Icon"]
+[node name="Control" type="Control" parent="EditDetails/VBoxContainer/Icon" unique_id=934601344]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="IconPathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Icon"]
+[node name="IconPathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Icon" unique_id=1479967665]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
+[node name="IconPathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon" unique_id=196229597]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
 label_settings = SubResource("LabelSettings_18h7x")
 
-[node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon"]
+[node name="IconResetButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Icon" unique_id=1719686365]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
 label_settings = SubResource("LabelSettings_nhbci")
 
-[node name="Exe" type="HBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Exe" type="HBoxContainer" parent="EditDetails/VBoxContainer" unique_id=1119984124]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Exe"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Exe" unique_id=1858264852]
 layout_mode = 2
 text = "Executable Path:"
 
-[node name="ExePathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Exe"]
+[node name="ExePathDisplay" type="LineEdit" parent="EditDetails/VBoxContainer/Exe" unique_id=1136111114]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe"]
+[node name="ExePathButton" type="PanelContainer" parent="EditDetails/VBoxContainer/Exe" unique_id=144096956]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
 label_settings = SubResource("LabelSettings_6euxt")
 
-[node name="Args" type="VBoxContainer" parent="EditDetails/VBoxContainer"]
+[node name="Args" type="VBoxContainer" parent="EditDetails/VBoxContainer" unique_id=1461911262]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Args"]
+[node name="Label" type="Label" parent="EditDetails/VBoxContainer/Args" unique_id=1219838960]
 layout_mode = 2
 text = "Launch Arguments:"
 
-[node name="LaunchArguments" type="LineEdit" parent="EditDetails/VBoxContainer/Args"]
+[node name="LaunchArguments" type="LineEdit" parent="EditDetails/VBoxContainer/Args" unique_id=1082854961]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SaveButton" type="PanelContainer" parent="EditDetails"]
+[node name="SaveButton" type="PanelContainer" parent="EditDetails" unique_id=224912808]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -254,7 +254,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")

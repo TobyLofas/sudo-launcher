@@ -60,7 +60,7 @@ func _on_build_library_pressed() -> void:
 	metadata_updated.emit()
 
 func _on_directory_display_item_activated(index: int) -> void:
-	OS.execute("explorer.exe", ["/select,", directories[index]])
+	OS.execute("explorer.exe", [directories[index].replace_char(47,92)])
 
 func _on_remove_directory_pressed() -> void:
 	var selected = directory_display.get_selected_items()
@@ -79,4 +79,10 @@ func _on_directories_changed(dirs: PackedStringArray) -> void:
 
 func _on_file_dialog_dir_selected(dir: String) -> void:
 	directories.append(dir)
+	print(dir)
 	directories_changed.emit(directories)
+
+
+func _on_open_directorys_pressed() -> void:
+	for directory in directories:
+		if OS.has_feature("windows"): OS.execute("explorer", [directory.replace_char(47,92)]) #nasty unicode file replacement because cmd is the one place you can't use forward slashes for dirs

@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://2ju6l4ss3115"]
+[gd_scene format=3 uid="uid://2ju6l4ss3115"]
 
 [ext_resource type="Script" uid="uid://cf6fshxuvt3i6" path="res://system/menu/settings/settings.gd" id="1_cedp5"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_dbrda"]
 
-[node name="Settings" type="Control"]
+[node name="Settings" type="Control" unique_id=967080982]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,102 +13,126 @@ grow_vertical = 2
 theme = ExtResource("1_dbrda")
 script = ExtResource("1_cedp5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=401783098]
 layout_mode = 0
 offset_right = 309.0
 offset_bottom = 84.0
 
-[node name="Library" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Library" type="VBoxContainer" parent="VBoxContainer" unique_id=136753087]
 layout_mode = 2
 
-[node name="ColumnMode" type="HBoxContainer" parent="VBoxContainer/Library"]
+[node name="ColumnMode" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=591720483]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Library/ColumnMode"]
+[node name="Label" type="Label" parent="VBoxContainer/Library/ColumnMode" unique_id=1479138433]
 layout_mode = 2
 text = "Show Library in single-column mode:"
 
-[node name="ListMode" type="CheckBox" parent="VBoxContainer/Library/ColumnMode"]
+[node name="ListMode" type="CheckBox" parent="VBoxContainer/Library/ColumnMode" unique_id=339720320]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="OpenToLast" type="HBoxContainer" parent="VBoxContainer/Library"]
+[node name="ShowIcons" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=301659290]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Library/OpenToLast"]
-layout_mode = 2
-text = "Open to last selected game:"
-
-[node name="OpenToLast" type="CheckBox" parent="VBoxContainer/Library/OpenToLast"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="ShowIcons" type="HBoxContainer" parent="VBoxContainer/Library"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/Library/ShowIcons"]
+[node name="Label" type="Label" parent="VBoxContainer/Library/ShowIcons" unique_id=1832727290]
 layout_mode = 2
 text = "Show game icons in Library:"
 
-[node name="ShowIcons" type="CheckBox" parent="VBoxContainer/Library/ShowIcons"]
+[node name="ShowIcons" type="CheckBox" parent="VBoxContainer/Library/ShowIcons" unique_id=1743140192]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Advanced" type="VBoxContainer" parent="VBoxContainer"]
+[node name="DetailPaneIcon" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=617616834]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Library/DetailPaneIcon" unique_id=1494984411]
+layout_mode = 2
+text = "Show game icon in Detail Panel:"
+
+[node name="DetailIcon" type="CheckBox" parent="VBoxContainer/Library/DetailPaneIcon" unique_id=881611502]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="OpenToLast" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=1509393535]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Library/OpenToLast" unique_id=1873022440]
+layout_mode = 2
+text = "Preserve selected game on close:"
+
+[node name="OpenToLast" type="CheckBox" parent="VBoxContainer/Library/OpenToLast" unique_id=833852261]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PreserveScroll" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=380340250]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Library/PreserveScroll" unique_id=170305354]
+layout_mode = 2
+text = "Preserve scroll position on close:"
+
+[node name="PreserveScroll" type="CheckBox" parent="VBoxContainer/Library/PreserveScroll" unique_id=1898451680]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Advanced" type="VBoxContainer" parent="VBoxContainer" unique_id=249453890]
 visible = false
 layout_mode = 2
 
-[node name="Directories" type="HBoxContainer" parent="VBoxContainer/Advanced"]
+[node name="Directories" type="HBoxContainer" parent="VBoxContainer/Advanced" unique_id=28060232]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Advanced/Directories"]
+[node name="Label" type="Label" parent="VBoxContainer/Advanced/Directories" unique_id=495034496]
 layout_mode = 2
 text = "directories.csv:"
 
-[node name="Directories" type="LineEdit" parent="VBoxContainer/Advanced/Directories"]
+[node name="Directories" type="LineEdit" parent="VBoxContainer/Advanced/Directories" unique_id=1865627669]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="Tags" type="HBoxContainer" parent="VBoxContainer/Advanced"]
+[node name="Tags" type="HBoxContainer" parent="VBoxContainer/Advanced" unique_id=1853395151]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Advanced/Tags"]
+[node name="Label" type="Label" parent="VBoxContainer/Advanced/Tags" unique_id=1079914752]
 layout_mode = 2
 text = "tags.csv:"
 
-[node name="Control" type="Control" parent="VBoxContainer/Advanced/Tags"]
+[node name="Control" type="Control" parent="VBoxContainer/Advanced/Tags" unique_id=1035876483]
 custom_minimum_size = Vector2(47, 0)
 layout_mode = 2
 
-[node name="Tags" type="LineEdit" parent="VBoxContainer/Advanced/Tags"]
+[node name="Tags" type="LineEdit" parent="VBoxContainer/Advanced/Tags" unique_id=1692238506]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="Blacklist" type="HBoxContainer" parent="VBoxContainer/Advanced"]
+[node name="Blacklist" type="HBoxContainer" parent="VBoxContainer/Advanced" unique_id=1744894593]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Advanced/Blacklist"]
+[node name="Label" type="Label" parent="VBoxContainer/Advanced/Blacklist" unique_id=1948094363]
 layout_mode = 2
 text = "blacklist.csv:"
 
-[node name="Control" type="Control" parent="VBoxContainer/Advanced/Blacklist"]
+[node name="Control" type="Control" parent="VBoxContainer/Advanced/Blacklist" unique_id=110266972]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="Blacklist" type="LineEdit" parent="VBoxContainer/Advanced/Blacklist"]
+[node name="Blacklist" type="LineEdit" parent="VBoxContainer/Advanced/Blacklist" unique_id=773765525]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="AdvancedToggle" type="HBoxContainer" parent="."]
+[node name="AdvancedToggle" type="HBoxContainer" parent="." unique_id=1306164647]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -121,14 +145,27 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="AdvancedToggle"]
+[node name="Label" type="Label" parent="AdvancedToggle" unique_id=2063013811]
 layout_mode = 2
 text = "Show advanced settings"
 
-[node name="CheckBox" type="CheckBox" parent="AdvancedToggle"]
+[node name="CheckBox" type="CheckBox" parent="AdvancedToggle" unique_id=105419884]
 layout_mode = 2
+
+[node name="VersionLabel" type="Label" parent="." unique_id=1742764270]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "v0.0.0"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
-[connection signal="toggled" from="VBoxContainer/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
 [connection signal="toggled" from="VBoxContainer/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
+[connection signal="toggled" from="VBoxContainer/Library/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
+[connection signal="toggled" from="VBoxContainer/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
+[connection signal="toggled" from="VBoxContainer/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
