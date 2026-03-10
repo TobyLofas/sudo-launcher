@@ -15,7 +15,7 @@ By default, these subfolders will be empty. The **data** folder will automatical
 
 ## Library
 
-The library screen is divided into two sections, on the right is the **Library** and on the left is the **Details Panel**.
+The library screen is divided into two sections, on the left is the **Library** and on the right is the **Details Panel**.
 
 At the top of the **Library** section sits the **Top Bar**, containing filtering, sorting, and display controls for the **Library List**. The **Search bar** will filter the list based off the entered search term. The **Tag list** filters the list based off of the tags selected from the list, the filter will only display games that match **all** selected tags. Tag filtering and search filtering can be combined.
 
