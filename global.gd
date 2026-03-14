@@ -33,6 +33,11 @@ var library_last_game : Game
 var library_preserve_scroll : bool
 var library_scroll_value : float
 var detail_panel_show_icon : bool
+var window_preserve_mode : bool
+var display_mode : int
+var column_icon_size : int
+var grid_icon_size : int
+var detail_icon_size : int
 
 func _ready() -> void:
 	load_settings()
@@ -47,6 +52,11 @@ func save_settings() -> void:
 	file.set_value("Library", "preserve_scroll", library_preserve_scroll)
 	file.set_value("Library", "scroll_value", library_scroll_value)
 	file.set_value("Detail Panel", "show_icon", detail_panel_show_icon)
+	file.set_value("Window", "preserve_mode", window_preserve_mode)
+	file.set_value("Window", "display_mode", display_mode)
+	file.set_value("Library", "column_icon_size", column_icon_size)
+	file.set_value("Library", "grid_icon_size", grid_icon_size)
+	file.set_value("Detail Panel", "detail_icon_size", detail_icon_size)
 	file.save(base_dir + settings_file_name)
 
 func load_settings() -> void:
@@ -55,16 +65,20 @@ func load_settings() -> void:
 	if err != OK:
 		print(base_dir + settings_file_name, " does not exist")
 		return
-	if file.get_value("Library", "list_mode"): 
-		library_list_mode = file.get_value("Library", "list_mode")
-		library_display_images = file.get_value("Library", "display_images")
-		library_divider_offset = file.get_value("Library", "divider_offset")
-		library_open_to_last_selected = file.get_value("Library", "open_last_selected")
-		library_last_index = file.get_value("Library", "last_selected_index")
-		library_preserve_scroll = file.get_value("Library", "preserve_scroll")
-		library_scroll_value = file.get_value("Library", "scroll_value")
-		
-		detail_panel_show_icon = file.get_value("Detail Panel", "show_icon")
+	#if file.get_value("Library", "list_mode"): ##dirty check that the file isnt empty
+	library_list_mode = file.get_value("Library", "list_mode", false)
+	library_display_images = file.get_value("Library", "display_images", false)
+	library_divider_offset = file.get_value("Library", "divider_offset", 0)
+	library_open_to_last_selected = file.get_value("Library", "open_last_selected", false)
+	library_last_index = file.get_value("Library", "last_selected_index", 0)
+	library_preserve_scroll = file.get_value("Library", "preserve_scroll", false)
+	library_scroll_value = file.get_value("Library", "scroll_value", 0)
+	detail_panel_show_icon = file.get_value("Detail Panel", "show_icon", false)
+	window_preserve_mode = file.get_value("Window", "preserve_mode", false)
+	display_mode = file.get_value("Window", "display_mode", 0)
+	column_icon_size = file.get_value("Library", "column_icon_size", 32)
+	grid_icon_size = file.get_value("Library", "grid_icon_size", 96)
+	detail_icon_size = file.get_value("Detail Panel", "detail_icon_size", 32)
 
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)

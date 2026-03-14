@@ -19,8 +19,8 @@ var _tag_filtered : Array[Game]
 func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
-	top_bar.image_toggle.pressed.connect(refresh_game_list)
-	top_bar.list_mode_toggle.pressed.connect(refresh_game_list)
+	top_bar.image_toggle.toggled.connect(refresh_game_list)
+	top_bar.list_mode_toggle.toggled.connect(refresh_game_list)
 	top_bar.sort_changed.connect(refresh_game_list)
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
@@ -120,14 +120,18 @@ func create_game_list_from_filtered_library() -> void:
 					icon.set_image(image)
 					
 			game_list.add_item(item.name, icon)
+			#game_list.add_item("", icon)
 	if Global.library_list_mode:
 		game_list.max_columns = 1
 		game_list.icon_mode = game_list.ICON_MODE_LEFT
-		game_list.fixed_icon_size = Vector2i(32,32)
+		game_list.fixed_icon_size = Vector2i(Global.column_icon_size, Global.column_icon_size)
+		game_list.fixed_column_width = 0
+		#game_list.add_theme_font_size_override("font_size", 16)
 	else:
-		game_list.max_columns = 15
+		game_list.max_columns = 99
 		game_list.icon_mode = game_list.ICON_MODE_TOP
-		game_list.fixed_icon_size = Vector2i(64,64)
+		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
+		game_list.fixed_column_width = Global.grid_icon_size + 32
 	
 
 func create_library_from_metadata(directory : String) -> void:

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="SudoLauncher"
-config/version="v1.1.3"
+config/version="v1.2.0-dev"
 run/main_scene="res://main.tscn"
 run/print_header=false
 config/use_custom_user_dir=true
@@ -35,7 +35,7 @@ driver/driver="Dummy"
 [autoload]
 
 Global="*res://global.gd"
-IconsFonts="*uid://c10meeu053bu2"
+IconsFonts="*uid://b573s24lmntbd"
 
 [display]
 

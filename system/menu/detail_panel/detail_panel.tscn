@@ -2,14 +2,14 @@
 
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_1mh1j"]
 [ext_resource type="Script" uid="uid://bdhm3foeyjqod" path="res://system/menu/detail_panel/detail_panel.gd" id="1_7fl2n"]
-[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_lumbd"]
+[ext_resource type="FontFile" uid="uid://2dhsdve7j655" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_lumbd"]
 [ext_resource type="Theme" uid="uid://n3xms3s1tyr0" path="res://system/menu/title_text_theme.tres" id="3_dyd68"]
-[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_qyu1u"]
-[ext_resource type="Script" uid="uid://sfoyl3fbn8so" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
-[ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
+[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_qyu1u"]
+[ext_resource type="Script" uid="uid://iy5cq2cs4uq1" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
+[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
 [ext_resource type="Theme" uid="uid://cpmlnjjpqxqbk" path="res://system/menu/detail_panel/file_path_theme.tres" id="8_dl72k"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dckhi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -101,7 +101,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-stretch_mode = 2
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="Details/HBoxContainer" unique_id=1645969656]
 unique_name_in_owner = true
@@ -139,7 +139,7 @@ layout_mode = 2
 
 [node name="TagButton" type="PanelContainer" parent="Details/Tags" unique_id=47085415]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dckhi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yrucj")
@@ -186,10 +186,10 @@ offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play the game"
-theme_override_styles/panel = SubResource("StyleBoxFlat_dckhi")
+focus_neighbor_right = NodePath("../EditButton")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
-layout_vertical = true
 icon_settings = SubResource("Resource_h2p0x")
 label_settings = SubResource("LabelSettings_mhra0")
 
@@ -203,10 +203,9 @@ offset_top = -43.0
 offset_right = 44.0
 grow_vertical = 0
 tooltip_text = "Delete & Add to Blacklist"
-theme_override_styles/panel = SubResource("StyleBoxFlat_dckhi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
-layout_vertical = true
 icon_settings = SubResource("Resource_eyven")
 label_settings = SubResource("LabelSettings_sv6wa")
 button_margin = -1
@@ -226,7 +225,7 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "Edit game details"
-theme_override_styles/panel = SubResource("StyleBoxFlat_dckhi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")

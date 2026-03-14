@@ -21,14 +21,18 @@ offset_bottom = 84.0
 [node name="Library" type="VBoxContainer" parent="VBoxContainer" unique_id=136753087]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="VBoxContainer/Library" unique_id=939930998]
+layout_mode = 2
+text = "Library:"
+
 [node name="ColumnMode" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=591720483]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Library/ColumnMode" unique_id=1479138433]
 layout_mode = 2
-text = "Show Library in single-column mode:"
+text = "Single-column mode"
 
-[node name="ListMode" type="CheckBox" parent="VBoxContainer/Library/ColumnMode" unique_id=339720320]
+[node name="ListMode" type="CheckButton" parent="VBoxContainer/Library/ColumnMode" unique_id=986254687]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -38,21 +42,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Library/ShowIcons" unique_id=1832727290]
 layout_mode = 2
-text = "Show game icons in Library:"
+text = "Show game icons"
 
-[node name="ShowIcons" type="CheckBox" parent="VBoxContainer/Library/ShowIcons" unique_id=1743140192]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="DetailPaneIcon" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=617616834]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/Library/DetailPaneIcon" unique_id=1494984411]
-layout_mode = 2
-text = "Show game icon in Detail Panel:"
-
-[node name="DetailIcon" type="CheckBox" parent="VBoxContainer/Library/DetailPaneIcon" unique_id=881611502]
+[node name="ShowIcons" type="CheckButton" parent="VBoxContainer/Library/ShowIcons" unique_id=1545042646]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -62,9 +54,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Library/OpenToLast" unique_id=1873022440]
 layout_mode = 2
-text = "Preserve selected game on close:"
+text = "Preserve selected game on close"
 
-[node name="OpenToLast" type="CheckBox" parent="VBoxContainer/Library/OpenToLast" unique_id=833852261]
+[node name="OpenToLast" type="CheckButton" parent="VBoxContainer/Library/OpenToLast" unique_id=314095247]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -74,16 +66,133 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Library/PreserveScroll" unique_id=170305354]
 layout_mode = 2
-text = "Preserve scroll position on close:"
+text = "Preserve scroll position on close"
 
-[node name="PreserveScroll" type="CheckBox" parent="VBoxContainer/Library/PreserveScroll" unique_id=1898451680]
+[node name="PreserveScroll" type="CheckButton" parent="VBoxContainer/Library/PreserveScroll" unique_id=806594756]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Advanced" type="VBoxContainer" parent="VBoxContainer" unique_id=249453890]
+[node name="ColumnIconSize" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=24712959]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Library/ColumnIconSize" unique_id=887594550]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Column mode icon scale"
+
+[node name="ColumnIconSize" type="LineEdit" parent="VBoxContainer/Library/ColumnIconSize" unique_id=2144867922]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/minimum_character_width = 0
+theme_override_font_sizes/font_size = 12
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="GridIconSize" type="HBoxContainer" parent="VBoxContainer/Library" unique_id=1194422483]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Library/GridIconSize" unique_id=266638582]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Grid mode icon scale"
+
+[node name="GridIconSize" type="LineEdit" parent="VBoxContainer/Library/GridIconSize" unique_id=1807086087]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/minimum_character_width = 0
+theme_override_font_sizes/font_size = 12
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=792694316]
+layout_mode = 2
+
+[node name="Detail Panel" type="VBoxContainer" parent="VBoxContainer" unique_id=1151468409]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Detail Panel" unique_id=1855316484]
+layout_mode = 2
+text = "Detail Panel:"
+
+[node name="DetailPaneIcon" type="HBoxContainer" parent="VBoxContainer/Detail Panel" unique_id=617616834]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Detail Panel/DetailPaneIcon" unique_id=1494984411]
+layout_mode = 2
+text = "Show game icons"
+
+[node name="DetailIcon" type="CheckButton" parent="VBoxContainer/Detail Panel/DetailPaneIcon" unique_id=1409365836]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="DetailPanelIconSize" type="HBoxContainer" parent="VBoxContainer/Detail Panel" unique_id=1727550107]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Detail Panel/DetailPanelIconSize" unique_id=1034618846]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Icon scale"
+
+[node name="DetailIconSize" type="LineEdit" parent="VBoxContainer/Detail Panel/DetailPanelIconSize" unique_id=388627257]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/minimum_character_width = 0
+theme_override_font_sizes/font_size = 12
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=478590106]
+layout_mode = 2
+
+[node name="Window" type="VBoxContainer" parent="VBoxContainer" unique_id=1486569243]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Window" unique_id=1149152114]
+layout_mode = 2
+text = "Window:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Window" unique_id=1445231059]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Window/HBoxContainer" unique_id=490446743]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Preserve fullscreen mode"
+
+[node name="FullscreenMode" type="CheckButton" parent="VBoxContainer/Window/HBoxContainer" unique_id=697976997]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AdvancedSeperator" type="HSeparator" parent="VBoxContainer" unique_id=94041768]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="Advanced" type="VBoxContainer" parent="VBoxContainer" unique_id=249453890]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Advanced" unique_id=1663516169]
+layout_mode = 2
+text = "Advanced:"
 
 [node name="Directories" type="HBoxContainer" parent="VBoxContainer/Advanced" unique_id=28060232]
 layout_mode = 2
@@ -149,7 +258,7 @@ grow_vertical = 0
 layout_mode = 2
 text = "Show advanced settings"
 
-[node name="CheckBox" type="CheckBox" parent="AdvancedToggle" unique_id=105419884]
+[node name="CheckBox" type="CheckButton" parent="AdvancedToggle" unique_id=1103884727]
 layout_mode = 2
 
 [node name="VersionLabel" type="Label" parent="." unique_id=1742764270]
@@ -166,6 +275,11 @@ text = "v0.0.0"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
 [connection signal="toggled" from="VBoxContainer/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
-[connection signal="toggled" from="VBoxContainer/Library/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
 [connection signal="toggled" from="VBoxContainer/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
 [connection signal="toggled" from="VBoxContainer/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Library/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Library/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Detail Panel/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Detail Panel/DetailPanelIconSize/DetailIconSize" to="." method="_on_detail_icon_size_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Window/HBoxContainer/FullscreenMode" to="." method="_on_fullscreen_mode_toggled"]
+[connection signal="toggled" from="AdvancedToggle/CheckBox" to="." method="_on_check_box_toggled"]

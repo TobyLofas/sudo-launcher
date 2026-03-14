@@ -10,10 +10,12 @@ func _ready() -> void:
 	library.detail_panel.add_to_blacklist.connect(remove_game)
 	library.detail_panel.edit_tags.connect(_on_edit_tags)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
+	if Global.window_preserve_mode: DisplayServer.window_set_mode(Global.display_mode)
 	check_for_files()
 	create_metadata()
 	
 	library.build_library()
+	
 	
 func _on_metadata_updated() -> void:
 	library.build_library()
@@ -52,6 +54,7 @@ func create_metadata() -> void:
 	directory_manager.create_metadata_from_directories()
 
 func _on_tag_manager_close_requested() -> void:
+	library.save_metadata_for_selected()
 	edit_window.load_tags()
 	library.refresh_game_list(true)
 
@@ -77,6 +80,7 @@ func save_blacklist() -> void:
 		print(directory_manager.blacklist)
 
 func _on_tree_exiting() -> void:
+	Global.display_mode = DisplayServer.window_get_mode()
 	Global.save_settings()
 	
 func _on_edit_tags() -> void:

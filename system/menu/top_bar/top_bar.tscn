@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwp2plyvy6aql"]
+[gd_scene format=3 uid="uid://bwp2plyvy6aql"]
 
 [ext_resource type="Script" uid="uid://du8xws6njx1t8" path="res://system/menu/top_bar/top_bar.gd" id="1_qis7v"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_rroad"]
-[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
-[ext_resource type="Script" uid="uid://cunx5gfdn353l" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
-[ext_resource type="Script" uid="uid://c4n2aki4724e4" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
+[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
+[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
+[ext_resource type="Script" uid="uid://ctw7hkfdc12a1" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
@@ -59,8 +59,6 @@ icon_name = "check"
 [sub_resource type="Resource" id="Resource_ha7ms"]
 script = ExtResource("3_mq51i")
 
-[sub_resource type="LabelSettings" id="LabelSettings_7bxor"]
-
 [sub_resource type="Resource" id="Resource_aml8d"]
 script = ExtResource("3_mq51i")
 icon_name = "format-list-bulleted"
@@ -69,12 +67,7 @@ icon_name = "format-list-bulleted"
 script = ExtResource("3_mq51i")
 icon_name = "dots-grid"
 
-[sub_resource type="Resource" id="Resource_1b0u2"]
-script = ExtResource("3_mq51i")
-
-[sub_resource type="LabelSettings" id="LabelSettings_howd3"]
-
-[node name="TopBar" type="Control"]
+[node name="TopBar" type="Control" unique_id=1528215481]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 3
 anchors_preset = 15
@@ -87,7 +80,7 @@ size_flags_vertical = 0
 theme = ExtResource("1_rroad")
 script = ExtResource("1_qis7v")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1527118038]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
@@ -97,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 1)
 
-[node name="SF" type="HBoxContainer" parent="."]
+[node name="SF" type="HBoxContainer" parent="." unique_id=1955132020]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -107,23 +100,23 @@ offset_right = 541.0
 offset_bottom = 24.5
 grow_vertical = 2
 
-[node name="Control2" type="Control" parent="SF"]
+[node name="Control2" type="Control" parent="SF" unique_id=691507052]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="SF"]
+[node name="VSeparator" type="VSeparator" parent="SF" unique_id=680696281]
 layout_mode = 2
 
-[node name="Filters" type="HBoxContainer" parent="SF"]
+[node name="Filters" type="HBoxContainer" parent="SF" unique_id=2079508977]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Filter" type="Label" parent="SF/Filters"]
+[node name="Filter" type="Label" parent="SF/Filters" unique_id=746642954]
 layout_mode = 2
 text = "Filter:"
 
-[node name="SearchBar" type="LineEdit" parent="SF/Filters"]
+[node name="SearchBar" type="LineEdit" parent="SF/Filters" unique_id=544865018]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 16)
 layout_mode = 2
@@ -131,7 +124,7 @@ size_flags_vertical = 4
 placeholder_text = "Search..."
 clear_button_enabled = true
 
-[node name="Search" type="PanelContainer" parent="SF/Filters"]
+[node name="Search" type="PanelContainer" parent="SF/Filters" unique_id=1749212853]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
@@ -140,7 +133,7 @@ layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
 label_settings = SubResource("LabelSettings_2uydc")
 
-[node name="TagButton" type="PanelContainer" parent="SF/Filters"]
+[node name="TagButton" type="PanelContainer" parent="SF/Filters" unique_id=848993576]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
@@ -149,33 +142,33 @@ layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
 label_settings = SubResource("LabelSettings_m7ns8")
 
-[node name="TagsList" type="PopupMenu" parent="SF/Filters"]
+[node name="TagsList" type="PopupMenu" parent="SF/Filters" unique_id=536419331]
 unique_name_in_owner = true
 size = Vector2i(77, 35)
 hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 allow_search = false
 
-[node name="VSeparator2" type="VSeparator" parent="SF"]
+[node name="VSeparator2" type="VSeparator" parent="SF" unique_id=1853126213]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="SF"]
+[node name="Control" type="Control" parent="SF" unique_id=1808751185]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="VSeparator3" type="VSeparator" parent="SF"]
+[node name="VSeparator3" type="VSeparator" parent="SF" unique_id=768672956]
 layout_mode = 2
 
-[node name="Sorting" type="HBoxContainer" parent="SF"]
+[node name="Sorting" type="HBoxContainer" parent="SF" unique_id=2116213157]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="SF/Sorting"]
+[node name="Label" type="Label" parent="SF/Sorting" unique_id=972989996]
 layout_mode = 2
 text = "Sort:"
 
-[node name="SortType" type="OptionButton" parent="SF/Sorting"]
+[node name="SortType" type="OptionButton" parent="SF/Sorting" unique_id=1028146818]
 unique_name_in_owner = true
 layout_mode = 2
 selected = 0
@@ -188,7 +181,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Path"
 popup/item_2/id = 2
 
-[node name="SortButton" type="PanelContainer" parent="SF/Sorting"]
+[node name="SortButton" type="PanelContainer" parent="SF/Sorting" unique_id=1171196953]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
@@ -198,16 +191,15 @@ off_icon_settings = SubResource("Resource_0yaop")
 layout_order = "Toggle"
 icon_settings = SubResource("Resource_pgtyd")
 label_settings = SubResource("LabelSettings_4rx8q")
-toggle_mode = true
 
-[node name="VSeparator4" type="VSeparator" parent="SF"]
+[node name="VSeparator4" type="VSeparator" parent="SF" unique_id=2109314793]
 layout_mode = 2
 
-[node name="Count" type="Label" parent="SF"]
+[node name="Count" type="Label" parent="SF" unique_id=1688857352]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=494751138]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -220,7 +212,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ImageDisplay" type="PanelContainer" parent="HBoxContainer"]
+[node name="ImageDisplay" type="PanelContainer" parent="HBoxContainer" unique_id=139763006]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -231,10 +223,9 @@ on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
 layout_order = "Icon-Label-Toggle"
 icon_settings = SubResource("Resource_ha7ms")
-label_settings = SubResource("LabelSettings_7bxor")
 toggle_mode = true
 
-[node name="ListMode" type="PanelContainer" parent="HBoxContainer"]
+[node name="ListMode" type="PanelContainer" parent="HBoxContainer" unique_id=1130534922]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
@@ -242,11 +233,10 @@ script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")
 off_icon_settings = SubResource("Resource_tdt6k")
 layout_order = "Toggle"
-icon_settings = SubResource("Resource_1b0u2")
-label_settings = SubResource("LabelSettings_howd3")
 toggle_mode = true
+metadata/_custom_type_script = "uid://ctw7hkfdc12a1"
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1496830363]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
@@ -254,6 +244,6 @@ layout_mode = 2
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
 [connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]
-[connection signal="pressed" from="SF/Sorting/SortButton" to="." method="_on_sort_button_pressed"]
+[connection signal="toggled" from="SF/Sorting/SortButton" to="." method="_on_sort_button_toggled"]
 [connection signal="toggled" from="HBoxContainer/ImageDisplay" to="." method="_on_image_display_toggled"]
 [connection signal="toggled" from="HBoxContainer/ListMode" to="." method="_on_list_mode_toggled"]

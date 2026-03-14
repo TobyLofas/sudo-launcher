@@ -58,12 +58,11 @@ func _on_apply_tags(selected = %AvailableTagsDisplay.get_selected_items()) -> vo
 	selected_game.tags = selected_tags
 	refresh_tag_displays()
 
-func _on_remove_tags(selected = %SelectedTagsDisplay.get_selected_items()) -> void:
-	if selected is int:
-		selected_tags.remove_at(selected_tags.find(selected))
-	selected.reverse()
-	for index in len(selected):
-		selected_tags.remove_at(selected[index])
+func _on_remove_tags(_i = 0) -> void:
+	var tags_to_remove = %SelectedTagsDisplay.get_selected_items()
+	tags_to_remove.reverse()
+	for index in len(tags_to_remove):
+		selected_tags.remove_at(tags_to_remove[index])
 	refresh_tag_displays()
 
 func filter_available_tags() -> void:

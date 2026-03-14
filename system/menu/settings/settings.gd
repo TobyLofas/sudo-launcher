@@ -21,7 +21,10 @@ func _on_visibility_changed() -> void:
 	%ShowIcons.button_pressed = Global.library_display_images
 	%DetailIcon.button_pressed = Global.detail_panel_show_icon
 	%PreserveScroll.button_pressed = Global.library_preserve_scroll
-
+	%FullscreenMode.button_pressed = Global.window_preserve_mode
+	%ColumnIconSize.text = str(Global.column_icon_size)
+	%GridIconSize.text = str(Global.grid_icon_size)
+	%DetailIconSize.text = str(Global.detail_icon_size)
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
@@ -29,3 +32,25 @@ func _on_detail_icon_toggled(toggled_on: bool) -> void:
 
 func _on_preserve_scroll_toggled(toggled_on: bool) -> void:
 	Global.library_preserve_scroll = toggled_on
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	%Advanced.visible = toggled_on
+	%AdvancedSeperator.visible = toggled_on
+
+
+func _on_fullscreen_mode_toggled(toggled_on: bool) -> void:
+	Global.window_preserve_mode = toggled_on
+	
+
+
+func _on_column_icon_size_text_changed(new_text: String) -> void:
+	Global.column_icon_size = new_text.to_int()
+
+
+func _on_grid_icon_size_text_changed(new_text: String) -> void:
+	Global.grid_icon_size = new_text.to_int()
+
+
+func _on_detail_icon_size_text_changed(new_text: String) -> void:
+	Global.detail_icon_size = new_text.to_int()

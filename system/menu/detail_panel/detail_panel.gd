@@ -26,9 +26,10 @@ func _refresh_from_data(selected : Game) -> void:
 			image = Image.load_from_file(image_path)
 			if not image:
 				image = Image.load_from_file(Global.default_icon_path) ##will warning - but works as a fallback for now
-			image.resize(56,56,Image.INTERPOLATE_NEAREST)
+			image.resize(Global.detail_icon_size,Global.detail_icon_size,Image.INTERPOLATE_NEAREST)
 			icon = ImageTexture.create_from_image(image)
 		%DetailIcon.texture = icon
+		%DetailIcon.custom_minimum_size = Vector2i(Global.detail_icon_size, Global.detail_icon_size)
 		%DetailIcon.show()
 
 func _on_edit_button_pressed() -> void:
