@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://du8xws6njx1t8" path="res://system/menu/top_bar/top_bar.gd" id="1_qis7v"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_rroad"]
-[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
-[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
-[ext_resource type="Script" uid="uid://ctw7hkfdc12a1" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_uxnv1"]
+[ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
+[ext_resource type="Script" uid="uid://c4n2aki4724e4" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
@@ -59,6 +59,8 @@ icon_name = "check"
 [sub_resource type="Resource" id="Resource_ha7ms"]
 script = ExtResource("3_mq51i")
 
+[sub_resource type="LabelSettings" id="LabelSettings_c18m0"]
+
 [sub_resource type="Resource" id="Resource_aml8d"]
 script = ExtResource("3_mq51i")
 icon_name = "format-list-bulleted"
@@ -66,6 +68,11 @@ icon_name = "format-list-bulleted"
 [sub_resource type="Resource" id="Resource_tdt6k"]
 script = ExtResource("3_mq51i")
 icon_name = "dots-grid"
+
+[sub_resource type="Resource" id="Resource_g768m"]
+script = ExtResource("3_mq51i")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkk0i"]
 
 [node name="TopBar" type="Control" unique_id=1528215481]
 custom_minimum_size = Vector2(0, 48)
@@ -191,6 +198,7 @@ off_icon_settings = SubResource("Resource_0yaop")
 layout_order = "Toggle"
 icon_settings = SubResource("Resource_pgtyd")
 label_settings = SubResource("LabelSettings_4rx8q")
+toggle_mode = true
 
 [node name="VSeparator4" type="VSeparator" parent="SF" unique_id=2109314793]
 layout_mode = 2
@@ -223,6 +231,7 @@ on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
 layout_order = "Icon-Label-Toggle"
 icon_settings = SubResource("Resource_ha7ms")
+label_settings = SubResource("LabelSettings_c18m0")
 toggle_mode = true
 
 [node name="ListMode" type="PanelContainer" parent="HBoxContainer" unique_id=1130534922]
@@ -233,8 +242,9 @@ script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")
 off_icon_settings = SubResource("Resource_tdt6k")
 layout_order = "Toggle"
+icon_settings = SubResource("Resource_g768m")
+label_settings = SubResource("LabelSettings_pkk0i")
 toggle_mode = true
-metadata/_custom_type_script = "uid://ctw7hkfdc12a1"
 
 [node name="Control" type="Control" parent="HBoxContainer" unique_id=1496830363]
 custom_minimum_size = Vector2(4, 0)

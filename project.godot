@@ -35,7 +35,7 @@ driver/driver="Dummy"
 [autoload]
 
 Global="*res://global.gd"
-IconsFonts="*uid://b573s24lmntbd"
+IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 
 [display]
 

@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://bni8w3a3pcbwn"]
+[gd_scene load_steps=5 format=3 uid="uid://bni8w3a3pcbwn"]
 
-[ext_resource type="Script" uid="uid://bfx8x6d3ykijk" path="res://addons/icons-fonts/icon_finder/icon_finder.gd" id="1_nv02s"]
-[ext_resource type="FontFile" uid="uid://2dhsdve7j655" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_8e28h"]
-[ext_resource type="Script" uid="uid://ddp2jugobj6ak" path="res://addons/icons-fonts/icon_finder/IconsFontsRender.gd" id="3_hobrt"]
-[ext_resource type="FontFile" uid="uid://c8lyvkhyvpr78" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="3_sggto"]
+[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/icon_finder.gd" id="1_nv02s"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_8e28h"]
+[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/IconsFontsRender.gd" id="3_hobrt"]
+[ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="3_sggto"]
 
-[node name="IconFinder" type="Panel" unique_id=625504088 node_paths=PackedStringArray("icons_renderers", "icons_renderers_tabs", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container", "fonts_dropdown")]
+[node name="IconFinder" type="Panel" node_paths=PackedStringArray("icons_renderers", "icons_renderers_tabs", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container", "fonts_dropdown")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +23,7 @@ size_label = NodePath("MarginContainer/VBoxContainer/SliderContainer/LabelSize")
 scroll_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer")
 fonts_dropdown = NodePath("MarginContainer/VBoxContainer/HBoxContainer/FontsDropdown")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1658552535]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,71 +35,70 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2099999984]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1934849593]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2085023601]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Font"
 
-[node name="FontsDropdown" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1617930167]
+[node name="FontsDropdown" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 selected = 0
 item_count = 2
 popup/item_0/text = "MaterialIcons"
-popup/item_0/id = 0
 popup/item_1/text = "Emojis"
 popup/item_1/id = 1
 
-[node name="Search" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=555374814]
+[node name="Search" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Search"
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="Notify" type="Label" parent="MarginContainer/VBoxContainer" unique_id=613585334]
+[node name="Notify" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Icon-x was copied to clipboard."
 
-[node name="SliderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1386809680]
+[node name="SliderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer" unique_id=1396406180]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
 text = "Size preview"
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SliderContainer" unique_id=1546321772]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 16.0
 max_value = 128.0
-value = 32.0
+value = 16.0
 
-[node name="LabelSize" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer" unique_id=698552060]
+[node name="LabelSize" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
-text = "32"
+text = "16"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=841263794]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=562294381]
+[node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" unique_id=1304139888 node_paths=PackedStringArray("size_slider", "search_line_edit")]
+[node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" node_paths=PackedStringArray("size_slider", "search_line_edit")]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,7 +117,7 @@ size_slider = NodePath("../../../SliderContainer/HSlider")
 search_line_edit = NodePath("../../../HBoxContainer/Search")
 metadata/_tab_index = 0
 
-[node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" unique_id=958758622 node_paths=PackedStringArray("size_slider", "search_line_edit")]
+[node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" node_paths=PackedStringArray("size_slider", "search_line_edit")]
 visible = false
 clip_contents = false
 layout_mode = 2
