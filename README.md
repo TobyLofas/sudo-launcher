@@ -42,7 +42,7 @@ To display and store information about the games in the library, **SudoLauncher*
 - **icon** - the file path for the game's icon file.
 - **year** - the year the game was originally released in. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
 - **developer** - the name of the developer that created the game. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
-- **tags** - a list of strings that representing the assigned categories for the game.
+- **tags** - a list of strings that represent the assigned categories for the game.
 - **args** - a string of launch arguments
 
 > **Note:** The **name** and **path** properties will be automatically assigned using the name of each executable found. If you have added a library directory that contains subfolders for each game, and those games have multiple executables in the subfolder (e.g. a level editor), you will need to ensure unwanted executables are deleted from the library.
