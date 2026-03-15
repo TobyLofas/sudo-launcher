@@ -27,6 +27,8 @@ func _on_visibility_changed() -> void:
 	%DetailIconSize.text = str(Global.detail_icon_size)
 	%FontSize.text = str(Global.library_font_size)
 	%GridText.button_pressed = Global.library_grid_text
+	%LibraryFilter.selected = Global.library_icon_filter
+	%DetailFilter.selected = Global.detail_icon_filter
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on

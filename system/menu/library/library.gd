@@ -19,8 +19,8 @@ var _tag_filtered : Array[Game]
 func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
-	top_bar.image_toggle.toggled.connect(refresh_game_list)
-	top_bar.list_mode_toggle.toggled.connect(refresh_game_list)
+	top_bar.image_toggle.pressed.connect(refresh_game_list)
+	top_bar.list_mode_toggle.pressed.connect(refresh_game_list)
 	top_bar.sort_changed.connect(refresh_game_list)
 	detail_panel.play_button.pressed.connect(start_game)
 	game_list.item_activated.connect(start_game)
@@ -35,7 +35,6 @@ func _on_game_list_item_selected(index: int) -> void:
 	detail_panel._refresh_from_data(selected)
 	Global.library_last_index = library.find(selected)
 	Global.library_last_game = selected
-	
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
@@ -57,9 +56,10 @@ func filter_by_tag(filter_tags : PackedStringArray) -> void:
 					_tag_filtered.append(item)
 	refresh_game_list()
 
-func refresh_game_list(keep_selected : bool = true) -> void:
+func refresh_game_list(keep_selected : bool = true) -> void:#
 	_apply_filters()
 	_apply_ordering()
+	_update_list_display()
 	create_game_list_from_filtered_library()
 	if game_list.item_count > 0 and keep_selected:
 		var selected_index = filtered_library.find(library[Global.library_last_index])
@@ -69,7 +69,7 @@ func refresh_game_list(keep_selected : bool = true) -> void:
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
-	_update_list_display()
+	
 	
 
 func _apply_filters() -> void:
@@ -108,7 +108,7 @@ func create_game_list_from_filtered_library() -> void:
 			var index 
 			var icon
 			if item.icon == Global.default_icon_path:
-				icon = ImageTexture.create_from_image(Global.default_icon)
+				icon = Global.default_icon
 			else:
 				index = Global.image_cache_index(item.icon)
 				if index < 0: 
@@ -204,6 +204,7 @@ func _on_divider_dragged(offset: int) -> void:
 func _on_visibility_changed() -> void:
 	if top_bar:
 		refresh_game_list()
+		pass
 
 func _on_list_scroll_changed(new_value: float) -> void:
 	Global.library_scroll_value = new_value

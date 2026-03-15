@@ -57,10 +57,10 @@ func create_metadata() -> void:
 func _on_tag_manager_close_requested() -> void:
 	library.save_metadata_for_selected()
 	edit_window.load_tags()
-	library.refresh_game_list(true)
+	library.refresh_game_list()
 
 func _on_edit_window_close_requested() -> void:
-	library.refresh_game_list(true)
+	library.refresh_game_list()
 
 func remove_game() -> void:
 	var file_name = library.selected.path.get_slice("/", library.selected.path.get_slice_count("/")-1)
@@ -69,7 +69,7 @@ func remove_game() -> void:
 	directory_manager.blacklist.append(file_name)
 	Global.save_to_csv(directory_manager.blacklist, Global.base_dir + Global.data_dir + Global.blacklist_file_name)
 	library.library.remove_at(library.game_list.get_selected_items()[0])
-	library.refresh_game_list(true)
+	library.refresh_game_list()
 
 func save_blacklist() -> void:
 	var file = FileAccess.open(Global.base_dir + Global.data_dir + "blacklist.csv", FileAccess.WRITE)
@@ -78,7 +78,6 @@ func save_blacklist() -> void:
 	else:
 		file.seek(0)
 		file.store_csv_line(directory_manager.blacklist)
-		print(directory_manager.blacklist)
 
 func _on_tree_exiting() -> void:
 	Global.display_mode = DisplayServer.window_get_mode()
@@ -99,7 +98,7 @@ func _on_directory_manager_directory_removed(directory: String) -> void:
 			for_removal.append(game)
 	for game in for_removal:
 		library.library.remove_at(library.library.find(game))
-	library.refresh_game_list(true)
+	library.refresh_game_list()
 
 
 func _on_edit_window_icon_updated() -> void:

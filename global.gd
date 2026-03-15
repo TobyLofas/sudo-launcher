@@ -44,7 +44,7 @@ var library_icon_filter : int
 var detail_icon_filter : int
 
 var image_cache : Array
-var default_icon : Image = load(default_icon_path)
+var default_icon : ImageTexture = ImageTexture.create_from_image(load(default_icon_path)) 
 
 
 func _ready() -> void:
@@ -67,6 +67,8 @@ func save_settings() -> void:
 	file.set_value("Detail Panel", "detail_icon_size", detail_icon_size)
 	file.set_value("Library", "grid_text", library_grid_text)
 	file.set_value("Library", "font_size", library_font_size)
+	file.set_value("Library", "icon_filter", library_icon_filter)
+	file.set_value("Detail Panel", "icon_filter", detail_icon_filter)
 	file.save(base_dir + settings_file_name)
 
 func load_settings() -> void:
@@ -75,7 +77,6 @@ func load_settings() -> void:
 	if err != OK:
 		print(base_dir + settings_file_name, " does not exist")
 		return
-	#if file.get_value("Library", "list_mode"): ##dirty check that the file isnt empty
 	library_list_mode = file.get_value("Library", "list_mode", false)
 	library_display_images = file.get_value("Library", "display_images", false)
 	library_divider_offset = file.get_value("Library", "divider_offset", 0)
@@ -91,6 +92,8 @@ func load_settings() -> void:
 	detail_icon_size = file.get_value("Detail Panel", "detail_icon_size", 32)
 	library_grid_text = file.get_value("Library", "grid_text", true)
 	library_font_size = file.get_value("Library", "font_size", 16)
+	library_icon_filter = file.get_value("Library", "icon_filter", 0)
+	detail_icon_filter = file.get_value("Detail Panel", "icon_filter", 0)
 
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)

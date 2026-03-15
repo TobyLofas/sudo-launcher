@@ -19,7 +19,7 @@ func _refresh_from_data(selected : Game) -> void:
 	else: 
 		var icon
 		if selected.icon == Global.default_icon_path:
-			icon = ImageTexture.create_from_image(Global.default_icon)
+			icon = Global.default_icon
 		else:
 			var index = Global.image_cache_index(selected.icon)
 			if index < 0:
