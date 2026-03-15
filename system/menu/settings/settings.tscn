@@ -190,7 +190,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/ImageFiltering" unique_id=406757404]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Image filtering"
+text = "Icon filter"
 
 [node name="LibraryFilter" type="OptionButton" parent="Spacing/VBoxContainer/Library/ImageFiltering" unique_id=247003570]
 unique_name_in_owner = true
@@ -250,7 +250,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Spacing/VBoxContainer/Detail Panel/ImageFiltering" unique_id=1429203349]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Image filtering"
+text = "Icon filter"
 
 [node name="DetailFilter" type="OptionButton" parent="Spacing/VBoxContainer/Detail Panel/ImageFiltering" unique_id=1737702993]
 unique_name_in_owner = true
