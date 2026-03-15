@@ -25,6 +25,8 @@ func _on_visibility_changed() -> void:
 	%ColumnIconSize.text = str(Global.column_icon_size)
 	%GridIconSize.text = str(Global.grid_icon_size)
 	%DetailIconSize.text = str(Global.detail_icon_size)
+	%FontSize.text = str(Global.library_font_size)
+	%GridText.button_pressed = Global.library_grid_text
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
@@ -54,3 +56,19 @@ func _on_grid_icon_size_text_changed(new_text: String) -> void:
 
 func _on_detail_icon_size_text_changed(new_text: String) -> void:
 	Global.detail_icon_size = new_text.to_int()
+
+
+func _on_font_size_text_changed(new_text: String) -> void:
+	Global.library_font_size = new_text.to_int()
+
+
+func _on_grid_text_toggled(toggled_on: bool) -> void:
+	Global.library_grid_text = toggled_on
+
+
+func _on_library_filter_item_selected(index: int) -> void:
+	Global.library_icon_filter = index
+
+
+func _on_detail_filter_item_selected(index: int) -> void:
+	Global.detail_icon_filter = index

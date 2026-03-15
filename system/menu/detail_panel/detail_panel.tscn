@@ -2,14 +2,14 @@
 
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_1mh1j"]
 [ext_resource type="Script" uid="uid://bdhm3foeyjqod" path="res://system/menu/detail_panel/detail_panel.gd" id="1_7fl2n"]
-[ext_resource type="FontFile" uid="uid://2dhsdve7j655" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_lumbd"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_lumbd"]
 [ext_resource type="Theme" uid="uid://n3xms3s1tyr0" path="res://system/menu/title_text_theme.tres" id="3_dyd68"]
-[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_qyu1u"]
-[ext_resource type="Script" uid="uid://iy5cq2cs4uq1" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
-[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_qyu1u"]
+[ext_resource type="Script" uid="uid://sfoyl3fbn8so" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="3_ybtc4"]
+[ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
 [ext_resource type="Theme" uid="uid://cpmlnjjpqxqbk" path="res://system/menu/detail_panel/file_path_theme.tres" id="8_dl72k"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -85,8 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.111197, 0.111197, 0.111197, 1)
 
-[node name="Details" type="VBoxContainer" parent="." unique_id=1712300944]
-custom_minimum_size = Vector2(300, 0)
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=122826032]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,16 +93,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Details" unique_id=414400958]
+[node name="Control" type="Control" parent="HBoxContainer2" unique_id=580899160]
 layout_mode = 2
 
-[node name="DetailIcon" type="TextureRect" parent="Details/HBoxContainer" unique_id=2060192179]
+[node name="Details" type="VBoxContainer" parent="HBoxContainer2" unique_id=1712300944]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HBoxContainer2/Details" unique_id=1567916554]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2/Details" unique_id=414400958]
+layout_mode = 2
+
+[node name="DetailIcon" type="TextureRect" parent="HBoxContainer2/Details/HBoxContainer" unique_id=2060192179]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 stretch_mode = 5
 
-[node name="Name" type="Label" parent="Details/HBoxContainer" unique_id=1645969656]
+[node name="Name" type="Label" parent="HBoxContainer2/Details/HBoxContainer" unique_id=1645969656]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -112,40 +123,40 @@ theme = ExtResource("3_dyd68")
 text = "NO GAME SELECTED"
 autowrap_mode = 2
 
-[node name="Year" type="HBoxContainer" parent="Details" unique_id=1309821979]
+[node name="Year" type="HBoxContainer" parent="HBoxContainer2/Details" unique_id=1309821979]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Details/Year" unique_id=1684708506]
+[node name="Label" type="Label" parent="HBoxContainer2/Details/Year" unique_id=1684708506]
 layout_mode = 2
 text = "Release Year: "
 
-[node name="Year" type="Label" parent="Details/Year" unique_id=1438461104]
+[node name="Year" type="Label" parent="HBoxContainer2/Details/Year" unique_id=1438461104]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Developer" type="HBoxContainer" parent="Details" unique_id=765833688]
+[node name="Developer" type="HBoxContainer" parent="HBoxContainer2/Details" unique_id=765833688]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Details/Developer" unique_id=420162911]
+[node name="Label" type="Label" parent="HBoxContainer2/Details/Developer" unique_id=420162911]
 layout_mode = 2
 text = "Developer:"
 
-[node name="Developer" type="Label" parent="Details/Developer" unique_id=2129287452]
+[node name="Developer" type="Label" parent="HBoxContainer2/Details/Developer" unique_id=2129287452]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Tags" type="HBoxContainer" parent="Details" unique_id=1862214147]
+[node name="Tags" type="HBoxContainer" parent="HBoxContainer2/Details" unique_id=1862214147]
 layout_mode = 2
 
-[node name="TagButton" type="PanelContainer" parent="Details/Tags" unique_id=47085415]
+[node name="TagButton" type="PanelContainer" parent="HBoxContainer2/Details/Tags" unique_id=47085415]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yrucj")
 label_settings = SubResource("LabelSettings_h8c3f")
 
-[node name="FontIcon" type="Label" parent="Details/Tags" unique_id=12279330]
+[node name="FontIcon" type="Label" parent="HBoxContainer2/Details/Tags" unique_id=12279330]
 visible = false
 layout_mode = 2
 text = "󰓹"
@@ -153,7 +164,7 @@ label_settings = SubResource("LabelSettings_5wcsw")
 script = ExtResource("3_ybtc4")
 icon_settings = SubResource("Resource_fqcba")
 
-[node name="TagsList" type="ItemList" parent="Details/Tags" unique_id=2046212891]
+[node name="TagsList" type="ItemList" parent="HBoxContainer2/Details/Tags" unique_id=2046212891]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -161,7 +172,7 @@ size_flags_horizontal = 3
 auto_height = true
 max_columns = 255
 
-[node name="FilePath" type="RichTextLabel" parent="Details" unique_id=219407402]
+[node name="FilePath" type="RichTextLabel" parent="HBoxContainer2/Details" unique_id=219407402]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -187,7 +198,7 @@ grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play the game"
 focus_neighbor_right = NodePath("../EditButton")
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_h2p0x")
@@ -203,7 +214,7 @@ offset_top = -43.0
 offset_right = 44.0
 grow_vertical = 0
 tooltip_text = "Delete & Add to Blacklist"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_eyven")
@@ -225,7 +236,7 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "Edit game details"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")
@@ -239,7 +250,7 @@ popup_window = true
 force_native = true
 dialog_text = "Are you sure you want to add this game to the blacklist?"
 
-[connection signal="pressed" from="Details/Tags/TagButton" to="." method="_on_tag_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Details/Tags/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="pressed" from="BlacklistButton" to="." method="_on_blacklist_button_pressed"]
 [connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

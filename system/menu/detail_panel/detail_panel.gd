@@ -17,18 +17,23 @@ func _refresh_from_data(selected : Game) -> void:
 	%FilePath.set_text("[i]" + selected.path)
 	if not Global.detail_panel_show_icon: %DetailIcon.hide()
 	else: 
-		var image
 		var icon
 		if selected.icon == Global.default_icon_path:
-			icon = load(selected.icon)
+			icon = ImageTexture.create_from_image(Global.default_icon)
 		else:
-			var image_path = selected.icon
-			image = Image.load_from_file(image_path)
-			if not image:
-				image = Image.load_from_file(Global.default_icon_path) ##will warning - but works as a fallback for now
-			image.resize(Global.detail_icon_size,Global.detail_icon_size,Image.INTERPOLATE_NEAREST)
-			icon = ImageTexture.create_from_image(image)
+			var index = Global.image_cache_index(selected.icon)
+			if index < 0:
+				var image_path = selected.icon
+				var image = Image.load_from_file(image_path)
+				if not image:
+					image = Image.load_from_file(Global.default_icon_path) ##will warning - but works as a fallback for now
+				image.resize(Global.detail_icon_size,Global.detail_icon_size,Image.INTERPOLATE_NEAREST)
+				icon = ImageTexture.create_from_image(image)
+			else:
+				icon = Global.image_cache[index].get(selected.icon)
+		icon.set_size_override(Vector2i(Global.detail_icon_size,Global.detail_icon_size))
 		%DetailIcon.texture = icon
+		%DetailIcon.texture_filter = Global.detail_icon_filter + 1 ##Offset to account for godot inherit from parent
 		%DetailIcon.custom_minimum_size = Vector2i(Global.detail_icon_size, Global.detail_icon_size)
 		%DetailIcon.show()
 

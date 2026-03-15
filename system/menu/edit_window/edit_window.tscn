@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bc371s4g3iee6" path="res://system/menu/edit_window/edit_window.gd" id="1_lqnf1"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_s0sy3"]
-[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
-[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
+[ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwua"]
 content_margin_left = 4.0

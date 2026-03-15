@@ -38,6 +38,14 @@ var display_mode : int
 var column_icon_size : int
 var grid_icon_size : int
 var detail_icon_size : int
+var library_grid_text : bool
+var library_font_size : int
+var library_icon_filter : int
+var detail_icon_filter : int
+
+var image_cache : Array
+var default_icon : Image = load(default_icon_path)
+
 
 func _ready() -> void:
 	load_settings()
@@ -57,6 +65,8 @@ func save_settings() -> void:
 	file.set_value("Library", "column_icon_size", column_icon_size)
 	file.set_value("Library", "grid_icon_size", grid_icon_size)
 	file.set_value("Detail Panel", "detail_icon_size", detail_icon_size)
+	file.set_value("Library", "grid_text", library_grid_text)
+	file.set_value("Library", "font_size", library_font_size)
 	file.save(base_dir + settings_file_name)
 
 func load_settings() -> void:
@@ -79,6 +89,8 @@ func load_settings() -> void:
 	column_icon_size = file.get_value("Library", "column_icon_size", 32)
 	grid_icon_size = file.get_value("Library", "grid_icon_size", 96)
 	detail_icon_size = file.get_value("Detail Panel", "detail_icon_size", 32)
+	library_grid_text = file.get_value("Library", "grid_text", true)
+	library_font_size = file.get_value("Library", "font_size", 16)
 
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -99,3 +111,9 @@ func save_to_csv(data, file_path) -> void:
 	else:
 		file.seek(0)
 		file.store_csv_line(data)
+
+func image_cache_index(path) -> int:
+	for i in len(image_cache):
+		if image_cache[i].has(path):
+			return i
+	return -1

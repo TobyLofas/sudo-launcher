@@ -10,6 +10,7 @@ func _ready() -> void:
 	library.detail_panel.add_to_blacklist.connect(remove_game)
 	library.detail_panel.edit_tags.connect(_on_edit_tags)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
+	get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 	if Global.window_preserve_mode: DisplayServer.window_set_mode(Global.display_mode)
 	check_for_files()
 	create_metadata()

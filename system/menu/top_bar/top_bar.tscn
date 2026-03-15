@@ -222,6 +222,7 @@ grow_vertical = 2
 
 [node name="ImageDisplay" type="PanelContainer" parent="HBoxContainer" unique_id=139763006]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -237,6 +238,7 @@ toggle_mode = true
 [node name="ListMode" type="PanelContainer" parent="HBoxContainer" unique_id=1130534922]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")

@@ -68,6 +68,6 @@ func _on_visibility_changed() -> void:
 	if image_toggle: image_toggle.button_pressed = not Global.library_display_images
 
 
-func _on_sort_button_toggled(value: bool) -> void:
+func _on_sort_button_toggled(_value: bool) -> void:
 	invert_sort = not invert_sort
 	sort_changed.emit(true)

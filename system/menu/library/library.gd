@@ -27,7 +27,7 @@ func _ready() -> void:
 	game_list.get_v_scroll_bar().value_changed.connect(_on_list_scroll_changed)
 	
 	divider.split_offset = Global.library_divider_offset
-	
+	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
 
 func _on_game_list_item_selected(index: int) -> void:
 	if filtered_library.size() != 0:
@@ -42,7 +42,7 @@ func filter_by_search(term : String) -> void:
 	for item in library:
 		if item.name.containsn(term):
 			_search_filtered.append(item)
-	refresh_game_list(true)
+	refresh_game_list()
 
 func filter_by_tag(filter_tags : PackedStringArray) -> void:
 	_tag_filtered = []
@@ -55,7 +55,7 @@ func filter_by_tag(filter_tags : PackedStringArray) -> void:
 			for tag in filter_tags:
 				if item.tags.has(tag):
 					_tag_filtered.append(item)
-	refresh_game_list(true)
+	refresh_game_list()
 
 func refresh_game_list(keep_selected : bool = true) -> void:
 	_apply_filters()
@@ -66,10 +66,11 @@ func refresh_game_list(keep_selected : bool = true) -> void:
 		if selected_index > 0:
 			game_list.select(selected_index)
 			_on_game_list_item_selected(selected_index)
-			
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
+	_update_list_display()
+	
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -101,37 +102,34 @@ func _apply_ordering() -> void:
 func create_game_list_from_filtered_library() -> void:
 	game_list.clear()
 	for item in filtered_library:
-		if not Global.library_display_images:
+		if Global.column_icon_size == 0 and Global.library_list_mode:
 			game_list.add_item(item.name, null)
-		else: 
+		else:
+			var index 
 			var icon
-			if item.icon.contains("res://"):
-				icon = load(item.icon)
+			if item.icon == Global.default_icon_path:
+				icon = ImageTexture.create_from_image(Global.default_icon)
 			else:
-				var image
-				var image_path = item.icon
-				image = Image.new()
-				var error = image.load(image_path)
-				if error:
-					item.icon = Global.default_icon_path
-					icon = load(item.icon)
+				index = Global.image_cache_index(item.icon)
+				if index < 0: 
+					var image
+					var image_path = item.icon
+					image = Image.new()
+					var error = image.load(image_path)
+					if error:
+						item.icon = Global.default_icon_path
+						icon = load(item.icon)
+					else:
+						icon = ImageTexture.new()
+						icon.set_image(image)
+						
+						var cache = {image_path: icon}
+						if not Global.image_cache.has(icon): Global.image_cache.append(cache)
 				else:
-					icon = ImageTexture.new()
-					icon.set_image(image)
-					
+					icon = Global.image_cache[index].get(item.icon)
 			game_list.add_item(item.name, icon)
-			#game_list.add_item("", icon)
-	if Global.library_list_mode:
-		game_list.max_columns = 1
-		game_list.icon_mode = game_list.ICON_MODE_LEFT
-		game_list.fixed_icon_size = Vector2i(Global.column_icon_size, Global.column_icon_size)
-		game_list.fixed_column_width = 0
-		#game_list.add_theme_font_size_override("font_size", 16)
-	else:
-		game_list.max_columns = 99
-		game_list.icon_mode = game_list.ICON_MODE_TOP
-		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
-		game_list.fixed_column_width = Global.grid_icon_size + 32
+			
+	
 	
 
 func create_library_from_metadata(directory : String) -> void:
@@ -205,7 +203,42 @@ func _on_divider_dragged(offset: int) -> void:
 
 func _on_visibility_changed() -> void:
 	if top_bar:
-		refresh_game_list(true)
+		refresh_game_list()
 
 func _on_list_scroll_changed(new_value: float) -> void:
 	Global.library_scroll_value = new_value
+
+func _update_list_display() -> void:
+	game_list.texture_filter = Global.library_icon_filter + 1 ##Offset to account for godot inherit from parent
+	if game_list.has_theme_font_size_override("font_size"): game_list.remove_theme_font_size_override("font_size")
+	if Global.library_list_mode: ##Column (list) mode
+		game_list.max_columns = 1
+		game_list.icon_mode = game_list.ICON_MODE_LEFT
+		game_list.fixed_icon_size = Vector2i(Global.column_icon_size, Global.column_icon_size)
+		game_list.fixed_column_width = 0
+		if game_list.has_theme_color_override("font_color"): 
+			game_list.remove_theme_color_override("font_color")
+			game_list.remove_theme_color_override("font_hovered_color")
+			game_list.remove_theme_color_override("font_hovered_selected_color")
+			game_list.remove_theme_color_override("font_selected_color")
+	else: ##Grid Mode
+		game_list.max_columns = 99
+		game_list.icon_mode = game_list.ICON_MODE_TOP
+		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
+		game_list.fixed_column_width = Global.grid_icon_size + 32	
+		if not Global.library_grid_text:
+			if !game_list.has_theme_font_size_override("font_size"): game_list.add_theme_font_size_override("font_size", 1)
+			if !game_list.has_theme_color_override("font_color"): 
+				game_list.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0, 0.0))
+				game_list.add_theme_color_override("font_hovered_color", Color(0.0, 0.0, 0.0, 0.0))
+				game_list.add_theme_color_override("font_hovered_selected_color", Color(0.0, 0.0, 0.0, 0.0))
+				game_list.add_theme_color_override("font_selected_color", Color(0.0, 0.0, 0.0, 0.0))
+			return
+		else:
+			if game_list.has_theme_color_override("font_color"): 
+				game_list.remove_theme_color_override("font_color")
+				game_list.remove_theme_color_override("font_hovered_color")
+				game_list.remove_theme_color_override("font_hovered_selected_color")
+				game_list.remove_theme_color_override("font_selected_color")
+	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
+	
