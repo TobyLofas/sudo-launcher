@@ -2,6 +2,7 @@ extends Control
 
 func _ready() -> void:
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
+	
 
 func _on_list_mode_toggled(toggled_on: bool) -> void:
 	Global.library_list_mode = toggled_on
@@ -74,3 +75,7 @@ func _on_library_filter_item_selected(index: int) -> void:
 
 func _on_detail_filter_item_selected(index: int) -> void:
 	Global.detail_icon_filter = index
+
+
+func _on_multi_search_toggled(toggled_on: bool) -> void:
+	Global.multithread_cache_search = toggled_on

@@ -42,6 +42,7 @@ var library_grid_text : bool
 var library_font_size : int
 var library_icon_filter : int
 var detail_icon_filter : int
+var multithread_cache_search : bool
 
 var image_cache : Array
 var default_icon : ImageTexture = ImageTexture.create_from_image(load(default_icon_path)) 
@@ -100,12 +101,12 @@ func load_csv(file_path) -> PackedStringArray:
 	if !file:
 		print(file_path, " does not exist")
 		return []
-	else:
-		if file.get_as_text() != "":
-			var line = file.get_csv_line()
-			return line
-		else:
-			return []
+		
+	if file.get_as_text() == "": return []
+	
+	#var line = 
+	return file.get_csv_line()
+		
 
 func save_to_csv(data, file_path) -> void:
 	var file = FileAccess.open(file_path, FileAccess.WRITE)

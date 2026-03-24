@@ -1,17 +1,20 @@
 extends Control
 
 @onready var play_button = %PlayButton
+@onready var stop_button = %StopButton
+@onready var _tags_list = %TagsList
 
 signal edit_details
 signal add_to_blacklist(game : Game)
 signal edit_tags
+signal tag_selected(tag : String)
 
 func _refresh_from_data(selected : Game) -> void:
 	if not selected: return
 	%Name.text = selected.name
 	%Year.text = str(selected.year)
 	%Developer.text = selected.developer
-	%TagsList.clear()
+	_tags_list.clear()
 	for tag in selected.tags:
 		%TagsList.add_item(tag)
 	%FilePath.set_text("[i]" + selected.path)
@@ -36,6 +39,12 @@ func _refresh_from_data(selected : Game) -> void:
 		%DetailIcon.texture_filter = Global.detail_icon_filter + 1 ##Offset to account for godot inherit from parent
 		%DetailIcon.custom_minimum_size = Vector2i(Global.detail_icon_size, Global.detail_icon_size)
 		%DetailIcon.show()
+		if selected.pid == ProcessMonitor.pid and ProcessMonitor.active:
+			play_button.hide()
+			stop_button.show()
+		else:
+			play_button.show()
+			stop_button.hide()
 
 func _on_edit_button_pressed() -> void:
 	edit_details.emit()
@@ -50,3 +59,13 @@ func _on_tag_button_pressed() -> void:
 
 func _on_confirmation_dialog_confirmed() -> void:
 	add_to_blacklist.emit()
+
+
+func _on_tags_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	var text = _tags_list.get_item_text(index)
+	#print(_tags_list.get_selected_items())
+	#if not _tags_list.is_selected(index):
+	#_tags_list.select(index)
+	#else: 
+		#_tags_list.deselect(index)
+	tag_selected.emit(text)

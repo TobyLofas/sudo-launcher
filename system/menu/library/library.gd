@@ -16,6 +16,9 @@ var directories : Array
 var _search_filtered : Array[Game]
 var _tag_filtered : Array[Game]
 
+signal game_started
+signal game_stopped
+
 func _ready() -> void:
 	top_bar.search_bar.text_changed.connect(filter_by_search)
 	top_bar.tags_changed.connect(filter_by_tag)
@@ -23,6 +26,8 @@ func _ready() -> void:
 	top_bar.list_mode_toggle.pressed.connect(refresh_game_list)
 	top_bar.sort_changed.connect(refresh_game_list)
 	detail_panel.play_button.pressed.connect(start_game)
+	detail_panel.stop_button.pressed.connect(stop_game)
+	
 	game_list.item_activated.connect(start_game)
 	game_list.get_v_scroll_bar().value_changed.connect(_on_list_scroll_changed)
 	
@@ -125,34 +130,55 @@ func create_game_list_from_filtered_library() -> void:
 						
 						var cache = {image_path: icon}
 						if not Global.image_cache.has(icon): Global.image_cache.append(cache)
+						
 				else:
 					icon = Global.image_cache[index].get(item.icon)
 			game_list.add_item(item.name, icon)
-			
-	
-	
 
 func create_library_from_metadata(directory : String) -> void:
 	library.clear()
 	var dir = DirAccess.open(directory)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-			else:
-				var extension : String = file_name.get_slice(".",1)
-				if extension == "tres":
-					var game : Game = load(directory + file_name) as Game
-					library.append(game)
-			file_name = dir.get_next()
-	#else:
-		#print("An error occurred when trying to access the path.")
+	if not dir:
+		print("An error occurred when trying to access the path.") 
+		return
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if dir.current_is_dir(): continue
+		var extension : String = file_name.get_slice(".",1)
+		if extension == "tres":
+			var game : Game = load(directory + file_name) as Game
+			library.append(game)
+		file_name = dir.get_next()
 
 func start_game(_id: int = 0) -> void:
 	if not selected: return
-	OS.create_process("cmd.exe", ["/c", selected.path, selected.args])
+	var exe = selected.path
+	if selected.path.get_extension() == "lnk":
+		var output: Array[String]
+		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\""
+		OS.execute("cmd.exe", ["/c", command], output)
+		exe = output[0].get_slice("\n",1).strip_escapes()
+	var exec_out = OS.execute_with_pipe(exe, [selected.args])
+	if exec_out == {}: return
+	selected.pid = exec_out.get("pid")
+	if selected.pid < 0:
+		push_error("COULD NOT START", selected.path)
+		return
+	ProcessMonitor.set_pid(selected.pid)
+	game_started.emit()
+	detail_panel._refresh_from_data(selected)
+
+func stop_game() -> void:
+	if (not OS.is_process_running(ProcessMonitor.pid)) or ProcessMonitor.pid < 0: return
+	var error = OS.kill(ProcessMonitor.pid)
+	if error:
+		push_error("ERROR ON KILL")
+		return
+	selected.pid = -1
+	game_stopped.emit()
+	detail_panel._refresh_from_data(selected)
+	
 
 func load_tags(_tags : Array[String]) -> void:
 	tags = _tags
@@ -172,7 +198,7 @@ func save_metadata_for_selected() -> void:
 	ResourceSaver.save(selected, Global.base_dir+Global.library_dir+_name+".tres")
 
 func _on_tag_manager_tags_updated(_tags: Variant) -> void:
-	top_bar.load_tags(_tags)
+	load_tags(_tags)
 
 func _sort_by_name(a : Game, b : Game):
 	if _trim_articles(a.name) < _trim_articles(b.name):
@@ -202,9 +228,8 @@ func _on_divider_dragged(offset: int) -> void:
 	Global.library_divider_offset = offset
 
 func _on_visibility_changed() -> void:
-	if top_bar:
-		refresh_game_list()
-		pass
+	if not top_bar: return
+	refresh_game_list()
 
 func _on_list_scroll_changed(new_value: float) -> void:
 	Global.library_scroll_value = new_value
@@ -243,3 +268,9 @@ func _update_list_display() -> void:
 				game_list.remove_theme_color_override("font_selected_color")
 	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
 	
+
+
+func _on_detail_panel_tag_selected(tag: String) -> void:
+	var i = tags.find(tag)
+	if i < 0: return
+	top_bar._on_tags_list_index_pressed(i)

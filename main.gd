@@ -9,7 +9,12 @@ func _ready() -> void:
 	library.detail_panel.edit_details.connect(_on_edit_details)
 	library.detail_panel.add_to_blacklist.connect(remove_game)
 	library.detail_panel.edit_tags.connect(_on_edit_tags)
+	library.game_stopped.connect(game_stopped)
+	library.game_started.connect(game_started)
+	ProcessMonitor.stopped.connect(game_lock)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
+	%HardStop.pressed.connect(library.stop_game)
+	%HardStop.hide()
 	get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 	if Global.window_preserve_mode: DisplayServer.window_set_mode(Global.display_mode)
 	check_for_files()
@@ -87,6 +92,7 @@ func _on_edit_tags() -> void:
 	%EditWindow.selected_game = library.selected
 	%TagManager.selected_game = library.selected
 	%TagManager.show()
+	
 
 func _on_directory_manager_directory_removed(directory: String) -> void:
 	var for_removal = []
@@ -103,3 +109,14 @@ func _on_directory_manager_directory_removed(directory: String) -> void:
 
 func _on_edit_window_icon_updated() -> void:
 	pass # Replace with function body.
+
+func game_lock() -> void:
+	library.stop_game()
+	%HardStop.hide()
+	library.detail_panel._refresh_from_data(library.selected)
+
+func game_stopped() -> void:
+	%HardStop.hide()
+
+func game_started() -> void:
+	%HardStop.show()

@@ -84,10 +84,10 @@ func _on_close_requested() -> void:
 
 func _on_delete_tag_pressed() -> void:
 	var tags_to_delete = %AvailableTagsDisplay.get_selected_items()
-	
 	tags_to_delete.reverse()
 	for index in len(tags_to_delete):
-		tags.remove_at(tags_to_delete[index])
+		var f_index = tags.find(filtered_tags[tags_to_delete[index]])
+		tags.remove_at(f_index)
 	tags_updated.emit(tags)
 	save_tags()
 	refresh_tag_displays()
@@ -96,7 +96,3 @@ func _on_visibility_changed() -> void:
 	if not selected_game: return
 	selected_tags = selected_game.tags
 	refresh_tag_displays()
-
-
-func _on_available_tags_display_item_activated(_index: int) -> void:
-	pass # Replace with function body.

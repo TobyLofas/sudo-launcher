@@ -2,6 +2,33 @@
 
 [ext_resource type="Script" uid="uid://cf6fshxuvt3i6" path="res://system/menu/settings/settings.gd" id="1_cedp5"]
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_dbrda"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_o5d07"]
+[ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_073iv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ouson"]
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5d07"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_o5q4v"]
+script = ExtResource("4_073iv")
+icon_name = "folder"
+
+[sub_resource type="LabelSettings" id="LabelSettings_073iv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jlvuq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5q4v"]
 
 [node name="Settings" type="Control" unique_id=967080982]
 layout_mode = 3
@@ -22,90 +49,97 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.147672, 0.147672, 0.147672, 1)
 
-[node name="Spacing" type="HBoxContainer" parent="." unique_id=1157401505]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=755834377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LPadding" type="Control" parent="Spacing" unique_id=1182665129]
+[node name="Spacing" type="HBoxContainer" parent="VBoxContainer" unique_id=1157401505]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LPadding" type="Control" parent="VBoxContainer/Spacing" unique_id=1182665129]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Spacing" unique_id=401783098]
+[node name="Standard" type="VBoxContainer" parent="VBoxContainer/Spacing" unique_id=401783098]
 layout_mode = 2
 
-[node name="Library" type="VBoxContainer" parent="Spacing/VBoxContainer" unique_id=136753087]
+[node name="Library" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard" unique_id=136753087]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library" unique_id=939930998]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library" unique_id=939930998]
 layout_mode = 2
 text = "Library:"
 
-[node name="ColumnMode" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=591720483]
+[node name="ColumnMode" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=591720483]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/ColumnMode" unique_id=1479138433]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ColumnMode" unique_id=1479138433]
 layout_mode = 2
 text = "Single-column mode"
 
-[node name="ListMode" type="CheckButton" parent="Spacing/VBoxContainer/Library/ColumnMode" unique_id=986254687]
+[node name="ListMode" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/ColumnMode" unique_id=986254687]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="ShowIcons" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=301659290]
+[node name="ShowIcons" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=301659290]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/ShowIcons" unique_id=1832727290]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ShowIcons" unique_id=1832727290]
 layout_mode = 2
 text = "Show game icons"
 
-[node name="ShowIcons" type="CheckButton" parent="Spacing/VBoxContainer/Library/ShowIcons" unique_id=1545042646]
+[node name="ShowIcons" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/ShowIcons" unique_id=1545042646]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Library" unique_id=1430795514]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1430795514]
 visible = false
 layout_mode = 2
 
-[node name="OpenToLast" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=1509393535]
+[node name="OpenToLast" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1509393535]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/OpenToLast" unique_id=1873022440]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=1873022440]
 layout_mode = 2
 text = "Preserve selected game on close"
 
-[node name="OpenToLast" type="CheckButton" parent="Spacing/VBoxContainer/Library/OpenToLast" unique_id=314095247]
+[node name="OpenToLast" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=314095247]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="PreserveScroll" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=380340250]
+[node name="PreserveScroll" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=380340250]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/PreserveScroll" unique_id=170305354]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=170305354]
 layout_mode = 2
 text = "Preserve scroll position on close"
 
-[node name="PreserveScroll" type="CheckButton" parent="Spacing/VBoxContainer/Library/PreserveScroll" unique_id=806594756]
+[node name="PreserveScroll" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=806594756]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Control2" type="Control" parent="Spacing/VBoxContainer/Library" unique_id=223296846]
+[node name="Control2" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=223296846]
 layout_mode = 2
 
-[node name="ColumnIconSize" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=24712959]
+[node name="ColumnIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=24712959]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/ColumnIconSize" unique_id=887594550]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ColumnIconSize" unique_id=887594550]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Column icon size"
 
-[node name="ColumnIconSize" type="LineEdit" parent="Spacing/VBoxContainer/Library/ColumnIconSize" unique_id=2144867922]
+[node name="ColumnIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/ColumnIconSize" unique_id=2144867922]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -118,18 +152,18 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Library/ColumnIconSize" unique_id=519835917]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/ColumnIconSize" unique_id=519835917]
 layout_mode = 2
 
-[node name="GridIconSize" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=1194422483]
+[node name="GridIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1194422483]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/GridIconSize" unique_id=266638582]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/GridIconSize" unique_id=266638582]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Grid icon size"
 
-[node name="GridIconSize" type="LineEdit" parent="Spacing/VBoxContainer/Library/GridIconSize" unique_id=1807086087]
+[node name="GridIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/GridIconSize" unique_id=1807086087]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -142,18 +176,18 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Library/GridIconSize" unique_id=1392713422]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/GridIconSize" unique_id=1392713422]
 layout_mode = 2
 
-[node name="FontSize" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=1417088932]
+[node name="FontSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1417088932]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/FontSize" unique_id=1024582812]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/FontSize" unique_id=1024582812]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Font size"
 
-[node name="FontSize" type="LineEdit" parent="Spacing/VBoxContainer/Library/FontSize" unique_id=1475456533]
+[node name="FontSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/FontSize" unique_id=1475456533]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -166,33 +200,33 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Library/FontSize" unique_id=1476047776]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/FontSize" unique_id=1476047776]
 layout_mode = 2
 
-[node name="Control3" type="Control" parent="Spacing/VBoxContainer/Library" unique_id=1495916436]
+[node name="Control3" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1495916436]
 layout_mode = 2
 
-[node name="GridText" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=1622511870]
+[node name="GridText" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1622511870]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/GridText" unique_id=511094459]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/GridText" unique_id=511094459]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Show text in grid mode"
 
-[node name="GridText" type="CheckButton" parent="Spacing/VBoxContainer/Library/GridText" unique_id=458149923]
+[node name="GridText" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/GridText" unique_id=458149923]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ImageFiltering" type="HBoxContainer" parent="Spacing/VBoxContainer/Library" unique_id=1296255507]
+[node name="ImageFiltering" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1296255507]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Library/ImageFiltering" unique_id=406757404]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=406757404]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Icon filter"
 
-[node name="LibraryFilter" type="OptionButton" parent="Spacing/VBoxContainer/Library/ImageFiltering" unique_id=247003570]
+[node name="LibraryFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=247003570]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 2
@@ -201,37 +235,37 @@ popup/item_0/id = 0
 popup/item_1/text = "Linear"
 popup/item_1/id = 1
 
-[node name="HSeparator" type="HSeparator" parent="Spacing/VBoxContainer" unique_id=792694316]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Spacing/Standard" unique_id=792694316]
 layout_mode = 2
 
-[node name="Detail Panel" type="VBoxContainer" parent="Spacing/VBoxContainer" unique_id=1151468409]
+[node name="Detail Panel" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard" unique_id=1151468409]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Detail Panel" unique_id=1855316484]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Detail Panel" unique_id=1855316484]
 layout_mode = 2
 text = "Detail Panel:"
 
-[node name="DetailPaneIcon" type="HBoxContainer" parent="Spacing/VBoxContainer/Detail Panel" unique_id=617616834]
+[node name="DetailPaneIcon" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Detail Panel" unique_id=617616834]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Detail Panel/DetailPaneIcon" unique_id=1494984411]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Detail Panel/DetailPaneIcon" unique_id=1494984411]
 layout_mode = 2
 text = "Show game icon"
 
-[node name="DetailIcon" type="CheckButton" parent="Spacing/VBoxContainer/Detail Panel/DetailPaneIcon" unique_id=1409365836]
+[node name="DetailIcon" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Detail Panel/DetailPaneIcon" unique_id=1409365836]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="DetailPanelIconSize" type="HBoxContainer" parent="Spacing/VBoxContainer/Detail Panel" unique_id=1727550107]
+[node name="DetailPanelIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Detail Panel" unique_id=1727550107]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Detail Panel/DetailPanelIconSize" unique_id=1034618846]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Detail Panel/DetailPanelIconSize" unique_id=1034618846]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Icon size"
 
-[node name="DetailIconSize" type="LineEdit" parent="Spacing/VBoxContainer/Detail Panel/DetailPanelIconSize" unique_id=388627257]
+[node name="DetailIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Detail Panel/DetailPanelIconSize" unique_id=388627257]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -244,15 +278,15 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="ImageFiltering" type="HBoxContainer" parent="Spacing/VBoxContainer/Detail Panel" unique_id=1819588370]
+[node name="ImageFiltering" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Detail Panel" unique_id=1819588370]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Detail Panel/ImageFiltering" unique_id=1429203349]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering" unique_id=1429203349]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Icon filter"
 
-[node name="DetailFilter" type="OptionButton" parent="Spacing/VBoxContainer/Detail Panel/ImageFiltering" unique_id=1737702993]
+[node name="DetailFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering" unique_id=1737702993]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 2
@@ -261,88 +295,162 @@ popup/item_0/id = 0
 popup/item_1/text = "Linear"
 popup/item_1/id = 1
 
-[node name="HSeparator2" type="HSeparator" parent="Spacing/VBoxContainer" unique_id=478590106]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Spacing/Standard" unique_id=478590106]
 layout_mode = 2
 
-[node name="Window" type="VBoxContainer" parent="Spacing/VBoxContainer" unique_id=1486569243]
+[node name="Window" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard" unique_id=1486569243]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Window" unique_id=1149152114]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Window" unique_id=1149152114]
 layout_mode = 2
 text = "Window:"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Spacing/VBoxContainer/Window" unique_id=1445231059]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Window" unique_id=1445231059]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Window/HBoxContainer" unique_id=490446743]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer" unique_id=490446743]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Preserve fullscreen mode"
 
-[node name="FullscreenMode" type="CheckButton" parent="Spacing/VBoxContainer/Window/HBoxContainer" unique_id=697976997]
+[node name="FullscreenMode" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer" unique_id=697976997]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AdvancedSeperator" type="HSeparator" parent="Spacing/VBoxContainer" unique_id=94041768]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="Advanced" type="VBoxContainer" parent="Spacing/VBoxContainer" unique_id=249453890]
+[node name="AdvancedSeperator" type="VSeparator" parent="VBoxContainer/Spacing" unique_id=1372961880]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Advanced" unique_id=1663516169]
+[node name="Advanced" type="VBoxContainer" parent="VBoxContainer/Spacing" unique_id=249453890]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced" unique_id=1663516169]
 layout_mode = 2
 text = "Advanced:"
 
-[node name="Directories" type="HBoxContainer" parent="Spacing/VBoxContainer/Advanced" unique_id=28060232]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Spacing/Advanced" unique_id=182515473]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Advanced/Directories" unique_id=495034496]
+[node name="Multisearch" type="HBoxContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2" unique_id=1794703433]
 layout_mode = 2
-text = "directories.csv:"
 
-[node name="Directories" type="LineEdit" parent="Spacing/VBoxContainer/Advanced/Directories" unique_id=1865627669]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2/Multisearch" unique_id=1681468192]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multithread cache search"
+
+[node name="MultiSearch" type="CheckButton" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2/Multisearch" unique_id=1602721376]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2" unique_id=1959692863]
+layout_mode = 2
+text = "*Only enable this if you are encountering slowdowns when the program attempts to display the library"
+label_settings = SubResource("LabelSettings_ouson")
+
+[node name="Multicount" type="HBoxContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2" unique_id=1655528525]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2/Multicount" unique_id=1151064878]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multithread cores"
+
+[node name="CoreCount" type="LineEdit" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2/Multicount" unique_id=2065148407]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/minimum_character_width = 0
+theme_override_font_sizes/font_size = 12
+text = "2"
+alignment = 1
+max_length = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Spacing/Advanced/VBoxContainer2" unique_id=943336898]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Spacing/Advanced" unique_id=74858583]
+layout_mode = 2
+
+[node name="Directories" type="HBoxContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer" unique_id=28060232]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Directories" unique_id=495034496]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "directories.csv"
+
+[node name="Directories" type="LineEdit" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Directories" unique_id=1865627669]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="Tags" type="HBoxContainer" parent="Spacing/VBoxContainer/Advanced" unique_id=1853395151]
+[node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Directories" unique_id=305448433]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5d07")
+script = ExtResource("3_o5d07")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_o5q4v")
+label_settings = SubResource("LabelSettings_073iv")
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[node name="Tags" type="HBoxContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer" unique_id=1853395151]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Advanced/Tags" unique_id=1079914752]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Tags" unique_id=1079914752]
 layout_mode = 2
-text = "tags.csv:"
+size_flags_horizontal = 3
+text = "tags.csv"
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Advanced/Tags" unique_id=1035876483]
-custom_minimum_size = Vector2(47, 0)
-layout_mode = 2
-
-[node name="Tags" type="LineEdit" parent="Spacing/VBoxContainer/Advanced/Tags" unique_id=1692238506]
+[node name="Tags" type="LineEdit" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Tags" unique_id=1692238506]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="Blacklist" type="HBoxContainer" parent="Spacing/VBoxContainer/Advanced" unique_id=1744894593]
+[node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Tags" unique_id=1513849304]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5d07")
+script = ExtResource("3_o5d07")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_o5q4v")
+label_settings = SubResource("LabelSettings_jlvuq")
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[node name="Blacklist" type="HBoxContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer" unique_id=1744894593]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Spacing/VBoxContainer/Advanced/Blacklist" unique_id=1948094363]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Blacklist" unique_id=1948094363]
 layout_mode = 2
-text = "blacklist.csv:"
+size_flags_horizontal = 3
+text = "blacklist.csv"
 
-[node name="Control" type="Control" parent="Spacing/VBoxContainer/Advanced/Blacklist" unique_id=110266972]
-custom_minimum_size = Vector2(16, 0)
-layout_mode = 2
-
-[node name="Blacklist" type="LineEdit" parent="Spacing/VBoxContainer/Advanced/Blacklist" unique_id=773765525]
+[node name="Blacklist" type="LineEdit" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Blacklist" unique_id=773765525]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
+
+[node name="FontIconButton" type="PanelContainer" parent="VBoxContainer/Spacing/Advanced/VBoxContainer/Blacklist" unique_id=182030271]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5d07")
+script = ExtResource("3_o5d07")
+layout_order = "Icon"
+icon_settings = SubResource("Resource_o5q4v")
+label_settings = SubResource("LabelSettings_o5q4v")
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Spacing/Advanced/VBoxContainer" unique_id=1208856425]
+layout_mode = 2
 
 [node name="AdvancedToggle" type="HBoxContainer" parent="." unique_id=1306164647]
 visible = false
@@ -376,17 +484,18 @@ grow_vertical = 0
 text = "v0.0.0"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
-[connection signal="text_changed" from="Spacing/VBoxContainer/Library/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
-[connection signal="text_changed" from="Spacing/VBoxContainer/Library/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
-[connection signal="text_changed" from="Spacing/VBoxContainer/Library/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Library/GridText/GridText" to="." method="_on_grid_text_toggled"]
-[connection signal="item_selected" from="Spacing/VBoxContainer/Library/ImageFiltering/LibraryFilter" to="." method="_on_library_filter_item_selected"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Detail Panel/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
-[connection signal="text_changed" from="Spacing/VBoxContainer/Detail Panel/DetailPanelIconSize/DetailIconSize" to="." method="_on_detail_icon_size_text_changed"]
-[connection signal="item_selected" from="Spacing/VBoxContainer/Detail Panel/ImageFiltering/DetailFilter" to="." method="_on_detail_filter_item_selected"]
-[connection signal="toggled" from="Spacing/VBoxContainer/Window/HBoxContainer/FullscreenMode" to="." method="_on_fullscreen_mode_toggled"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/GridText/GridText" to="." method="_on_grid_text_toggled"]
+[connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Library/ImageFiltering/LibraryFilter" to="." method="_on_library_filter_item_selected"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Detail Panel/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Detail Panel/DetailPanelIconSize/DetailIconSize" to="." method="_on_detail_icon_size_text_changed"]
+[connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering/DetailFilter" to="." method="_on_detail_filter_item_selected"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Window/HBoxContainer/FullscreenMode" to="." method="_on_fullscreen_mode_toggled"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Advanced/VBoxContainer2/Multisearch/MultiSearch" to="." method="_on_multi_search_toggled"]
 [connection signal="toggled" from="AdvancedToggle/CheckBox" to="." method="_on_check_box_toggled"]
