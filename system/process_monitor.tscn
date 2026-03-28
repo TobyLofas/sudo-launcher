@@ -5,5 +5,3 @@
 [node name="ProcessMonitor" type="Node" unique_id=1427970346]
 process_mode = 4
 script = ExtResource("1_4q2tp")
-
-[connection signal="pid_changed" from="." to="." method="_on_pid_changed"]

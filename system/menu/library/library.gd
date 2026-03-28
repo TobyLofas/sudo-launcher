@@ -115,7 +115,7 @@ func create_game_list_from_filtered_library() -> void:
 			if item.icon == Global.default_icon_path:
 				icon = Global.default_icon
 			else:
-				index = Global.image_cache_index(item.icon)
+				index = item.icon_cache_index
 				if index < 0: 
 					var image
 					var image_path = item.icon
@@ -127,12 +127,10 @@ func create_game_list_from_filtered_library() -> void:
 					else:
 						icon = ImageTexture.new()
 						icon.set_image(image)
-						
-						var cache = {image_path: icon}
-						if not Global.image_cache.has(icon): Global.image_cache.append(cache)
-						
+						Global.image_cache.append(icon)
+						item.icon_cache_index = Global.image_cache.size()-1
 				else:
-					icon = Global.image_cache[index].get(item.icon)
+					icon = Global.image_cache[item.icon_cache_index]
 			game_list.add_item(item.name, icon)
 
 func create_library_from_metadata(directory : String) -> void:
@@ -153,32 +151,52 @@ func create_library_from_metadata(directory : String) -> void:
 
 func start_game(_id: int = 0) -> void:
 	if not selected: return
+	
+	##FORMAT EXE PATH
 	var exe = selected.path
-	if selected.path.get_extension() == "lnk":
+	if selected.executable_path: 
+		exe = selected.executable_path
+	elif selected.path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
 		var output: Array[String]
 		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\""
 		OS.execute("cmd.exe", ["/c", command], output)
 		exe = output[0].get_slice("\n",1).strip_escapes()
-	var exec_out = OS.execute_with_pipe(exe, [selected.args])
-	if exec_out == {}: return
-	selected.pid = exec_out.get("pid")
+	
+	##CONVERT ARGS STRING TO ARRAY
+	var args : PackedStringArray = []
+	if selected.args:
+		var regex = RegEx.create_from_string("[^\\s\"']+|\"([^\"]*)\"|\'([^\']*)\'") ## funky regex - splits the string by spaces unless the spaces are within a substring enclosed in quotes
+		var results = regex.search_all(selected.args)
+		for result in results:
+			if result: 
+				args.append(result.get_string())
+	
+	##CREATE PROCESS
+	selected.pid = OS.create_process(exe, args)
 	if selected.pid < 0:
-		push_error("COULD NOT START", selected.path)
+		push_error("COULD NOT START ", exe, args)
 		return
-	ProcessMonitor.set_pid(selected.pid)
+	
+	selected.executable_path = exe
+	
+	##RUN PROCESS MONITOR FOR EXE
+	var proc = ProcessMonitor.new()
+	proc.add_to_group(&"Monitors")
+	proc.stopped.connect(stop_by_pid)
+	proc.pid = selected.pid
+	get_tree().root.add_child(proc)
+	
 	game_started.emit()
-	detail_panel._refresh_from_data(selected)
+	
 
 func stop_game() -> void:
-	if (not OS.is_process_running(ProcessMonitor.pid)) or ProcessMonitor.pid < 0: return
-	var error = OS.kill(ProcessMonitor.pid)
+	if selected.pid < 0: return
+	var error = OS.kill(selected.pid)
 	if error:
 		push_error("ERROR ON KILL")
 		return
 	selected.pid = -1
 	game_stopped.emit()
-	detail_panel._refresh_from_data(selected)
-	
 
 func load_tags(_tags : Array[String]) -> void:
 	tags = _tags
@@ -274,3 +292,21 @@ func _on_detail_panel_tag_selected(tag: String) -> void:
 	var i = tags.find(tag)
 	if i < 0: return
 	top_bar._on_tags_list_index_pressed(i)
+
+func stop_by_pid(_pid:int = -1) -> void:
+	if _pid < 0: return
+	for game in library:
+		if game.pid != _pid: continue
+		var error = OS.kill(game.pid)
+		if error:
+			push_error("ERROR ON KILL")
+			return
+		game.pid = -1
+		game_stopped.emit()
+
+func _on_game_stopped() -> void:
+	detail_panel._refresh_from_data(selected)
+
+
+func _on_game_started() -> void:
+	detail_panel._refresh_from_data(selected)

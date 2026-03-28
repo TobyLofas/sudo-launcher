@@ -34,9 +34,8 @@ driver/driver="Dummy"
 
 [autoload]
 
-Global="*res://global.gd"
 IconsFonts="*uid://dwo6kd81oonr"
-ProcessMonitor="*uid://kcliqwlqqk7c"
+Global="*res://global.gd"
 
 [display]
 
@@ -48,6 +47,10 @@ window/subwindows/embed_subwindows=false
 
 enabled=PackedStringArray("res://addons/icons-fonts/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
 
+[global_group]
+
+Monitors=""
+
 [gui]
 
 theme/custom="uid://b3cndw47m37di"
@@ -56,10 +59,10 @@ theme/custom="uid://b3cndw47m37di"
 
 2d/physics_engine="Dummy"
 3d/physics_engine="Dummy"
+common/enable_object_picking=false
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/vram_compression/import_etc2_astc=true

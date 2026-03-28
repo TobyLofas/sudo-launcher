@@ -13,6 +13,7 @@ func _refresh_from_data(selected : Game) -> void:
 	if not selected: return
 	%Name.text = selected.name
 	%Year.text = str(selected.year)
+	if selected.year == 0: %Year.text = ""
 	%Developer.text = selected.developer
 	_tags_list.clear()
 	for tag in selected.tags:
@@ -24,7 +25,7 @@ func _refresh_from_data(selected : Game) -> void:
 		if selected.icon == Global.default_icon_path:
 			icon = Global.default_icon
 		else:
-			var index = Global.image_cache_index(selected.icon)
+			var index = selected.icon_cache_index
 			if index < 0:
 				var image_path = selected.icon
 				var image = Image.load_from_file(image_path)
@@ -33,18 +34,23 @@ func _refresh_from_data(selected : Game) -> void:
 				image.resize(Global.detail_icon_size,Global.detail_icon_size,Image.INTERPOLATE_NEAREST)
 				icon = ImageTexture.create_from_image(image)
 			else:
-				icon = Global.image_cache[index].get(selected.icon)
+				icon = Global.image_cache[index]
 		icon.set_size_override(Vector2i(Global.detail_icon_size,Global.detail_icon_size))
 		%DetailIcon.texture = icon
 		%DetailIcon.texture_filter = Global.detail_icon_filter + 1 ##Offset to account for godot inherit from parent
 		%DetailIcon.custom_minimum_size = Vector2i(Global.detail_icon_size, Global.detail_icon_size)
 		%DetailIcon.show()
-		if selected.pid == ProcessMonitor.pid and ProcessMonitor.active:
-			play_button.hide()
-			stop_button.show()
-		else:
-			play_button.show()
-			stop_button.hide()
+		
+	if selected.pid > 0:
+		var monitors = get_tree().get_nodes_in_group(&"Monitors")
+		if monitors:
+			for monitor in monitors:
+				if monitor.pid == selected.pid:
+					play_button.hide()
+					stop_button.show()
+					return
+	play_button.show()
+	stop_button.hide()
 
 func _on_edit_button_pressed() -> void:
 	edit_details.emit()

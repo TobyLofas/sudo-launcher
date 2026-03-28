@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="8_kek77"]
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="9_4c57u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5d07"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -30,6 +30,7 @@ icon_color = Color(1, 0.4117647, 0.4117647, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_kek77"]
 
 [node name="Main" type="Control" unique_id=718282450]
+custom_minimum_size = Vector2(960, 540)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +92,17 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
+[node name="ErrorPopup" type="Window" parent="PopupViewport" unique_id=1089675413]
+unique_name_in_owner = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+minimize_disabled = true
+maximize_disabled = true
+
 [node name="HardStop" type="PanelContainer" parent="." unique_id=1149791587]
 unique_name_in_owner = true
 layout_mode = 1
@@ -100,7 +112,7 @@ anchor_right = 1.0
 offset_left = -29.0
 offset_bottom = 31.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_o5d07")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("8_kek77")
 icon_settings = SubResource("Resource_efxa6")
 label_text = "Stop Game"

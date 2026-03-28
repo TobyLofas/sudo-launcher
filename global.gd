@@ -101,12 +101,10 @@ func load_csv(file_path) -> PackedStringArray:
 	if !file:
 		print(file_path, " does not exist")
 		return []
-		
+	
 	if file.get_as_text() == "": return []
 	
-	#var line = 
 	return file.get_csv_line()
-		
 
 func save_to_csv(data, file_path) -> void:
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -115,9 +113,3 @@ func save_to_csv(data, file_path) -> void:
 	else:
 		file.seek(0)
 		file.store_csv_line(data)
-
-func image_cache_index(path) -> int:
-	for i in len(image_cache):
-		if image_cache[i].has(path):
-			return i
-	return -1
