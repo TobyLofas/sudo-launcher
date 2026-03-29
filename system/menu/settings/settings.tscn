@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/theme/empty_select.tres" id="1_dbrda"]
 [ext_resource type="Theme" uid="uid://c6ap8o8nfjfl7" path="res://system/menu/theme/settings_label.tres" id="3_0usel"]
 
-[node name="Settings" type="Control" unique_id=967080982]
+[node name="SettingsBox" type="Control" unique_id=967080982]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

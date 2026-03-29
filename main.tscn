@@ -68,24 +68,27 @@ current_tab = 0
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Directories" type="Control" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1656738849]
+[node name="Settings" type="Control" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=457722017]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="DirectoryManager" parent="SubViewportContainer/MainViewport/TabContainer/Directories" unique_id=130938221 instance=ExtResource("3_l643o")]
-unique_name_in_owner = true
+[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/MainViewport/TabContainer/Settings" unique_id=13394886]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+dragging_enabled = false
 
-[node name="Settings" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1908909458 instance=ExtResource("4_uw12a")]
-visible = false
+[node name="SettingsBox" parent="SubViewportContainer/MainViewport/TabContainer/Settings/HSplitContainer" unique_id=1908909458 instance=ExtResource("4_uw12a")]
 layout_mode = 2
-metadata/_tab_index = 2
+size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=457722017]
-visible = false
+[node name="DirectoryManager" parent="SubViewportContainer/MainViewport/TabContainer/Settings/HSplitContainer" unique_id=130938221 instance=ExtResource("3_l643o")]
+unique_name_in_owner = true
 layout_mode = 2
-metadata/_tab_index = 3
 
 [node name="PopupViewport" type="SubViewport" parent="." unique_id=1667750966]
 
@@ -114,8 +117,8 @@ label_settings = SubResource("LabelSettings_kek77")
 metadata/_custom_type_script = "uid://pwyh8365is28"
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="directory_removed" from="SubViewportContainer/MainViewport/TabContainer/Directories/DirectoryManager" to="." method="_on_directory_manager_directory_removed"]
-[connection signal="metadata_updated" from="SubViewportContainer/MainViewport/TabContainer/Directories/DirectoryManager" to="." method="_on_metadata_updated"]
+[connection signal="directory_removed" from="SubViewportContainer/MainViewport/TabContainer/Settings/HSplitContainer/DirectoryManager" to="." method="_on_directory_manager_directory_removed"]
+[connection signal="metadata_updated" from="SubViewportContainer/MainViewport/TabContainer/Settings/HSplitContainer/DirectoryManager" to="." method="_on_metadata_updated"]
 [connection signal="close_requested" from="PopupViewport/EditWindow" to="." method="_on_edit_window_close_requested"]
 [connection signal="details_saved" from="PopupViewport/EditWindow" to="." method="_on_edit_window_details_saved"]
 [connection signal="icon_updated" from="PopupViewport/EditWindow" to="." method="_on_edit_window_icon_updated"]
