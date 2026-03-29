@@ -40,6 +40,11 @@ func update_tag_display_list() -> void:
 		tag_button.show()
 	for index in tags.size():
 		tags_list.add_check_item(tags[index],index)
+	
+	for index in tags_list.item_count:
+		if selected_tags.has(tags_list.get_item_text(index)):
+			tags_list.set_item_checked(index, true)
+		
 	tags_list.reset_size()
 
 func _on_tags_list_index_pressed(index: int) -> void:

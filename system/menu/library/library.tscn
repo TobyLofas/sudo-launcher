@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b5tcq3u6018i5"]
 
-[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_4qoup"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/theme/empty_select.tres" id="1_4qoup"]
 [ext_resource type="Script" uid="uid://nh1is22e8cyb" path="res://system/menu/library/library.gd" id="1_qdehd"]
 [ext_resource type="PackedScene" uid="uid://bwp2plyvy6aql" path="res://system/menu/top_bar/top_bar.tscn" id="2_eg0do"]
 [ext_resource type="PackedScene" uid="uid://ccx5uldv5ys2n" path="res://system/menu/detail_panel/detail_panel.tscn" id="2_oi2bc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -60,6 +60,7 @@ focus_neighbor_top = NodePath("../TopBar/SF/Filters/SearchBar")
 focus_neighbor_right = NodePath("../../DetailPanel/PlayButton")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
 allow_search = false
+text_overrun_behavior = 4
 max_columns = 15
 same_column_width = true
 icon_mode = 0
@@ -71,19 +72,19 @@ custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 
 [node name="TagButton" parent="Divider/DetailPanel/HBoxContainer2/Details/Tags" parent_id_path=PackedInt32Array(1286831243, 1862214147) index="0" unique_id=47085415]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 
 [node name="StopButton" parent="Divider/DetailPanel" index="2" unique_id=1214421220]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 
 [node name="PlayButton" parent="Divider/DetailPanel" index="3" unique_id=901990916]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 
 [node name="BlacklistButton" parent="Divider/DetailPanel" index="4" unique_id=226053142]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 
 [node name="EditButton" parent="Divider/DetailPanel" index="5" unique_id=434010397]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 
 [connection signal="game_started" from="." to="." method="_on_game_started"]
 [connection signal="game_stopped" from="." to="." method="_on_game_stopped"]

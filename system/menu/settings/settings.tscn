@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://2ju6l4ss3115"]
 
 [ext_resource type="Script" uid="uid://cf6fshxuvt3i6" path="res://system/menu/settings/settings.gd" id="1_cedp5"]
-[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_dbrda"]
-[ext_resource type="Theme" uid="uid://c6ap8o8nfjfl7" path="res://system/menu/settings_label.tres" id="3_0usel"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/theme/empty_select.tres" id="1_dbrda"]
+[ext_resource type="Theme" uid="uid://c6ap8o8nfjfl7" path="res://system/menu/theme/settings_label.tres" id="3_0usel"]
 
 [node name="Settings" type="Control" unique_id=967080982]
 layout_mode = 3
@@ -81,28 +81,28 @@ size_flags_horizontal = 10
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1161839814]
+[node name="View" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1161839814]
 layout_mode = 2
 
-[node name="Column" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer" unique_id=213495165]
+[node name="List" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View" unique_id=213495165]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="COLUMN" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column" unique_id=244703178]
+[node name="Title" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/List" unique_id=244703178]
 layout_mode = 2
 text = "LIST VIEW"
 horizontal_alignment = 1
 
-[node name="ColumnIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column" unique_id=24712959]
+[node name="ColumnIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/List" unique_id=24712959]
 layout_mode = 2
 theme = ExtResource("3_0usel")
 
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/ColumnIconSize" unique_id=887594550]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/List/ColumnIconSize" unique_id=887594550]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Icon size"
 
-[node name="ColumnIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/ColumnIconSize" unique_id=2144867922]
+[node name="ColumnIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/View/List/ColumnIconSize" unique_id=2144867922]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -115,19 +115,16 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/ColumnIconSize" unique_id=519835917]
-layout_mode = 2
-
-[node name="FontSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column" unique_id=1417088932]
+[node name="FontSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/List" unique_id=1417088932]
 layout_mode = 2
 theme = ExtResource("3_0usel")
 
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/FontSize" unique_id=1024582812]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/List/FontSize" unique_id=1024582812]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Font size"
 
-[node name="FontSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/FontSize" unique_id=1475456533]
+[node name="FontSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/View/List/FontSize" unique_id=1475456533]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -140,39 +137,55 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/FontSize" unique_id=1476047776]
+[node name="TextWrap" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/List" unique_id=496617667]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap" unique_id=1535393660]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text trimming"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap" unique_id=1175624988]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Character"
+popup/item_0/id = 0
+popup/item_1/text = "Word"
+popup/item_1/id = 1
+popup/item_2/text = "Word (Ellipsis)"
+popup/item_2/id = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View" unique_id=467500551]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer" unique_id=467500551]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/VBoxContainer" unique_id=1332008046]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/View/VBoxContainer" unique_id=1332008046]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/VBoxContainer" unique_id=252005446]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Spacing/Standard/Library/View/VBoxContainer" unique_id=252005446]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Grid" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer" unique_id=1751182943]
+[node name="Grid" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View" unique_id=1751182943]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid" unique_id=1684362503]
+[node name="Title" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=1684362503]
 layout_mode = 2
 text = "GRID VIEW"
 horizontal_alignment = 1
 
-[node name="GridIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid" unique_id=1194422483]
+[node name="GridIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=1194422483]
 layout_mode = 2
 theme = ExtResource("3_0usel")
 
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridIconSize" unique_id=266638582]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize" unique_id=266638582]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Icon size"
 
-[node name="GridIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridIconSize" unique_id=1807086087]
+[node name="GridIconSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize" unique_id=1807086087]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
@@ -185,19 +198,44 @@ context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridIconSize" unique_id=1392713422]
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize" unique_id=1392713422]
 layout_mode = 2
 
-[node name="GridText" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid" unique_id=1622511870]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=1170282745]
 layout_mode = 2
 theme = ExtResource("3_0usel")
 
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridText" unique_id=511094459]
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/HBoxContainer" unique_id=1269301065]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font size"
+
+[node name="GridFontSize" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/HBoxContainer" unique_id=1195869223]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/minimum_character_width = 0
+theme_override_font_sizes/font_size = 12
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/HBoxContainer" unique_id=1514967457]
+layout_mode = 2
+
+[node name="GridText" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=1622511870]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText" unique_id=511094459]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Show text"
 
-[node name="GridText" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridText" unique_id=458149923]
+[node name="GridText" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText" unique_id=458149923]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -340,6 +378,9 @@ text = "Preserve fullscreen mode"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="RPadding" type="Control" parent="VBoxContainer/Spacing" unique_id=1323341966]
+layout_mode = 2
+
 [node name="AdvancedToggle" type="HBoxContainer" parent="." unique_id=1306164647]
 visible = false
 layout_mode = 1
@@ -374,10 +415,10 @@ text = "v0.0.0"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Column/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
-[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/HBoxContainer/Grid/GridText/GridText" to="." method="_on_grid_text_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText/GridText" to="." method="_on_grid_text_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
 [connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Library/ImageFiltering/LibraryFilter" to="." method="_on_library_filter_item_selected"]

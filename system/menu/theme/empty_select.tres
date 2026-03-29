@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b3cndw47m37di"]
+[gd_resource type="Theme" format=3 uid="uid://b3cndw47m37di"]
 
-[ext_resource type="StyleBox" uid="uid://dvav1p8gqkico" path="res://system/menu/new_style_box_empty.tres" id="1_dvokp"]
+[ext_resource type="StyleBox" uid="uid://dvav1p8gqkico" path="res://system/menu/theme/new_style_box_empty.tres" id="1_dvokp"]
 
 [resource]
 CheckBox/styles/focus = ExtResource("1_dvokp")

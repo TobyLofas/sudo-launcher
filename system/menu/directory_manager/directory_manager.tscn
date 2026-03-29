@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dliso8lp1b3b7"]
 
 [ext_resource type="Script" uid="uid://bvowjusd7ir4a" path="res://system/menu/directory_manager/directory_manager.gd" id="1_12u0k"]
-[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_h3yw1"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/theme/empty_select.tres" id="1_h3yw1"]
 
 [node name="DirectoryManager" type="Control" unique_id=914867453]
 custom_minimum_size = Vector2(300, 0)

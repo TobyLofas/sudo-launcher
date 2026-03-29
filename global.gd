@@ -76,8 +76,8 @@ func load_settings() -> void:
 	var file = ConfigFile.new()
 	var err = file.load(base_dir + settings_file_name)
 	if err != OK:
-		print(base_dir + settings_file_name, " does not exist")
-		return
+		prints(base_dir + settings_file_name, "does not exist. Will be created on close. -- This is NOT an error.")
+	
 	library_list_mode = file.get_value("Library", "list_mode", false)
 	library_display_images = file.get_value("Library", "display_images", false)
 	library_divider_offset = file.get_value("Library", "divider_offset", 0)
@@ -95,7 +95,7 @@ func load_settings() -> void:
 	library_font_size = file.get_value("Library", "font_size", 16)
 	library_icon_filter = file.get_value("Library", "icon_filter", 0)
 	detail_icon_filter = file.get_value("Detail Panel", "icon_filter", 0)
-
+	
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if !file:

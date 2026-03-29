@@ -269,7 +269,7 @@ func _update_list_display() -> void:
 		game_list.max_columns = 99
 		game_list.icon_mode = game_list.ICON_MODE_TOP
 		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
-		game_list.fixed_column_width = Global.grid_icon_size + 32	
+		game_list.fixed_column_width = Global.grid_icon_size + 32
 		if not Global.library_grid_text:
 			if !game_list.has_theme_font_size_override("font_size"): game_list.add_theme_font_size_override("font_size", 1)
 			if !game_list.has_theme_color_override("font_color"): 

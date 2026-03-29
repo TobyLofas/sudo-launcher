@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4kd8mk5u1hsk"]
 
 [ext_resource type="Script" uid="uid://bl43xy2012vuo" path="res://main.gd" id="1_0p4gv"]
-[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/empty_select.tres" id="1_oko8u"]
+[ext_resource type="Theme" uid="uid://b3cndw47m37di" path="res://system/menu/theme/empty_select.tres" id="1_oko8u"]
 [ext_resource type="PackedScene" uid="uid://b5tcq3u6018i5" path="res://system/menu/library/library.tscn" id="2_kai27"]
 [ext_resource type="PackedScene" uid="uid://dliso8lp1b3b7" path="res://system/menu/directory_manager/directory_manager.tscn" id="3_l643o"]
 [ext_resource type="PackedScene" uid="uid://d0tn6dttci0wc" path="res://system/menu/edit_window/edit_window.tscn" id="4_oynk0"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="8_kek77"]
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="9_4c57u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -82,6 +82,11 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
+[node name="Control" type="Control" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=457722017]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
 [node name="PopupViewport" type="SubViewport" parent="." unique_id=1667750966]
 
 [node name="EditWindow" parent="PopupViewport" unique_id=438864047 instance=ExtResource("4_oynk0")]
@@ -92,17 +97,6 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="ErrorPopup" type="Window" parent="PopupViewport" unique_id=1089675413]
-unique_name_in_owner = true
-oversampling_override = 1.0
-position = Vector2i(0, 36)
-visible = false
-transient = true
-exclusive = true
-unresizable = true
-minimize_disabled = true
-maximize_disabled = true
-
 [node name="HardStop" type="PanelContainer" parent="." unique_id=1149791587]
 unique_name_in_owner = true
 layout_mode = 1
@@ -112,7 +106,7 @@ anchor_right = 1.0
 offset_left = -29.0
 offset_bottom = 31.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("8_kek77")
 icon_settings = SubResource("Resource_efxa6")
 label_text = "Stop Game"

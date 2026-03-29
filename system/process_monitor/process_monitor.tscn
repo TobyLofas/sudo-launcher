@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kcliqwlqqk7c"]
 
-[ext_resource type="Script" uid="uid://ck43hoc7tv46q" path="res://system/process_monitor.gd" id="1_4q2tp"]
+[ext_resource type="Script" uid="uid://ck43hoc7tv46q" path="res://system/process_monitor/process_monitor.gd" id="1_4q2tp"]
 
 [node name="ProcessMonitor" type="Node" unique_id=1427970346]
 process_mode = 4
