@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -30,6 +30,15 @@ mouse_filter = 1
 theme = ExtResource("1_4qoup")
 script = ExtResource("1_qdehd")
 metadata/_tab_index = 0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1018922383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
 [node name="Divider" type="HSplitContainer" parent="." unique_id=2094569199]
 unique_name_in_owner = true
@@ -72,19 +81,19 @@ custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 
 [node name="TagButton" parent="Divider/DetailPanel/HBoxContainer2/Details/Tags" parent_id_path=PackedInt32Array(1286831243, 1862214147) index="0" unique_id=47085415]
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [node name="StopButton" parent="Divider/DetailPanel" index="2" unique_id=1214421220]
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [node name="PlayButton" parent="Divider/DetailPanel" index="3" unique_id=901990916]
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [node name="BlacklistButton" parent="Divider/DetailPanel" index="4" unique_id=226053142]
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [node name="EditButton" parent="Divider/DetailPanel" index="5" unique_id=434010397]
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [connection signal="game_started" from="." to="." method="_on_game_started"]
 [connection signal="game_stopped" from="." to="." method="_on_game_stopped"]

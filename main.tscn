@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="8_kek77"]
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="9_4c57u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -55,6 +55,15 @@ handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/MainViewport" unique_id=1668455914]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20392157, 0.20392157, 0.20392157, 1)
 
 [node name="TabContainer" type="TabContainer" parent="SubViewportContainer/MainViewport" unique_id=160277277]
 anchors_preset = 15
@@ -109,7 +118,7 @@ anchor_right = 1.0
 offset_left = -29.0
 offset_bottom = 31.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kek77")
 script = ExtResource("8_kek77")
 icon_settings = SubResource("Resource_efxa6")
 label_text = "Stop Game"

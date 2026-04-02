@@ -39,11 +39,11 @@ func create_metadata_from_directories(dirs : PackedStringArray = directories) ->
 					var title : String = file_name.get_slice(".",0)
 					if extension.to_lower() == "exe" or extension.to_lower() == "lnk":
 						#print_rich("[color=green]Found exe: " + file_name + "[/color]")
-						if not blacklist.has(file_name):
+						if not blacklist.has(file_name) and FileAccess.get_sha256(Global.base_dir + Global.library_dir + title + ".tres") == "":
 							var tgame : Game = Game.new(title, directory + "/" + file_name)
 							var library_path = Global.base_dir + Global.library_dir + title
-							if FileAccess.get_sha256(library_path + ".tres") == "":
-								ResourceSaver.save(tgame, library_path + ".tres")
+							#if FileAccess.get_sha256(library_path + ".tres") == "":
+							ResourceSaver.save(tgame, library_path + ".tres")
 					#else:
 						#print_rich("[color=yellow]Found file: " + file_name + "[/color]")
 				file_name = dir.get_next()

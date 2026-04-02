@@ -49,7 +49,7 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Interface" unique_id=1850674816]
 layout_mode = 2
-text = "Library Directories"
+text = "Directories"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/Interface" unique_id=279248990]
 layout_mode = 2

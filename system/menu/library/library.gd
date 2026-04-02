@@ -10,8 +10,8 @@ var filtered_library : Array[Game]
 var display_library : Array[Game]
 var selected : Game
 
-var tags : Array
-var directories : Array
+var tags : PackedStringArray
+var directories : PackedStringArray
 
 var _search_filtered : Array[Game]
 var _tag_filtered : Array[Game]
@@ -74,8 +74,6 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
-	
-	
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -158,9 +156,9 @@ func start_game(_id: int = 0) -> void:
 		exe = selected.executable_path
 	elif selected.path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
 		var output: Array[String]
-		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\""
-		OS.execute("cmd.exe", ["/c", command], output)
-		exe = output[0].get_slice("\n",1).strip_escapes()
+		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\"" ##cmd command that opens the shortcut as a text file and searches for ".exe"
+		OS.execute("cmd.exe", ["/c", command], output) ##runs the command - has 2 outputs: 0. the exe name (not helpful) 1. the full filepath to the exe (exactly what we need)
+		exe = output[0].get_slice("\n",1).strip_escapes() ##retrieves the second of the two command outputs and strips any escape characters (there are many)
 	
 	##CONVERT ARGS STRING TO ARRAY
 	var args : PackedStringArray = []
