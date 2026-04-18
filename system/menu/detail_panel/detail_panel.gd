@@ -8,8 +8,10 @@ signal edit_details
 signal add_to_blacklist(game : Game)
 signal edit_tags
 signal tag_selected(tag : String)
+signal refreshed
 
 func _refresh_from_data(selected : Game) -> void:
+	reset_data()
 	if not selected: return
 	%Name.text = selected.name
 	%Year.text = str(selected.year)
@@ -17,7 +19,7 @@ func _refresh_from_data(selected : Game) -> void:
 	%Developer.text = selected.developer
 	_tags_list.clear()
 	for tag in selected.tags:
-		%TagsList.add_item(tag)
+		_tags_list.add_item(tag)
 	%FilePath.set_text("[i]" + selected.path)
 	if not Global.detail_panel_show_icon: %DetailIcon.hide()
 	else: 
@@ -45,12 +47,14 @@ func _refresh_from_data(selected : Game) -> void:
 		var monitors = get_tree().get_nodes_in_group(&"Monitors")
 		if monitors:
 			for monitor in monitors:
-				if monitor.pid == selected.pid:
+				if monitor.pid == selected.pid and monitor.pid != -1:
 					play_button.hide()
 					stop_button.show()
-					return
-	play_button.show()
-	stop_button.hide()
+	else:
+		play_button.show()
+		stop_button.hide()
+	
+	refreshed.emit()
 
 func _on_edit_button_pressed() -> void:
 	edit_details.emit()
@@ -69,9 +73,14 @@ func _on_confirmation_dialog_confirmed() -> void:
 
 func _on_tags_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	var text = _tags_list.get_item_text(index)
-	#print(_tags_list.get_selected_items())
-	#if not _tags_list.is_selected(index):
-	#_tags_list.select(index)
-	#else: 
-		#_tags_list.deselect(index)
 	tag_selected.emit(text)
+
+func reset_data() -> void:
+	%Name.text = "TITLE"
+	%Year.text = ""
+	%Developer.text = ""
+	_tags_list.clear()
+	%FilePath.set_text("")
+	%DetailIcon.hide()
+	play_button.hide()
+	stop_button.hide()

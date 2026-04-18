@@ -41,3 +41,4 @@ games/
 icons/
 *.build
 data/
+.obsidian/

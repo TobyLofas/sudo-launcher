@@ -6,19 +6,21 @@ extends Control
 @onready var tag_manager = %TagManager
 
 func _ready() -> void:
+	library.detail_panel.reset_data()
 	library.detail_panel.edit_details.connect(_on_edit_details)
 	library.detail_panel.add_to_blacklist.connect(remove_game)
 	library.detail_panel.edit_tags.connect(_on_edit_tags)
+	library.detail_panel.refreshed.connect(_on_detail_refresh)
 	#library.game_stopped.connect(game_stopped)
 	#library.game_started.connect(game_started)
 	DisplayServer.window_set_min_size(Vector2i(960,540))
-	%HardStop.pressed.connect(library.stop_game)
-	%HardStop.hide()
+	#%HardStop.pressed.connect(library.stop_game)
+	#%HardStop.hide()
 	get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 	if Global.window_preserve_mode: DisplayServer.window_set_mode(Global.display_mode)
 	check_for_files()
 	create_metadata()
-	
+
 	library.build_library()
 	
 	
@@ -103,7 +105,9 @@ func _on_directory_manager_directory_removed(directory: String) -> void:
 			for_removal.append(game)
 	for game in for_removal:
 		library.library.remove_at(library.library.find(game))
+	library.selected = null
 	library.refresh_game_list()
+	library.detail_panel._refresh_from_data(library.selected)
 
 
 func _on_edit_window_icon_updated() -> void:
@@ -118,3 +122,15 @@ func _on_edit_window_icon_updated() -> void:
 
 func _on_h_split_container_dragged(offset: int) -> void:
 	Global.settings_divider_offset = offset
+
+func _on_detail_refresh() -> void:
+	#library.detail_panel._tags_list.sort_items_by_text()
+	var tags_list : PackedStringArray
+	for index in library.detail_panel._tags_list.item_count:
+			tags_list.append(library.detail_panel._tags_list.get_item_text(index))
+	for tag in tags_list:
+		for s_tag in library.top_bar.selected_tags:
+			if tag == s_tag:
+				library.detail_panel._tags_list.select(tags_list.find(tag), false)
+				
+	print(library.detail_panel._tags_list.get_selected_items())

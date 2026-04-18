@@ -267,6 +267,7 @@ toggle_mode = true
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
+[connection signal="tags_changed" from="." to="." method="_on_tags_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]

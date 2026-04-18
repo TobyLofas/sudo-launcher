@@ -302,10 +302,10 @@ func stop_by_pid(_pid:int = -1) -> void:
 	if _pid < 0: return
 	for game in library:
 		if game.pid != _pid: continue
-		var error = OS.kill(game.pid)
-		if error:
-			push_error("ERROR ON KILL")
-			return
+		var _error = OS.kill(game.pid)
+		#if error:
+			#push_error("ERROR ON KILL")
+
 		game.pid = -1
 		game_stopped.emit()
 

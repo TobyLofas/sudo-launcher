@@ -72,5 +72,3 @@ layout_mode = 2
 [connection signal="dragged" from="Divider" to="." method="_on_divider_dragged"]
 [connection signal="item_selected" from="Divider/Library/GameList" to="." method="_on_game_list_item_selected"]
 [connection signal="tag_selected" from="Divider/DetailPanel" to="." method="_on_detail_panel_tag_selected"]
-
-[editable path="Divider/DetailPanel"]

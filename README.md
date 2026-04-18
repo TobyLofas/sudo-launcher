@@ -17,39 +17,36 @@ By default, these subfolders will be empty. The **data** folder will automatical
 
 The library screen is divided into two sections, on the left is the **Library** and on the right is the **Details Panel**.
 
-At the top of the **Library** section sits the **Top Bar**, containing filtering, sorting, and display controls for the **Library List**. The **Search bar** will filter the list based off the entered search term. The **Tag list** filters the list based off of the tags selected from the list, the filter will only display games that match **all** selected tags. Tag filtering and search filtering can be combined.
+At the top of the **Library** section sits the **Top Bar**, containing filtering, sorting, and display controls for the **Library List**. The **Search bar** will filter the list based on the entered search term. The **Tag list** filters the list based off of the tags selected from the list, the filter will only display games that match **all** selected tags. Tag filtering and search filtering can be combined.
 
-By default, the **Library List** will be empty. It will populate after one or more library folders are added (see below).  The display of icons in the **Library List** can be toggled on and off with the button on the far-right of the **Top Bar**. **SudoLauncher** does **not** use the internet in any capacity, and so library assets such as game icons must be provided by the user.
+By default, the **Library List** will be empty. It will populate after one or more directories are added (see below).
 
-On the right of the library is the **Details Panel**, displaying information about the currently selected title. The **Details Panel** also contains the **Play Button** and access to metadata editing.
+On the right of the library is the **Details Panel**, displaying information about the currently selected game. The **Details Panel** also contains the **Play Button** and access to metadata editing.
 
 The size of the **Library** & **Details Panel** can be adjusted by dragging the divider in the middle of the two.
 
+## Managing directories
 
-## Managing library folders
+Directories can be added in the **Settings** tab. In the directories section, click the **Add** button, and select the folder you wish to add.
 
-Library folders can be added in the **Settings** tab. In the library directories section, click the **Add** button, and select the folder you wish to add.
+To remove a library directory, select the directory(s) from the list, and click the **Remove** button.
 
-To remove a library folder, select the directory(s) from the list, and click the **Remove** button.
+Finally, ensure you click the **Scan Directories** button to initialize the library from the set directories. This will populate the **library** folder with metadata files for the game(s) detected in the set directories, and remove from the library any games in removed directories.
 
-Finally, ensure you click the **Scan Directories** button to initialize the library from the set directories. This will populate the **library** folder with metadata files for the game(s) detected in the set directories.
-
-## Metadata files
-
-To display and store information about the games in the library, **SudoLauncher** uses metadata files. The metadata files store the following properties for each game:
+## Editing game information
+The display information for each game can be edited in the window that opens after pressing the **Edit Details** button in the bottom right of the **Details Panel**.
+Here, the following properties can be viewed and/or edited for each game:
 - **name** - the game's title.
-- **path** - the file path for the game's executable.
+- **path** - the file path for the game's executable or shortcut. 
 - **icon** - the file path for the game's icon file.
-- **year** - the year the game was originally released in. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
+- **year** - the year the game was originally released in. Used for sorting and filtering in the library. Must be set manually, by default will be blank (set to 0).
 - **developer** - the name of the developer that created the game. Used for sorting and filtering in the library. Must be set manually, by default will be blank.
-- **tags** - a list of strings that represent the assigned categories for the game.
+- **tags** - a list of tags assigned to the game.
 - **args** - a string of launch arguments
 
-> **Note:** The **name** and **path** properties will be automatically assigned using the name of each executable found. If you have added a library directory that contains subfolders for each game, and those games have multiple executables in the subfolder (e.g. a level editor), you will need to ensure unwanted executables are deleted from the library.
+> **Note:** The **name** and **path** properties will be automatically assigned using the name of the executable.
 
-The metadata for games can be edited within **SudoLauncher** itself, using the edit window opened by clicking the edit button in the bottom-right corner of the **Details Panel**.
-
-Metadata files can also be manually edited by opening the file in a text editor.
+> **Note:** Game information can also be manually edited by opening the metadata files in a text editor, though this is not recommended.
 
 # Credits
 Created using ***Godot***.
@@ -60,13 +57,9 @@ License files can be found in the relevant directories.
 
 ## Testers
 Aidan Stevens
-
 Vasaesia
-
 Ellie/Lirie
-
 Ziffel
-
 And0ch/Scaralus
 
 # License

@@ -178,7 +178,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
+select_mode = 2
+allow_search = false
 auto_height = true
+text_overrun_behavior = 0
 max_columns = 255
 
 [node name="FilePath" type="RichTextLabel" parent="HBoxContainer2/Details" unique_id=219407402]

@@ -78,3 +78,9 @@ func _on_visibility_changed() -> void:
 func _on_sort_button_toggled(_value: bool) -> void:
 	invert_sort = not invert_sort
 	sort_changed.emit(true)
+
+
+func _on_tags_changed(_tags: Variant) -> void:
+	tag_button.icon_settings.icon_color = Color(1.0, 1.0, 1.0, 1.0)
+	if selected_tags: tag_button.icon_settings.icon_color = Color(0.498, 0.777, 1.0, 1.0)
+		
