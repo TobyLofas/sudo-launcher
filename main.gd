@@ -114,3 +114,7 @@ func _on_edit_window_icon_updated() -> void:
 #
 #func game_started() -> void:
 	#%HardStop.show()
+
+
+func _on_h_split_container_dragged(offset: int) -> void:
+	Global.settings_divider_offset = offset

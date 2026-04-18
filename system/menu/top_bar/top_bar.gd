@@ -7,6 +7,8 @@ extends Control
 @onready var sort_type = %SortType
 @onready var sort_button = %SortButton
 @onready var list_mode_toggle = %ListMode
+@onready var count = %Count
+@onready var total_count = %Total
 
 var tags = []
 var selected_tags : PackedStringArray

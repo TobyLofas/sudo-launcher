@@ -7,18 +7,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
 [node name="Library" type="Control" unique_id=195522111]
 layout_mode = 3
 anchors_preset = 15
@@ -65,8 +53,6 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_neighbor_top = NodePath("../TopBar/SF/Filters/SearchBar")
-focus_neighbor_right = NodePath("../../DetailPanel/PlayButton")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
 allow_search = false
 text_overrun_behavior = 4
@@ -79,21 +65,6 @@ fixed_icon_size = Vector2i(64, 64)
 unique_name_in_owner = true
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
-
-[node name="TagButton" parent="Divider/DetailPanel/HBoxContainer2/Details/Tags" parent_id_path=PackedInt32Array(1286831243, 1862214147) index="0" unique_id=47085415]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
-
-[node name="StopButton" parent="Divider/DetailPanel" index="2" unique_id=1214421220]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
-
-[node name="PlayButton" parent="Divider/DetailPanel" index="3" unique_id=901990916]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
-
-[node name="BlacklistButton" parent="Divider/DetailPanel" index="4" unique_id=226053142]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
-
-[node name="EditButton" parent="Divider/DetailPanel" index="5" unique_id=434010397]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 
 [connection signal="game_started" from="." to="." method="_on_game_started"]
 [connection signal="game_stopped" from="." to="." method="_on_game_stopped"]

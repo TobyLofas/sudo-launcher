@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
-	
+	%Divider.split_offset = Global.settings_divider_offset
 
 func _on_list_mode_toggled(toggled_on: bool) -> void:
 	Global.library_list_mode = toggled_on
@@ -30,6 +30,9 @@ func _on_visibility_changed() -> void:
 	%GridText.button_pressed = Global.library_grid_text
 	%LibraryFilter.selected = Global.library_icon_filter
 	%DetailFilter.selected = Global.detail_icon_filter
+	%GridFontSize.text = str(Global.grid_font_size)
+	%ListTextTrim.selected = Global.list_text_trim
+	%GridTextTrim.selected = Global.grid_text_trim
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
@@ -79,3 +82,15 @@ func _on_detail_filter_item_selected(index: int) -> void:
 
 func _on_multi_search_toggled(toggled_on: bool) -> void:
 	Global.multithread_cache_search = toggled_on
+
+
+func _on_grid_font_size_text_changed(new_text: String) -> void:
+	Global.grid_font_size = new_text.to_int()
+
+
+func _on_list_text_trim_item_selected(index: int) -> void:
+	Global.list_text_trim = index
+
+
+func _on_grid_text_trim_item_selected(index: int) -> void:
+	Global.grid_text_trim = index

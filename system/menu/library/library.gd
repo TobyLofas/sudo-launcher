@@ -66,6 +66,11 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 	_apply_ordering()
 	_update_list_display()
 	create_game_list_from_filtered_library()
+	top_bar.count.text = str(game_list.item_count)
+	#if library.size() == game_list.item_count:
+		#top_bar.total_count.hide()
+	#else:
+		#top_bar.total_count.show()
 	if game_list.item_count > 0 and keep_selected:
 		var selected_index = filtered_library.find(library[Global.library_last_index])
 		if selected_index > 0:
@@ -74,6 +79,7 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
+	
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -185,7 +191,6 @@ func start_game(_id: int = 0) -> void:
 	get_tree().root.add_child(proc)
 	
 	game_started.emit()
-	
 
 func stop_game() -> void:
 	if selected.pid < 0: return
@@ -206,6 +211,7 @@ func build_library() -> void:
 	refresh_game_list(Global.library_open_to_last_selected)
 	game_list.force_update_list_size() #this has to come before the next line or game list will not scroll correctly until it is updated (moused over)
 	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value(Global.library_scroll_value)
+	top_bar.total_count.text = "(" + str(library.size()) + ")"
 	
 
 func save_metadata_for_selected() -> void:
@@ -258,16 +264,19 @@ func _update_list_display() -> void:
 		game_list.icon_mode = game_list.ICON_MODE_LEFT
 		game_list.fixed_icon_size = Vector2i(Global.column_icon_size, Global.column_icon_size)
 		game_list.fixed_column_width = 0
+		game_list.text_overrun_behavior = Global.list_text_trim
 		if game_list.has_theme_color_override("font_color"): 
 			game_list.remove_theme_color_override("font_color")
 			game_list.remove_theme_color_override("font_hovered_color")
 			game_list.remove_theme_color_override("font_hovered_selected_color")
 			game_list.remove_theme_color_override("font_selected_color")
+		game_list.add_theme_font_size_override("font_size", Global.library_font_size)
 	else: ##Grid Mode
 		game_list.max_columns = 99
 		game_list.icon_mode = game_list.ICON_MODE_TOP
 		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
 		game_list.fixed_column_width = Global.grid_icon_size + 32
+		game_list.text_overrun_behavior = Global.grid_text_trim
 		if not Global.library_grid_text:
 			if !game_list.has_theme_font_size_override("font_size"): game_list.add_theme_font_size_override("font_size", 1)
 			if !game_list.has_theme_color_override("font_color"): 
@@ -282,9 +291,7 @@ func _update_list_display() -> void:
 				game_list.remove_theme_color_override("font_hovered_color")
 				game_list.remove_theme_color_override("font_hovered_selected_color")
 				game_list.remove_theme_color_override("font_selected_color")
-	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
-	
-
+			game_list.add_theme_font_size_override("font_size", Global.grid_font_size)
 
 func _on_detail_panel_tag_selected(tag: String) -> void:
 	var i = tags.find(tag)
@@ -304,7 +311,6 @@ func stop_by_pid(_pid:int = -1) -> void:
 
 func _on_game_stopped() -> void:
 	detail_panel._refresh_from_data(selected)
-
 
 func _on_game_started() -> void:
 	detail_panel._refresh_from_data(selected)

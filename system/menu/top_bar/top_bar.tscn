@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
 [ext_resource type="Script" uid="uid://c4n2aki4724e4" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -134,7 +134,7 @@ clear_button_enabled = true
 [node name="Search" type="PanelContainer" parent="SF/Filters" unique_id=1749212853]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
@@ -143,8 +143,8 @@ label_settings = SubResource("LabelSettings_2uydc")
 [node name="TagButton" type="PanelContainer" parent="SF/Filters" unique_id=848993576]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "List tag filters"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+tooltip_text = "Filter by tags"
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
@@ -161,8 +161,24 @@ allow_search = false
 layout_mode = 2
 
 [node name="Control" type="Control" parent="SF" unique_id=1808751185]
+visible = false
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
+
+[node name="Count" type="Label" parent="SF" unique_id=1820355728]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Displayed"
+mouse_filter = 1
+text = "(99)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Total" type="Label" parent="SF" unique_id=1928521976]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Total"
+mouse_filter = 1
 
 [node name="VSeparator3" type="VSeparator" parent="SF" unique_id=768672956]
 layout_mode = 2
@@ -193,7 +209,7 @@ popup/item_2/id = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Sort Direction"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_r2ldb")
 off_icon_settings = SubResource("Resource_0yaop")
@@ -203,10 +219,6 @@ label_settings = SubResource("LabelSettings_4rx8q")
 toggle_mode = true
 
 [node name="VSeparator4" type="VSeparator" parent="SF" unique_id=2109314793]
-layout_mode = 2
-
-[node name="Count" type="Label" parent="SF" unique_id=1688857352]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=494751138]
@@ -228,7 +240,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
@@ -242,7 +254,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 tooltip_text = "Switch library view mode"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")
 off_icon_settings = SubResource("Resource_tdt6k")

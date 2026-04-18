@@ -31,6 +31,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TopPad" type="Control" parent="VBoxContainer" unique_id=1798586437]
+layout_mode = 2
+
 [node name="Spacing" type="HBoxContainer" parent="VBoxContainer" unique_id=1157401505]
 layout_mode = 2
 size_flags_vertical = 3
@@ -41,6 +44,13 @@ layout_mode = 2
 [node name="Standard" type="VBoxContainer" parent="VBoxContainer/Spacing" unique_id=401783098]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard" unique_id=191027781]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Spacing/Standard" unique_id=626677338]
+layout_mode = 2
 
 [node name="Library" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard" unique_id=136753087]
 layout_mode = 2
@@ -80,6 +90,53 @@ size_flags_horizontal = 10
 [node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1430795514]
 visible = false
 layout_mode = 2
+
+[node name="Control3" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1495916436]
+layout_mode = 2
+
+[node name="OpenToLast" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1509393535]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=1873022440]
+layout_mode = 2
+text = "Preserve selected game on close"
+
+[node name="OpenToLast" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=314095247]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PreserveScroll" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=380340250]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=170305354]
+layout_mode = 2
+text = "Preserve scroll position on close"
+
+[node name="PreserveScroll" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=806594756]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="ImageFiltering" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1296255507]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=406757404]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Icon filter"
+
+[node name="LibraryFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=247003570]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Nearest"
+popup/item_0/id = 0
+popup/item_1/text = "Linear"
+popup/item_1/id = 1
 
 [node name="View" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1161839814]
 layout_mode = 2
@@ -146,15 +203,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Text trimming"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap" unique_id=1175624988]
+[node name="ListTextTrim" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap" unique_id=1175624988]
+unique_name_in_owner = true
 layout_mode = 2
-item_count = 3
-popup/item_0/text = "Character"
+item_count = 5
+popup/item_0/text = "Trim Nothing"
 popup/item_0/id = 0
-popup/item_1/text = "Word"
+popup/item_1/text = "Trim Characters"
 popup/item_1/id = 1
-popup/item_2/text = "Word (Ellipsis)"
+popup/item_2/text = "Trim Words"
 popup/item_2/id = 2
+popup/item_3/text = "Ellipsis"
+popup/item_3/id = 3
+popup/item_4/text = "Word Ellipsis"
+popup/item_4/id = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View" unique_id=467500551]
 layout_mode = 2
@@ -226,6 +288,30 @@ virtual_keyboard_enabled = false
 [node name="Control" type="Control" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/HBoxContainer" unique_id=1514967457]
 layout_mode = 2
 
+[node name="TextWrap" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=255441304]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/TextWrap" unique_id=544450043]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text trimming"
+
+[node name="GridTextTrim" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/TextWrap" unique_id=935245082]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "Trim Nothing"
+popup/item_0/id = 0
+popup/item_1/text = "Trim Characters"
+popup/item_1/id = 1
+popup/item_2/text = "Trim Words"
+popup/item_2/id = 2
+popup/item_3/text = "Ellipsis"
+popup/item_3/id = 3
+popup/item_4/text = "Word Ellipsis"
+popup/item_4/id = 4
+
 [node name="GridText" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library/View/Grid" unique_id=1622511870]
 layout_mode = 2
 theme = ExtResource("3_0usel")
@@ -239,55 +325,8 @@ text = "Show text"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Control3" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1495916436]
-layout_mode = 2
-
-[node name="OpenToLast" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1509393535]
-layout_mode = 2
-theme = ExtResource("3_0usel")
-
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=1873022440]
-layout_mode = 2
-text = "Preserve selected game on close"
-
-[node name="OpenToLast" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/OpenToLast" unique_id=314095247]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="PreserveScroll" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=380340250]
-layout_mode = 2
-theme = ExtResource("3_0usel")
-
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=170305354]
-layout_mode = 2
-text = "Preserve scroll position on close"
-
-[node name="PreserveScroll" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/PreserveScroll" unique_id=806594756]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-
 [node name="Control2" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=223296846]
 layout_mode = 2
-
-[node name="ImageFiltering" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1296255507]
-layout_mode = 2
-theme = ExtResource("3_0usel")
-
-[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=406757404]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Icon filter"
-
-[node name="LibraryFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=247003570]
-unique_name_in_owner = true
-layout_mode = 2
-item_count = 2
-popup/item_0/text = "Nearest"
-popup/item_0/id = 0
-popup/item_1/text = "Linear"
-popup/item_1/id = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/Spacing/Standard" unique_id=792694316]
 layout_mode = 2
@@ -415,13 +454,16 @@ text = "v0.0.0"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ShowIcons/ShowIcons" to="." method="_on_show_icons_toggled"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
-[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText/GridText" to="." method="_on_grid_text_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/OpenToLast/OpenToLast" to="." method="_on_open_to_last_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/PreserveScroll/PreserveScroll" to="." method="_on_preserve_scroll_toggled"]
 [connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Library/ImageFiltering/LibraryFilter" to="." method="_on_library_filter_item_selected"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/ColumnIconSize/ColumnIconSize" to="." method="_on_column_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/List/FontSize/FontSize" to="." method="_on_font_size_text_changed"]
+[connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap/ListTextTrim" to="." method="_on_list_text_trim_item_selected"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridIconSize/GridIconSize" to="." method="_on_grid_icon_size_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Library/View/Grid/HBoxContainer/GridFontSize" to="." method="_on_grid_font_size_text_changed"]
+[connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Library/View/Grid/TextWrap/GridTextTrim" to="." method="_on_grid_text_trim_item_selected"]
+[connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText/GridText" to="." method="_on_grid_text_toggled"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Detail Panel/DetailPaneIcon/DetailIcon" to="." method="_on_detail_icon_toggled"]
 [connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Detail Panel/DetailPanelIconSize/DetailIconSize" to="." method="_on_detail_icon_size_text_changed"]
 [connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering/DetailFilter" to="." method="_on_detail_filter_item_selected"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_qlgf2"]
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_3ilns"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -26,6 +26,9 @@ icon_name = "tag-plus"
 [sub_resource type="Resource" id="Resource_gmslm"]
 script = ExtResource("3_3ilns")
 icon_name = "tag-remove"
+icon_color = Color(1, 0.4117647, 0.4117647, 1)
+outline_color = Color(1, 0.4117647, 0.4117647, 1)
+shadow_color = Color(1, 0.4117647, 0.4117647, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3a1id"]
 
@@ -110,7 +113,7 @@ placeholder_text = "Enter tag name to add..."
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Create new tag"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_qlgf2")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yim4j")
@@ -120,7 +123,7 @@ label_settings = SubResource("LabelSettings_giqeq")
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Delete selected tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_qlgf2")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_gmslm")
@@ -133,7 +136,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Apply selected tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_qlgf2")
 icon_settings = SubResource("Resource_61xp5")
 label_text = "Apply Selected"
@@ -170,7 +173,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove tags from the selected game"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
 script = ExtResource("2_qlgf2")
 icon_settings = SubResource("Resource_6ek0u")
 label_text = "Remove Selected"

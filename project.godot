@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="SudoLauncher"
-config/version="v1.3.0-dev"
+config/version="v1.3.0"
 run/main_scene="res://main.tscn"
 run/print_header=false
 config/use_custom_user_dir=true
