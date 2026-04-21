@@ -33,6 +33,7 @@ func _ready() -> void:
 	
 	divider.split_offset = Global.library_divider_offset
 	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
+	
 
 func _on_game_list_item_selected(index: int) -> void:
 	if filtered_library.size() != 0:
@@ -79,7 +80,6 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 			return
 	if game_list.item_count > 0: game_list.select(0)
 	_on_game_list_item_selected(0)
-	
 
 func _apply_filters() -> void:
 	filtered_library = []
@@ -196,7 +196,7 @@ func stop_game() -> void:
 	if selected.pid < 0: return
 	var error = OS.kill(selected.pid)
 	if error:
-		push_error("ERROR ON KILL")
+		push_warning("ERROR ON KILL - POSSIBLY ALREADY KILLED")
 		return
 	selected.pid = -1
 	game_stopped.emit()
@@ -302,10 +302,10 @@ func stop_by_pid(_pid:int = -1) -> void:
 	if _pid < 0: return
 	for game in library:
 		if game.pid != _pid: continue
-		var _error = OS.kill(game.pid)
-		#if error:
-			#push_error("ERROR ON KILL")
-
+		var error = OS.kill(game.pid)
+		if error:
+			push_warning("ERROR ON KILL - POSSIBLY ALREADY KILLED")
+			return
 		game.pid = -1
 		game_stopped.emit()
 
@@ -314,3 +314,9 @@ func _on_game_stopped() -> void:
 
 func _on_game_started() -> void:
 	detail_panel._refresh_from_data(selected)
+
+func _on_detail_panel_refreshed() -> void:
+	for tag in selected.tags:
+		for s_tag in top_bar.selected_tags:
+			if tag == s_tag:
+				detail_panel._tags_list.select(selected.tags.find(tag), false)

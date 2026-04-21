@@ -15,12 +15,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="SudoLauncher"
-config/version="v1.3.0"
+config/version="v1.3.1"
 run/main_scene="res://main.tscn"
 run/print_header=false
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Forward Plus")
-run/max_fps=60
 run/low_processor_mode=true
 run/delta_smoothing=false
 boot_splash/show_image=false
@@ -36,6 +35,11 @@ driver/driver="Dummy"
 
 IconsFonts="*uid://dwo6kd81oonr"
 Global="*res://global.gd"
+
+[debug]
+
+file_logging/enable_file_logging.pc=false
+file_logging/max_log_files=1
 
 [display]
 
@@ -64,5 +68,10 @@ common/enable_object_picking=false
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/fallback_to_vulkan=false
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+shader_compiler/shader_cache/enabled=false
+shader_compiler/shader_cache/compress=false
+shader_compiler/shader_cache/use_zstd_compression=false
+shader_compiler/shader_cache/strip_debug.release=false

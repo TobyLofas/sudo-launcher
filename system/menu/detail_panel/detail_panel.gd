@@ -17,7 +17,6 @@ func _refresh_from_data(selected : Game) -> void:
 	%Year.text = str(selected.year)
 	if selected.year == 0: %Year.text = ""
 	%Developer.text = selected.developer
-	_tags_list.clear()
 	for tag in selected.tags:
 		_tags_list.add_item(tag)
 	%FilePath.set_text("[i]" + selected.path)
@@ -53,7 +52,6 @@ func _refresh_from_data(selected : Game) -> void:
 	else:
 		play_button.show()
 		stop_button.hide()
-	
 	refreshed.emit()
 
 func _on_edit_button_pressed() -> void:
