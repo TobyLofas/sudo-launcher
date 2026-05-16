@@ -83,7 +83,6 @@ func save_blacklist() -> void:
 func _on_tree_exiting() -> void:
 	Global.display_mode = DisplayServer.window_get_mode()
 	Global.save_settings()
-
 		
 func _on_edit_tags() -> void:
 	%EditWindow.selected_game = library.selected

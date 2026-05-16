@@ -47,6 +47,7 @@ func load_details() -> void:
 	%YearEdit.text = str(selected_game.year)
 	%DeveloperEdit.text = selected_game.developer
 	%LaunchArguments.text = selected_game.args
+	%AltLaunch.button_pressed = selected_game.alternative_launch_mode
 	load_tags()
 
 func save_details() -> void:
@@ -76,3 +77,7 @@ func load_tags() -> void:
 	%TagDisplayList.clear()
 	for tag in selected_game.tags:
 		%TagDisplayList.add_item(tag)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	selected_game.alternative_launch_mode = toggled_on

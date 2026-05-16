@@ -7,6 +7,7 @@ class_name Game extends Resource
 @export var icon : String
 @export var tags : PackedStringArray
 @export var args : String
+@export var alternative_launch_mode : bool
 
 var pid : int = -1
 var icon_cache_index : int = -1

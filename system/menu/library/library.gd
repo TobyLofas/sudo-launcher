@@ -154,6 +154,12 @@ func create_library_from_metadata(directory : String) -> void:
 		file_name = dir.get_next()
 
 func start_game(_id: int = 0) -> void:
+	if selected.alternative_launch_mode:
+		start_game_alt()
+	else:
+		start_game_def()
+
+func start_game_def(_id: int = 0) -> void:
 	if not selected: return
 	
 	##FORMAT EXE PATH
@@ -180,7 +186,6 @@ func start_game(_id: int = 0) -> void:
 	if selected.pid < 0:
 		push_error("COULD NOT START ", exe, args)
 		return
-	
 	selected.executable_path = exe
 	
 	##RUN PROCESS MONITOR FOR EXE
@@ -191,6 +196,45 @@ func start_game(_id: int = 0) -> void:
 	get_tree().root.add_child(proc)
 	
 	game_started.emit()
+
+func start_game_alt() -> void:
+	if not selected: return
+	
+	var exe = selected.path
+	if selected.executable_path: 
+		exe = selected.executable_path
+	elif selected.path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
+		var output: Array[String]
+		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\"" ##cmd command that opens the shortcut as a text file and searches for ".exe"
+		OS.execute("cmd.exe", ["/c", command], output) ##runs the command - has 2 outputs: 0. the exe name (not helpful) 1. the full filepath to the exe (exactly what we need)
+		exe = output[0].get_slice("\n",1).strip_escapes() ##retrieves the second of the two command outputs and strips any escape characters (there are many)
+	
+	##CONVERT ARGS STRING TO ARRAY
+	var args : PackedStringArray = []
+	if selected.args: 
+		var regex = RegEx.create_from_string("[^\\s\"']+|\"([^\"]*)\"|\'([^\']*)\'") ## funky regex - splits the string by spaces unless the spaces are within a substring enclosed in quotes
+		var results = regex.search_all(selected.args)
+		for result in results:
+			if result: 
+				args.append(result.get_string())
+	
+	##CREATE PROCESS
+	var _output : Array[String] = []
+	OS.execute("cmd",["/c", "start", "/d", exe.get_base_dir(), exe.get_file(), "/b"], _output)
+	selected.pid = get_pid(exe.get_file())
+	if selected.pid < 1:
+		push_error("COULD NOT START ", exe, args)
+		return
+	
+	selected.executable_path = exe
+	game_started.emit()
+
+func get_pid(proc_name : String) -> int:
+	var output: Array[String]
+	var command = "wmic process where name=\"%s\" get processid" % proc_name
+	OS.execute("cmd.exe", ["/c", command], output)
+	var pid = int(output[0].get_slice("\n",1).strip_escapes())
+	return pid
 
 func stop_game() -> void:
 	if selected.pid < 0: return
@@ -212,7 +256,6 @@ func build_library() -> void:
 	game_list.force_update_list_size() #this has to come before the next line or game list will not scroll correctly until it is updated (moused over)
 	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value(Global.library_scroll_value)
 	top_bar.total_count.text = "(" + str(library.size()) + ")"
-	
 
 func save_metadata_for_selected() -> void:
 	var file_name = selected.path.get_slice("/", selected.path.get_slice_count("/")-1)
@@ -299,7 +342,7 @@ func _on_detail_panel_tag_selected(tag: String) -> void:
 	top_bar._on_tags_list_index_pressed(i)
 
 func stop_by_pid(_pid:int = -1) -> void:
-	if _pid < 0: return
+	if _pid <= 0: return
 	for game in library:
 		if game.pid != _pid: continue
 		var error = OS.kill(game.pid)

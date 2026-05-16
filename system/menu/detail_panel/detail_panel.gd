@@ -41,7 +41,9 @@ func _refresh_from_data(selected : Game) -> void:
 		%DetailIcon.texture_filter = Global.detail_icon_filter + 1 ##Offset to account for godot inherit from parent
 		%DetailIcon.custom_minimum_size = Vector2i(Global.detail_icon_size, Global.detail_icon_size)
 		%DetailIcon.show()
-		
+	
+	play_button.show()
+	stop_button.hide()
 	if selected.pid > 0:
 		var monitors = get_tree().get_nodes_in_group(&"Monitors")
 		if monitors:
@@ -49,9 +51,8 @@ func _refresh_from_data(selected : Game) -> void:
 				if monitor.pid == selected.pid and monitor.pid != -1:
 					play_button.hide()
 					stop_button.show()
-	else:
-		play_button.show()
-		stop_button.hide()
+					break
+
 	refreshed.emit()
 
 func _on_edit_button_pressed() -> void:

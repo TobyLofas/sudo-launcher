@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="2_pakpl"]
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_aitlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwua"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -176,7 +176,7 @@ max_columns = 255
 [node name="AddTagButton" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Tags/Tags" unique_id=1206834944]
 layout_mode = 2
 tooltip_text = "Manage Tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -201,7 +201,7 @@ editable = false
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Choose new Icon file"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -211,7 +211,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Reset to default"
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -236,11 +236,23 @@ editable = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
 label_settings = SubResource("LabelSettings_6euxt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer" unique_id=2135788925]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer" unique_id=1430081300]
+layout_mode = 2
+text = "Alternate Launch Mode:"
+
+[node name="AltLaunch" type="CheckButton" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer" unique_id=2020035018]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="Args" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails" unique_id=1461911262]
 layout_mode = 1
@@ -277,7 +289,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
@@ -298,4 +310,5 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon/IconPathButton" to="." method="_on_icon_path_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon/IconResetButton" to="." method="_on_icon_reset_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Exe/ExePathButton" to="." method="_on_exe_path_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer/AltLaunch" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/SaveButton" to="." method="_on_save_button_pressed"]
