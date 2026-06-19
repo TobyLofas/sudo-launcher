@@ -13,7 +13,7 @@ func set_pid(new : int) -> void:
 	if new == pid: return
 	var old = pid
 	pid = new
-	if pid < 0: 
+	if pid < 1: 
 		stop(old)
 		return
 	if not active: start()
