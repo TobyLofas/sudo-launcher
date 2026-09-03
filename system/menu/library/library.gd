@@ -158,7 +158,8 @@ func start_game(_id: int = 0) -> void:
 		start_game_alt()
 	else:
 		start_game_def()
-
+	game_list.set_item_custom_fg_color(game_list.get_selected_items()[0], Color(0.0, 1.0, 0.0, 1.0))
+		
 func start_game_def(_id: int = 0) -> void:
 	if not selected: return
 	
@@ -222,6 +223,7 @@ func start_game_alt() -> void:
 	var _output : Array[String] = []
 	OS.execute("cmd",["/c", "start", "/d", exe.get_base_dir(), exe.get_file(), "/b"], _output)
 	selected.pid = get_pid(exe.get_file())
+	print(selected.pid)
 	if selected.pid < 1:
 		push_error("COULD NOT START ", exe, args)
 		return

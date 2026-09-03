@@ -126,3 +126,10 @@ func save_to_csv(data, file_path) -> void:
 	else:
 		file.seek(0)
 		file.store_csv_line(data)
+
+func get_pid(proc_name : String) -> int:
+	var output: Array[String]
+	var command = "wmic process where name=\"%s\" get processid" % proc_name
+	OS.execute("cmd.exe", ["/c", command], output)
+	var pid = int(output[0].get_slice("\n",1).strip_escapes())
+	return pid

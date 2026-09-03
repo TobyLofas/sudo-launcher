@@ -56,6 +56,7 @@ size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
 allow_search = false
 text_overrun_behavior = 4
+item_count = 2
 max_columns = 15
 same_column_width = true
 icon_mode = 0

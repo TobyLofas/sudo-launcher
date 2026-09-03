@@ -27,3 +27,6 @@ func start() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	active = true
 	started.emit()
+
+func alt_mode() -> void:
+	pass
