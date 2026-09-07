@@ -47,6 +47,8 @@ var grid_font_size : int
 var list_text_trim : int
 var grid_text_trim : int
 var settings_divider_offset : int
+var running_game_colour : Color = Color(0.0, 1.0, 0.0, 1.0)
+var top_bar_highlight_colour : Color = Color("4d4d4dff")
 
 var image_cache : Array
 var default_icon : ImageTexture = ImageTexture.create_from_image(load(default_icon_path)) 
@@ -78,6 +80,8 @@ func save_settings() -> void:
 	file.set_value("Library", "list_text_trim", list_text_trim)
 	file.set_value("Library", "grid_text_trim", grid_text_trim)
 	file.set_value("Window", "settings_divider_offset", settings_divider_offset)
+	file.set_value("Library", "running_game_colour", running_game_colour)
+	file.set_value("Window", "top_bar_highlight_colour", top_bar_highlight_colour)
 	
 	file.save(base_dir + settings_file_name)
 
@@ -108,6 +112,8 @@ func load_settings() -> void:
 	list_text_trim = file.get_value("Library", "list_text_trim", 0)
 	grid_text_trim = file.get_value("Library", "grid_text_trim", 0)
 	settings_divider_offset = file.get_value("Window", "settings_divider_offset", 0)
+	running_game_colour = file.get_value("Library", "running_game_colour", Color(0.0, 1.0, 0.0, 1.0))
+	top_bar_highlight_colour = file.get_value("Window","top_bar_highlight_colour", Color("4d4d4dff"))
 	
 func load_csv(file_path) -> PackedStringArray:
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -116,6 +122,7 @@ func load_csv(file_path) -> PackedStringArray:
 		return []
 	
 	if file.get_as_text() == "": return []
+	
 	
 	return file.get_csv_line()
 

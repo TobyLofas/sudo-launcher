@@ -45,7 +45,7 @@ func _refresh_from_data(selected : Game) -> void:
 	play_button.show()
 	stop_button.hide()
 	if selected.pid > 0:
-		var monitors = get_tree().get_nodes_in_group(&"Monitors")
+		var monitors = get_tree().get_nodes_in_group(&"monitors")
 		if monitors:
 			for monitor in monitors:
 				if monitor.pid == selected.pid and monitor.pid != -1:

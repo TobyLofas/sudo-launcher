@@ -33,6 +33,7 @@ func _on_visibility_changed() -> void:
 	%GridFontSize.text = str(Global.grid_font_size)
 	%ListTextTrim.selected = Global.list_text_trim
 	%GridTextTrim.selected = Global.grid_text_trim
+	%HighlightColour.text = Global.top_bar_highlight_colour.to_html()
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on

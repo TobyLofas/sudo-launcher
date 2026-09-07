@@ -35,13 +35,14 @@ gui_embed_subwindows = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/MainViewport" unique_id=1668455914]
-visible = false
+[node name="Highlight" type="ColorRect" parent="SubViewportContainer/MainViewport" unique_id=1668455914]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.3019608, 0.3019608, 0.3019608, 1)
 
 [node name="TabContainer" type="TabContainer" parent="SubViewportContainer/MainViewport" unique_id=160277277]
 anchors_preset = 15
@@ -50,6 +51,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
+switch_on_drag_hover = false
 
 [node name="Library" parent="SubViewportContainer/MainViewport/TabContainer" unique_id=1298990507 instance=ExtResource("2_kai27")]
 unique_name_in_owner = true
@@ -59,6 +61,15 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/MainViewport/TabContainer/Settings" unique_id=2128767139]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20392157, 0.20392157, 0.20392157, 1)
 
 [node name="Divider" type="HSplitContainer" parent="SubViewportContainer/MainViewport/TabContainer/Settings" unique_id=13394886]
 unique_name_in_owner = true

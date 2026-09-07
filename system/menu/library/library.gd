@@ -72,6 +72,13 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 		#top_bar.total_count.hide()
 	#else:
 		#top_bar.total_count.show()
+	
+	for index in game_list.item_count:
+		if filtered_library[index].pid > 0:
+			game_list.set_item_custom_fg_color(index, Color(0.0, 1.0, 0.0, 1.0))
+		else:
+			game_list.set_item_custom_fg_color(index, Color(1.0, 1.0, 1.0, 1.0))
+	
 	if game_list.item_count > 0 and keep_selected:
 		var selected_index = filtered_library.find(library[Global.library_last_index])
 		if selected_index > 0:
@@ -153,11 +160,13 @@ func create_library_from_metadata(directory : String) -> void:
 			library.append(game)
 		file_name = dir.get_next()
 
-func start_game(_id: int = 0) -> void:
-	if selected.alternative_launch_mode:
-		start_game_alt()
-	else:
-		start_game_def()
+func start_game(_id: int = 0) -> void:	
+	var manager = ProcessManager.new()
+	manager.stopped.connect(stop_by_pid)
+	get_tree().root.add_child(manager)
+	manager.start_process(selected.path)
+	selected.pid = manager._target_pid
+	
 	game_list.set_item_custom_fg_color(game_list.get_selected_items()[0], Color(0.0, 1.0, 0.0, 1.0))
 		
 func start_game_def(_id: int = 0) -> void:
@@ -337,21 +346,21 @@ func _update_list_display() -> void:
 				game_list.remove_theme_color_override("font_hovered_selected_color")
 				game_list.remove_theme_color_override("font_selected_color")
 			game_list.add_theme_font_size_override("font_size", Global.grid_font_size)
-
+	
 func _on_detail_panel_tag_selected(tag: String) -> void:
 	var i = tags.find(tag)
 	if i < 0: return
 	top_bar._on_tags_list_index_pressed(i)
 
 func stop_by_pid(_pid:int = -1) -> void:
-	if _pid <= 0: return
+	if _pid < 1: return
 	for game in library:
 		if game.pid != _pid: continue
 		var error = OS.kill(game.pid)
 		if error:
 			push_warning("ERROR ON KILL - POSSIBLY ALREADY KILLED")
 			return
-		game.pid = -1
+		game.pid = 0
 		game_stopped.emit()
 
 func _on_game_stopped() -> void:

@@ -16,6 +16,7 @@ func refresh_directory_display(dirs) -> void:
 
 func load_directories() -> void:
 	directories = Global.load_csv(Global.base_dir + Global.data_dir + Global.directories_file_name)
+	directories.remove_at(0) ##Remove empty string from start of array
 	refresh_directory_display(directories)
 
 func create_metadata_from_directories(dirs : PackedStringArray = directories) -> void:
@@ -85,4 +86,5 @@ func _on_file_dialog_dir_selected(dir: String) -> void:
 
 func _on_open_directorys_pressed() -> void:
 	for directory in directories:
+		if not directory: continue
 		if OS.has_feature("windows"): OS.execute("explorer", [directory.replace_char(47,92)]) #nasty unicode file replacement because cmd is the one place you can't use forward slashes for dirs

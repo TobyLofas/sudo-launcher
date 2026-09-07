@@ -48,6 +48,13 @@ Here, the following properties can be viewed and/or edited for each game:
 
 > **Note:** Game information can also be manually edited by opening the metadata files in a text editor, though this is not recommended.
 
+## Launching a game
+To launch any game that you have set to appear in SudoLauncher, select it in the games list, then simply click the 'Play' button from the detail panel. There may be a small delay as the game starts, and then the 'Play' button turns into a red 'Stop' button.
+
+The red 'Stop' button that replaces the 'Play' button can be pressed any time a game is running to kill the game's process. The button will then turn back into the 'Play' button.
+
+> **Note:** If you inspect the processes running on your system while a game is running through SudoLauncher, you may see a powershell.exe (and a conhost.exe) running as well. This is expected and is how SudoLauncher keeps track of running games. The powershell **ONLY** looks at the running processes for games launched through SudoLauncher and does not look at anything else on your system.
+
 # Credits
 Created using ***Godot***.
 
@@ -57,10 +64,14 @@ License files can be found in the relevant directories.
 
 ## Testers
 Aidan Stevens
+
 Vasaesia
+
 Ellie/Lirie
+
 Ziffel
+
 And0ch/Scaralus
 
 # License
-SudoLauncher © 2025 by Toby Lofas is licensed under CC BY-NC 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
+SudoLauncher © 2025 by LofasArts is licensed under CC BY-NC 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/

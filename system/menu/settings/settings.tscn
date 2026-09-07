@@ -138,6 +138,19 @@ popup/item_0/id = 0
 popup/item_1/text = "Linear"
 popup/item_1/id = 1
 
+[node name="RunningColour" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=469648067]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Library/RunningColour" unique_id=1119546730]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Running game text colour"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Library/RunningColour" unique_id=1672264381]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+
 [node name="View" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1161839814]
 layout_mode = 2
 
@@ -416,6 +429,21 @@ text = "Preserve fullscreen mode"
 [node name="FullscreenMode" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer" unique_id=697976997]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Window" unique_id=480406411]
+layout_mode = 2
+theme = ExtResource("3_0usel")
+
+[node name="Label" type="Label" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer2" unique_id=2064608299]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Highlight colour"
+
+[node name="HighlightColour" type="LineEdit" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer2" unique_id=1484217751]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+max_length = 9
 
 [node name="RPadding" type="Control" parent="VBoxContainer/Spacing" unique_id=1323341966]
 layout_mode = 2

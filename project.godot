@@ -75,3 +75,4 @@ shader_compiler/shader_cache/enabled=false
 shader_compiler/shader_cache/compress=false
 shader_compiler/shader_cache/use_zstd_compression=false
 shader_compiler/shader_cache/strip_debug.release=false
+environment/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 1)
