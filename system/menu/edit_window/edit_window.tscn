@@ -95,6 +95,7 @@ title = "Open a File"
 file_mode = 0
 access = 2
 use_native_dialog = true
+file_filter_toggle_enabled = false
 
 [node name="IconFileDialog" type="FileDialog" parent="VBoxContainer/HBoxContainer/EditDetails" unique_id=1503566996]
 unique_name_in_owner = true
@@ -102,6 +103,8 @@ title = "Open a File"
 file_mode = 0
 access = 2
 use_native_dialog = true
+hidden_files_toggle_enabled = false
+file_filter_toggle_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails" unique_id=2121673074]
 layout_mode = 1
@@ -188,7 +191,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon" unique_id=707918618]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Icon Path:"
+text = "Icon:"
 
 [node name="IconPathDisplay" type="LineEdit" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon" unique_id=1479967665]
 unique_name_in_owner = true
@@ -241,18 +244,6 @@ script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
 label_settings = SubResource("LabelSettings_6euxt")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer" unique_id=2135788925]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer" unique_id=1430081300]
-layout_mode = 2
-text = "Alternate Launch Mode:"
-
-[node name="AltLaunch" type="CheckButton" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer" unique_id=2020035018]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
 
 [node name="Args" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails" unique_id=1461911262]
 layout_mode = 1
@@ -310,5 +301,4 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon/IconPathButton" to="." method="_on_icon_path_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon/IconResetButton" to="." method="_on_icon_reset_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Exe/ExePathButton" to="." method="_on_exe_path_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/HBoxContainer/AltLaunch" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/EditDetails/SaveButton" to="." method="_on_save_button_pressed"]

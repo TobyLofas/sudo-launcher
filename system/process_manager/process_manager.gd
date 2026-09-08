@@ -36,14 +36,13 @@ func start_process(path: String = "") -> void:
 	if not path: return
 	if process_mode == ProcessMode.PROCESS_MODE_ALWAYS: return
 	var _target_name : String = get_process_name_from_path(path)
-	var _pre_pids : Array = get_pids_by_name(_target_name) ##Get pids for the program name before starting the program
-	OS.execute("cmd",["/c", "start", "/b", "/d", path.get_base_dir(), path.get_file()]) ##then start the program
-	var _post_pids : Array = get_pids_by_name(_target_name) ##then get the pids again
+	var _pre_pids : Array = get_pids_by_name(_target_name)
+	OS.execute("cmd",["/c", "start", "/b", "/d", path.get_base_dir(), path.get_file()])
+	var _post_pids : Array = get_pids_by_name(_target_name)
 	_target_pid = int(_post_pids.front())
-	if _pre_pids: ##If there were any pids before starting the program (e.g. there was already an instance running) 
-		 ##then get the difference between the pre and post pids to find the pid of the program that has just launched
+	if _pre_pids:
 		_target_pid = int(_post_pids.filter(func(x): return not _pre_pids.has(x)).front())
-	_create_monitor() ## Launch powershell program monitor
+	_create_monitor()
 	_timer.start()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	started.emit(_target_pid)
@@ -66,9 +65,9 @@ static func get_pids_by_name(file_name: String) -> PackedStringArray:
 	return _stripped_output
 
 static func get_process_name_from_path(path: String) -> String:
-	if path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
-		var command : String = "type "+"\""+path.replace_char(47,92)+"\""+"|find \".exe\"" ##open shortcut as text file and search ".exe"
+	if path.get_extension() == "lnk":
+		var command : String = "type "+"\""+path.replace_char(47,92)+"\""+"|find \".exe\""
 		var output : Array[String]
-		OS.execute("cmd.exe", ["/c", command], output) ## 2 outputs: 0. the exe name 1. the full filepath to the exe
-		path = output.front().get_slice("\n",1).strip_escapes() ##get second output and strip escapes
+		OS.execute("cmd.exe", ["/c", command], output)
+		path = output.front().get_slice("\n",1).strip_escapes()
 	return path.get_file().split(".")[0].to_lower()

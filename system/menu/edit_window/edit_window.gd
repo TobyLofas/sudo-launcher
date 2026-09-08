@@ -5,29 +5,22 @@ var selected_game : Game
 signal details_saved
 signal icon_updated
 
+func _ready() -> void:
+	%IconFileDialog.add_filter("*.svg, *.png, *.jpg, *.jpeg", "Image")
+	%ExeFileDialog.add_filter("*.exe, *.lnk", "Executable")
+	
 func _on_icon_path_button_pressed() -> void:
-	%IconFileDialog.add_filter("*.svg, *.png, *.jpg, *.jpeg", "Image (.svg, .png, .jpg, .jpeg)")
 	%IconFileDialog.show()
 
 func _on_exe_path_button_pressed() -> void:
-	%ExeFileDialog.add_filter("*.exe, *.lnk", "Executable (.exe, .lnk)")
 	%ExeFileDialog.show()
-
-func _on_icon_path_dialog_file_selected(path: String) -> void:
-	%IconPathDisplay.text = path
-	selected_game.icon = path
-	icon_updated.emit()
-
-func _on_exe_path_dialog_file_selected(path: String) -> void:
-	%ExePathDisplay.text = path
-	selected_game.path = path
 
 func _on_exe_file_dialog_file_selected(path: String) -> void:
 	%ExePathDisplay.text = path
 	selected_game.path = path
 
-
 func _on_icon_file_dialog_file_selected(path: String) -> void:
+	if not "*.svg, *.png, *.jpg, *.jpeg".containsn(path.get_extension()): return
 	%IconPathDisplay.text = path
 	selected_game.icon = path
 	icon_updated.emit()
@@ -47,7 +40,6 @@ func load_details() -> void:
 	%YearEdit.text = str(selected_game.year)
 	%DeveloperEdit.text = selected_game.developer
 	%LaunchArguments.text = selected_game.args
-	%AltLaunch.button_pressed = selected_game.alternative_launch_mode
 	load_tags()
 
 func save_details() -> void:
@@ -77,7 +69,3 @@ func load_tags() -> void:
 	%TagDisplayList.clear()
 	for tag in selected_game.tags:
 		%TagDisplayList.add_item(tag)
-
-
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	selected_game.alternative_launch_mode = toggled_on
