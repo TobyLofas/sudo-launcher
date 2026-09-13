@@ -68,10 +68,6 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 	_update_list_display()
 	create_game_list_from_filtered_library()
 	top_bar.count.text = str(game_list.item_count)
-	#if library.size() == game_list.item_count:
-		#top_bar.total_count.hide()
-	#else:
-		#top_bar.total_count.show()
 	
 	for index in game_list.item_count:
 		if filtered_library[index].pid > 0:
@@ -80,7 +76,7 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 			game_list.set_item_custom_fg_color(index, Color(1.0, 1.0, 1.0, 1.0))
 	
 	if game_list.item_count > 0 and keep_selected:
-		var selected_index = filtered_library.find(library[Global.library_last_index])
+		var selected_index = filtered_library.find(Global.library_last_game)
 		if selected_index > 0:
 			game_list.select(selected_index)
 			_on_game_list_item_selected(selected_index)
@@ -160,84 +156,12 @@ func create_library_from_metadata(directory : String) -> void:
 			library.append(game)
 		file_name = dir.get_next()
 
-func start_game(_id: int = 0) -> void:	
+func start_game(_id: int = 0) -> void:
 	var manager = ProcessManager.new()
 	manager.stopped.connect(stop_by_pid)
 	get_tree().root.add_child(manager)
 	manager.start_process(selected.path)
 	selected.pid = manager._target_pid
-	
-	game_list.set_item_custom_fg_color(game_list.get_selected_items()[0], Color(0.0, 1.0, 0.0, 1.0))
-		
-func start_game_def(_id: int = 0) -> void:
-	if not selected: return
-	
-	##FORMAT EXE PATH
-	var exe = selected.path
-	if selected.executable_path: 
-		exe = selected.executable_path
-	elif selected.path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
-		var output: Array[String]
-		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\"" ##cmd command that opens the shortcut as a text file and searches for ".exe"
-		OS.execute("cmd.exe", ["/c", command], output) ##runs the command - has 2 outputs: 0. the exe name (not helpful) 1. the full filepath to the exe (exactly what we need)
-		exe = output[0].get_slice("\n",1).strip_escapes() ##retrieves the second of the two command outputs and strips any escape characters (there are many)
-	
-	##CONVERT ARGS STRING TO ARRAY
-	var args : PackedStringArray = []
-	if selected.args:
-		var regex = RegEx.create_from_string("[^\\s\"']+|\"([^\"]*)\"|\'([^\']*)\'") ## funky regex - splits the string by spaces unless the spaces are within a substring enclosed in quotes
-		var results = regex.search_all(selected.args)
-		for result in results:
-			if result: 
-				args.append(result.get_string())
-	
-	##CREATE PROCESS
-	selected.pid = OS.create_process(exe, args)
-	if selected.pid < 0:
-		push_error("COULD NOT START ", exe, args)
-		return
-	selected.executable_path = exe
-	
-	##RUN PROCESS MONITOR FOR EXE
-	var proc = ProcessMonitor.new()
-	proc.add_to_group(&"Monitors")
-	proc.stopped.connect(stop_by_pid)
-	proc.pid = selected.pid
-	get_tree().root.add_child(proc)
-	
-	game_started.emit()
-
-func start_game_alt() -> void:
-	if not selected: return
-	
-	var exe = selected.path
-	if selected.executable_path: 
-		exe = selected.executable_path
-	elif selected.path.get_extension() == "lnk": ## EXTRACT EXE PATH FROM SHORTCUT
-		var output: Array[String]
-		var command = "type "+"\""+selected.path.replace_char(47,92)+"\""+"|find \".exe\"" ##cmd command that opens the shortcut as a text file and searches for ".exe"
-		OS.execute("cmd.exe", ["/c", command], output) ##runs the command - has 2 outputs: 0. the exe name (not helpful) 1. the full filepath to the exe (exactly what we need)
-		exe = output[0].get_slice("\n",1).strip_escapes() ##retrieves the second of the two command outputs and strips any escape characters (there are many)
-	
-	##CONVERT ARGS STRING TO ARRAY
-	var args : PackedStringArray = []
-	if selected.args: 
-		var regex = RegEx.create_from_string("[^\\s\"']+|\"([^\"]*)\"|\'([^\']*)\'") ## funky regex - splits the string by spaces unless the spaces are within a substring enclosed in quotes
-		var results = regex.search_all(selected.args)
-		for result in results:
-			if result: 
-				args.append(result.get_string())
-	
-	##CREATE PROCESS
-	var _output : Array[String] = []
-	OS.execute("cmd",["/c", "start", "/d", exe.get_base_dir(), exe.get_file(), "/b"], _output)
-	selected.pid = get_pid(exe.get_file())
-	print(selected.pid)
-	if selected.pid < 1:
-		push_error("COULD NOT START ", exe, args)
-		return
-	
-	selected.executable_path = exe
 	game_started.emit()
 
 func get_pid(proc_name : String) -> int:
@@ -248,11 +172,10 @@ func get_pid(proc_name : String) -> int:
 	return pid
 
 func stop_game() -> void:
-	if selected.pid < 0: return
+	if selected.pid < 1: return
 	var error = OS.kill(selected.pid)
 	if error:
 		push_warning("ERROR ON KILL - POSSIBLY ALREADY KILLED")
-		return
 	selected.pid = -1
 	game_stopped.emit()
 
@@ -262,7 +185,9 @@ func load_tags(_tags : Array[String]) -> void:
 
 func build_library() -> void:
 	create_library_from_metadata(Global.base_dir + Global.library_dir)
-	if library: Global.library_last_game = library[Global.library_last_index]
+	if library: 
+		if Global.library_last_index < library.size(): Global.library_last_game = library[Global.library_last_index]
+		else: Global.library_last_game = library[library.size()-1]
 	refresh_game_list(Global.library_open_to_last_selected)
 	game_list.force_update_list_size() #this has to come before the next line or game list will not scroll correctly until it is updated (moused over)
 	if Global.library_preserve_scroll: game_list.get_v_scroll_bar().set_value(Global.library_scroll_value)
@@ -358,10 +283,10 @@ func stop_by_pid(_pid:int = -1) -> void:
 		if game.pid != _pid: continue
 		var error = OS.kill(game.pid)
 		if error:
-			push_warning("ERROR ON KILL - POSSIBLY ALREADY KILLED")
-			return
-		game.pid = 0
+			push_warning("WARNING | kill() - POSSIBLY ALREADY KILLED")
+		game.pid = -1
 		game_stopped.emit()
+		break
 
 func _on_game_stopped() -> void:
 	detail_panel._refresh_from_data(selected)

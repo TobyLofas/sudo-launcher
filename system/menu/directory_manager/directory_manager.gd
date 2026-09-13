@@ -16,7 +16,6 @@ func refresh_directory_display(dirs) -> void:
 
 func load_directories() -> void:
 	directories = Global.load_csv(Global.base_dir + Global.data_dir + Global.directories_file_name)
-	directories.remove_at(0) ##Remove empty string from start of array
 	refresh_directory_display(directories)
 
 func create_metadata_from_directories(dirs : PackedStringArray = directories) -> void:

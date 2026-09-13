@@ -21,24 +21,24 @@ func _ready() -> void:
 	add_to_group(&"monitors")
 
 func _process(_delta: float) -> void:
+	if not _process_io: return
 	var result = _process_io.get_line()
 	if not result: return
 	if result.is_valid_int():
 		if int(result) == 0:
-			_timer.stop()
-			process_mode = Node.PROCESS_MODE_DISABLED
-			OS.kill(_monitor_pid)
-			stopped.emit(_target_pid)
-			_target_pid = 0
-			queue_free()
+			retire()
 
 func start_process(path: String = "") -> void:
 	if not path: return
 	if process_mode == ProcessMode.PROCESS_MODE_ALWAYS: return
-	var _target_name : String = get_process_name_from_path(path)
+	var _target_path : String = get_process_path_from_lnk(path)
+	var _target_name : String = _target_path.get_file().split(".")[0].to_lower()
 	var _pre_pids : Array = get_pids_by_name(_target_name)
-	OS.execute("cmd",["/c", "start", "/b", "/d", path.get_base_dir(), path.get_file()])
+	OS.execute("cmd",["/c", "start", "/b", "/d", _target_path.get_base_dir(), _target_path.get_file()])
 	var _post_pids : Array = get_pids_by_name(_target_name)
+	if not _post_pids: 
+		retire()
+		return
 	_target_pid = int(_post_pids.front())
 	if _pre_pids:
 		_target_pid = int(_post_pids.filter(func(x): return not _pre_pids.has(x)).front())
@@ -56,6 +56,14 @@ func _create_monitor() -> void:
 	var monitor = OS.execute_with_pipe('powershell.exe', ["-NoLogo"], false)
 	_monitor_pid = monitor["pid"]
 	_process_io = monitor.get("stdio", null) as FileAccess
+	
+func retire() -> void:
+	_timer.stop()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	OS.kill(_monitor_pid)
+	stopped.emit(_target_pid)
+	_target_pid = 0
+	queue_free()
 
 static func get_pids_by_name(file_name: String) -> PackedStringArray:
 	var _command = "get-process %s -erroraction SilentlyContinue | select-object Id -expandproperty Id\n" % file_name.get_file()
@@ -71,3 +79,11 @@ static func get_process_name_from_path(path: String) -> String:
 		OS.execute("cmd.exe", ["/c", command], output)
 		path = output.front().get_slice("\n",1).strip_escapes()
 	return path.get_file().split(".")[0].to_lower()
+
+static func get_process_path_from_lnk(path: String) -> String:
+	if path.get_extension() == "lnk":
+		var command : String = "type "+"\""+path.replace_char(47,92)+"\""+"|find \".exe\""
+		var output : Array[String]
+		OS.execute("cmd.exe", ["/c", command], output)
+		path = output.front().get_slice("\n",1).strip_escapes()
+	return path
