@@ -448,36 +448,105 @@ max_length = 9
 [node name="RPadding" type="Control" parent="VBoxContainer/Spacing" unique_id=1323341966]
 layout_mode = 2
 
-[node name="AdvancedToggle" type="HBoxContainer" parent="." unique_id=1306164647]
-visible = false
+[node name="Version" type="HBoxContainer" parent="." unique_id=774648373]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 49.0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="Version" unique_id=1811886930]
+layout_mode = 2
+
+[node name="VersionLabel" type="Label" parent="Version" unique_id=1742764270]
+unique_name_in_owner = true
+layout_mode = 2
+text = "v0.0.0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1873900464]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -26.0
+offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="AdvancedToggle" unique_id=2063013811]
-layout_mode = 2
-text = "Show advanced settings"
-
-[node name="CheckBox" type="CheckButton" parent="AdvancedToggle" unique_id=1103884727]
-layout_mode = 2
-
-[node name="VersionLabel" type="Label" parent="." unique_id=1742764270]
+[node name="ShowLicense" type="Button" parent="HBoxContainer" unique_id=967164157]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
-text = "v0.0.0"
+layout_mode = 2
+toggle_mode = true
+text = "ABOUT"
+flat = true
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1282400178]
+layout_mode = 2
+
+[node name="PopupPanel" type="PopupPanel" parent="." unique_id=253601177]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "ABOUT"
+initial_position = 1
+size = Vector2i(710, 500)
+unresizable = false
+borderless = false
+min_size = Vector2i(710, 200)
+
+[node name="ColorRect" type="ColorRect" parent="PopupPanel" unique_id=1178229464]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 706.0
+offset_bottom = 496.0
+color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="TextEdit" type="TextEdit" parent="PopupPanel" unique_id=1424826328]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 706.0
+offset_bottom = 496.0
+text = "SudoLauncher
+Version 1.4.0
+Copyright © 2025 LofasArts
+Licensed under CC BY‑NC 4.0.
+
+Third-Party Notices
+This software incorporates materials licensed under the MIT License:
+
+Included MIT-Licensed Materials:
+- Godot Icons Fonts
+- Rakugo Nodes
+
+Copyright © 2021 Jeremi Biernacki <jeremi360@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE."
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+virtual_keyboard_enabled = false
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Library/ColumnMode/ListMode" to="." method="_on_list_mode_toggled"]
@@ -496,4 +565,5 @@ text = "v0.0.0"
 [connection signal="text_changed" from="VBoxContainer/Spacing/Standard/Detail Panel/DetailPanelIconSize/DetailIconSize" to="." method="_on_detail_icon_size_text_changed"]
 [connection signal="item_selected" from="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering/DetailFilter" to="." method="_on_detail_filter_item_selected"]
 [connection signal="toggled" from="VBoxContainer/Spacing/Standard/Window/HBoxContainer/FullscreenMode" to="." method="_on_fullscreen_mode_toggled"]
-[connection signal="toggled" from="AdvancedToggle/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="HBoxContainer/ShowLicense" to="." method="_on_show_license_toggled"]
+[connection signal="popup_hide" from="PopupPanel" to="." method="_on_popup_panel_popup_hide"]

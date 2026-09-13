@@ -95,3 +95,12 @@ func _on_list_text_trim_item_selected(index: int) -> void:
 
 func _on_grid_text_trim_item_selected(index: int) -> void:
 	Global.grid_text_trim = index
+
+
+func _on_show_license_toggled(toggled_on: bool) -> void:
+	if toggled_on: %PopupPanel.show()
+	else: %PopupPanel.hide()
+
+
+func _on_popup_panel_popup_hide() -> void:
+	%ShowLicense.button_pressed = false
