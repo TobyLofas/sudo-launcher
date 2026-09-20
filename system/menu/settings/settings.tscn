@@ -119,6 +119,7 @@ text = "Preserve selected game on close"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
 
 [node name="PreserveScroll" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=380340250]
 layout_mode = 2
@@ -132,6 +133,7 @@ text = "Preserve scroll position on close"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
 
 [node name="ImageFiltering" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Library" unique_id=1296255507]
 layout_mode = 2
@@ -145,6 +147,7 @@ text = "Icon filter"
 [node name="LibraryFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/ImageFiltering" unique_id=247003570]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 item_count = 2
 popup/item_0/text = "Nearest"
 popup/item_0/id = 0
@@ -232,6 +235,7 @@ text = "Text trimming"
 [node name="ListTextTrim" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/List/TextWrap" unique_id=1175624988]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 item_count = 5
 popup/item_0/text = "Trim Nothing"
 popup/item_0/id = 0
@@ -326,6 +330,7 @@ text = "Text trimming"
 [node name="GridTextTrim" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/TextWrap" unique_id=935245082]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 item_count = 5
 popup/item_0/text = "Trim Nothing"
 popup/item_0/id = 0
@@ -350,6 +355,7 @@ text = "Show text"
 [node name="GridText" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Library/View/Grid/GridText" unique_id=458149923]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="Control2" type="Control" parent="VBoxContainer/Spacing/Standard/Library" unique_id=223296846]
 layout_mode = 2
@@ -378,6 +384,7 @@ text = "Show game icon"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
 
 [node name="DetailPanelIconSize" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Detail Panel" unique_id=1727550107]
 layout_mode = 2
@@ -413,6 +420,7 @@ text = "Icon filter"
 [node name="DetailFilter" type="OptionButton" parent="VBoxContainer/Spacing/Standard/Detail Panel/ImageFiltering" unique_id=1737702993]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 item_count = 2
 popup/item_0/text = "Nearest"
 popup/item_0/id = 0
@@ -442,6 +450,7 @@ text = "Preserve fullscreen mode"
 [node name="FullscreenMode" type="CheckButton" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer" unique_id=697976997]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Spacing/Standard/Window" unique_id=480406411]
 layout_mode = 2
@@ -462,6 +471,7 @@ max_length = 9
 [node name="HighlightButton" type="Button" parent="VBoxContainer/Spacing/Standard/Window/HBoxContainer2" unique_id=290057151]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 32
 toggle_mode = true
 icon = SubResource("ImageTexture_o5d07")
@@ -503,6 +513,8 @@ grow_vertical = 0
 [node name="ShowLicense" type="Button" parent="HBoxContainer" unique_id=967164157]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 toggle_mode = true
 text = "ABOUT"
 flat = true

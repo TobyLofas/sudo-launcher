@@ -67,20 +67,24 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Add"
 
 [node name="RemoveDirectory" type="Button" parent="HBoxContainer/VBoxContainer/Interface/HBoxContainer" unique_id=1483549474]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Remove"
 
 [node name="BuildLibrary" type="Button" parent="HBoxContainer/VBoxContainer/Interface" unique_id=1406087463]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Scan Directories"
 
 [node name="OpenDirectory(s)" type="Button" parent="HBoxContainer/VBoxContainer/Interface" unique_id=1832365357]
 layout_mode = 2
 size_flags_vertical = 10
+mouse_default_cursor_shape = 2
 text = "Open Directories"
 
 [node name="BottomPad" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=407908149]
