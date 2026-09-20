@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_ups23"]
 [ext_resource type="Theme" uid="uid://cpmlnjjpqxqbk" path="res://system/menu/detail_panel/file_path_theme.tres" id="8_dl72k"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08f2c"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -48,12 +48,22 @@ icon_color = Color(1, 0.4117647, 0.4117647, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dckhi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2dy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08f2c"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0.23700002)
+
 [sub_resource type="Resource" id="Resource_h2p0x"]
 script = ExtResource("4_ups23")
 icon_name = "play"
 icon_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_mhra0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08f2c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dckhi"]
+bg_color = Color(0.6, 0.6, 0.6, 0.23529412)
 
 [sub_resource type="Resource" id="Resource_eyven"]
 script = ExtResource("4_ups23")
@@ -159,7 +169,8 @@ layout_mode = 2
 [node name="TagButton" type="PanelContainer" parent="HBoxContainer2/Details/Tags" unique_id=47085415]
 layout_mode = 2
 tooltip_text = "Manage tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_yrucj")
@@ -209,11 +220,14 @@ offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Stop the game"
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_08f2c")
 label_settings = SubResource("LabelSettings_dckhi")
+style_normal = SubResource("StyleBoxEmpty_3j2dy")
+style_hover = SubResource("StyleBoxFlat_08f2c")
 metadata/_custom_type_script = "uid://pwyh8365is28"
 
 [node name="PlayButton" type="PanelContainer" parent="." unique_id=901990916]
@@ -231,11 +245,14 @@ grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play the game"
 focus_neighbor_right = NodePath("../EditButton")
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_h2p0x")
 label_settings = SubResource("LabelSettings_mhra0")
+style_normal = SubResource("StyleBoxEmpty_08f2c")
+style_hover = SubResource("StyleBoxFlat_dckhi")
 
 [node name="BlacklistButton" type="PanelContainer" parent="." unique_id=226053142]
 unique_name_in_owner = true
@@ -247,7 +264,8 @@ offset_top = -43.0
 offset_right = 44.0
 grow_vertical = 0
 tooltip_text = "Delete & Add to Blacklist"
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_eyven")
@@ -269,7 +287,8 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "Edit game details"
-theme_override_styles/panel = SubResource("StyleBoxFlat_08f2c")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("3_qyu1u")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_epgg4")

@@ -1,12 +1,14 @@
 extends Control
 
+signal highlight_colour_changed
+
 func _ready() -> void:
 	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 	%Divider.split_offset = Global.settings_divider_offset
 
 func _on_list_mode_toggled(toggled_on: bool) -> void:
 	Global.library_list_mode = toggled_on
-	Global.save_settings()
+	#Global.save_settings()
 
 func _on_open_to_last_toggled(toggled_on: bool) -> void:
 	Global.library_open_to_last_selected = toggled_on
@@ -33,74 +35,73 @@ func _on_visibility_changed() -> void:
 	%GridFontSize.text = str(Global.grid_font_size)
 	%ListTextTrim.selected = Global.list_text_trim
 	%GridTextTrim.selected = Global.grid_text_trim
-	%HighlightColour.text = Global.top_bar_highlight_colour.to_html()
+	#%HighlightColour.text = Global.top_bar_highlight_colour.to_html()
+	var highlight_colour = Color(Global.top_bar_highlight_colour)
+	%HighlightColorPicker.color = highlight_colour
+	%HighlightButton.add_theme_color_override("icon_normal_color", highlight_colour)
+	%HighlightButton.add_theme_color_override("icon_hover_color", highlight_colour)
+	%HighlightButton.add_theme_color_override("icon_pressed_color", highlight_colour)
+	%HighlightButton.add_theme_color_override("icon_hover_pressed_color", highlight_colour)
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
 
-
 func _on_preserve_scroll_toggled(toggled_on: bool) -> void:
 	Global.library_preserve_scroll = toggled_on
 
-
-func _on_check_box_toggled(toggled_on: bool) -> void:
-	%Advanced.visible = toggled_on
-	%AdvancedSeperator.visible = toggled_on
-
-
 func _on_fullscreen_mode_toggled(toggled_on: bool) -> void:
 	Global.window_preserve_mode = toggled_on
-	
-
 
 func _on_column_icon_size_text_changed(new_text: String) -> void:
 	Global.column_icon_size = new_text.to_int()
 
-
 func _on_grid_icon_size_text_changed(new_text: String) -> void:
 	Global.grid_icon_size = new_text.to_int()
-
 
 func _on_detail_icon_size_text_changed(new_text: String) -> void:
 	Global.detail_icon_size = new_text.to_int()
 
-
 func _on_font_size_text_changed(new_text: String) -> void:
 	Global.library_font_size = new_text.to_int()
-
 
 func _on_grid_text_toggled(toggled_on: bool) -> void:
 	Global.library_grid_text = toggled_on
 
-
 func _on_library_filter_item_selected(index: int) -> void:
 	Global.library_icon_filter = index
-
 
 func _on_detail_filter_item_selected(index: int) -> void:
 	Global.detail_icon_filter = index
 
-
-func _on_multi_search_toggled(toggled_on: bool) -> void:
-	Global.multithread_cache_search = toggled_on
-
-
 func _on_grid_font_size_text_changed(new_text: String) -> void:
 	Global.grid_font_size = new_text.to_int()
-
 
 func _on_list_text_trim_item_selected(index: int) -> void:
 	Global.list_text_trim = index
 
-
 func _on_grid_text_trim_item_selected(index: int) -> void:
 	Global.grid_text_trim = index
 
-
 func _on_show_license_toggled(toggled_on: bool) -> void:
-	if toggled_on: %PopupPanel.show()
-	else: %PopupPanel.hide()
+	if toggled_on: %LicensePopup.show()
+	else: %LicensePopup.hide()
 
-
-func _on_popup_panel_popup_hide() -> void:
+func _on_license_popup_hide() -> void:
 	%ShowLicense.button_pressed = false
+
+
+func _on_highlight_popup_hide() -> void:
+	%HighlightButton.button_pressed = false
+
+func _on_highlight_button_toggled(toggled_on: bool) -> void:
+	if toggled_on: %HighlightPopup.show()
+	else: %HighlightPopup.hide()
+
+
+func _on_highlight_color_picker_color_changed(color: Color) -> void:
+	%HighlightButton.add_theme_color_override("icon_normal_color", color)
+	%HighlightButton.add_theme_color_override("icon_hover_color", color)
+	%HighlightButton.add_theme_color_override("icon_pressed_color", color)
+	%HighlightButton.add_theme_color_override("icon_hover_pressed_color", color)
+	Global.top_bar_highlight_colour = color.to_html()
+	highlight_colour_changed.emit()

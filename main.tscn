@@ -8,6 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://2ju6l4ss3115" path="res://system/menu/settings/settings.tscn" id="4_uw12a"]
 [ext_resource type="PackedScene" uid="uid://cni81h2wunn0y" path="res://system/menu/tag_manager/tag_manager.tscn" id="5_idiyu"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(1, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+border_width_top = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
 [node name="Main" type="Control" unique_id=718282450]
 custom_minimum_size = Vector2(960, 540)
 layout_mode = 3
@@ -40,9 +68,10 @@ unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -617.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+color = Color(1, 0, 0, 1)
 
 [node name="TabContainer" type="TabContainer" parent="SubViewportContainer/MainViewport" unique_id=160277277]
 anchors_preset = 15
@@ -50,6 +79,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_5vw27")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_kek77")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_272bh")
 current_tab = 0
 switch_on_drag_hover = false
 
@@ -101,6 +133,7 @@ visible = false
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="dragged" from="SubViewportContainer/MainViewport/TabContainer/Settings/Divider" to="." method="_on_h_split_container_dragged"]
+[connection signal="highlight_colour_changed" from="SubViewportContainer/MainViewport/TabContainer/Settings/Divider/SettingsBox" to="." method="_on_settings_box_highlight_colour_changed"]
 [connection signal="directory_removed" from="SubViewportContainer/MainViewport/TabContainer/Settings/Divider/DirectoryManager" to="." method="_on_directory_manager_directory_removed"]
 [connection signal="metadata_updated" from="SubViewportContainer/MainViewport/TabContainer/Settings/Divider/DirectoryManager" to="." method="_on_metadata_updated"]
 [connection signal="close_requested" from="PopupViewport/EditWindow" to="." method="_on_edit_window_close_requested"]
