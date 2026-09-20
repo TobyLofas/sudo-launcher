@@ -156,7 +156,10 @@ label_settings = SubResource("LabelSettings_m7ns8")
 [node name="TagsList" type="PopupMenu" parent="SF/Filters" unique_id=536419331]
 unique_name_in_owner = true
 oversampling_override = 1.0
+position = Vector2i(253, 70)
 size = Vector2i(77, 35)
+mouse_passthrough = true
+hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 allow_search = false
 
@@ -200,6 +203,7 @@ text = "Sort:"
 [node name="SortType" type="OptionButton" parent="SF/Sorting" unique_id=1028146818]
 unique_name_in_owner = true
 layout_mode = 2
+focus_behavior_recursive = 1
 mouse_default_cursor_shape = 2
 selected = 0
 allow_reselect = true
@@ -279,6 +283,7 @@ layout_mode = 2
 [connection signal="tags_changed" from="." to="." method="_on_tags_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
+[connection signal="focus_exited" from="SF/Filters/TagsList" to="." method="_on_tags_list_focus_exited"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
 [connection signal="mouse_exited" from="SF/Filters/TagsList" to="." method="_on_tags_list_mouse_exited"]
 [connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]

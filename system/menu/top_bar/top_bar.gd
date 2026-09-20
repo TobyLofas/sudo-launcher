@@ -21,6 +21,13 @@ signal sort_changed(keep_selected)
 func _ready() -> void:
 	list_mode_toggle.button_pressed = Global.library_list_mode
 	image_toggle.button_pressed = not Global.library_display_images
+	#sort_type.get_popup().mouse_exited.connect(
+		#func():
+			#sort_type.get_popup().set_visible(false)
+			#sort_type.button_pressed = false
+			#get_viewport().gui_release_focus()
+	#)
+	#
 
 func load_tags(_tags : PackedStringArray) -> void:
 	tags = _tags
@@ -28,9 +35,8 @@ func load_tags(_tags : PackedStringArray) -> void:
 
 func _on_tag_button_pressed() -> void:
 	if !tags_list.visible:
-		tags_list.position.x = tag_button.position.x
-		tags_list.position.y = tag_button.position.y + 70
 		tags_list.show()
+		
 	else:
 		tags_list.hide()
 
@@ -85,6 +91,5 @@ func _on_tags_changed(_tags: Variant) -> void:
 	if selected_tags: tag_button.icon_settings.icon_color = Color(0.498, 0.777, 1.0, 1.0)
 		
 
-
-func _on_tags_list_mouse_exited() -> void:
+func _on_tags_list_focus_exited() -> void:
 	tags_list.hide()
