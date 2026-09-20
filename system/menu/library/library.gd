@@ -35,6 +35,8 @@ func _ready() -> void:
 	game_list.add_theme_font_size_override("font_size", Global.library_font_size)
 	
 
+
+
 func _on_game_list_item_selected(index: int) -> void:
 	if filtered_library.size() != 0:
 		selected = filtered_library[index]

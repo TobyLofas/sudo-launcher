@@ -17,6 +17,8 @@ func _ready() -> void:
 	create_metadata()
 	library.build_library()
 	%Highlight.color = Global.top_bar_highlight_colour
+	
+
 
 func _on_metadata_updated() -> void:
 	library.build_library()
