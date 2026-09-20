@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dw53ua7xnjgnw" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_mq51i"]
 [ext_resource type="Script" uid="uid://c4n2aki4724e4" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_sh563"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t8v1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -75,6 +75,7 @@ script = ExtResource("3_mq51i")
 [sub_resource type="LabelSettings" id="LabelSettings_pkk0i"]
 
 [node name="TopBar" type="Control" unique_id=1528215481]
+clip_contents = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 3
 anchors_preset = 15
@@ -112,6 +113,7 @@ custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
 [node name="VSeparator" type="VSeparator" parent="SF" unique_id=680696281]
+clip_contents = true
 layout_mode = 2
 
 [node name="Filters" type="HBoxContainer" parent="SF" unique_id=2079508977]
@@ -134,7 +136,7 @@ clear_button_enabled = true
 [node name="Search" type="PanelContainer" parent="SF/Filters" unique_id=1749212853]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
@@ -144,7 +146,8 @@ label_settings = SubResource("LabelSettings_2uydc")
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Filter by tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
@@ -152,12 +155,13 @@ label_settings = SubResource("LabelSettings_m7ns8")
 
 [node name="TagsList" type="PopupMenu" parent="SF/Filters" unique_id=536419331]
 unique_name_in_owner = true
+oversampling_override = 1.0
 size = Vector2i(77, 35)
-hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 allow_search = false
 
 [node name="VSeparator2" type="VSeparator" parent="SF" unique_id=1853126213]
+clip_contents = true
 layout_mode = 2
 
 [node name="Control" type="Control" parent="SF" unique_id=1808751185]
@@ -181,6 +185,7 @@ tooltip_text = "Total"
 mouse_filter = 1
 
 [node name="VSeparator3" type="VSeparator" parent="SF" unique_id=768672956]
+clip_contents = true
 layout_mode = 2
 
 [node name="Sorting" type="HBoxContainer" parent="SF" unique_id=2116213157]
@@ -195,6 +200,7 @@ text = "Sort:"
 [node name="SortType" type="OptionButton" parent="SF/Sorting" unique_id=1028146818]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 selected = 0
 allow_reselect = true
 item_count = 3
@@ -209,7 +215,8 @@ popup/item_2/id = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Sort Direction"
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_r2ldb")
 off_icon_settings = SubResource("Resource_0yaop")
@@ -219,6 +226,7 @@ label_settings = SubResource("LabelSettings_4rx8q")
 toggle_mode = true
 
 [node name="VSeparator4" type="VSeparator" parent="SF" unique_id=2109314793]
+clip_contents = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=494751138]
@@ -240,7 +248,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")
@@ -254,7 +262,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 tooltip_text = "Switch library view mode"
-theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")
 off_icon_settings = SubResource("Resource_tdt6k")
@@ -271,6 +280,7 @@ layout_mode = 2
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
+[connection signal="mouse_exited" from="SF/Filters/TagsList" to="." method="_on_tags_list_mouse_exited"]
 [connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]
 [connection signal="toggled" from="SF/Sorting/SortButton" to="." method="_on_sort_button_toggled"]
 [connection signal="toggled" from="HBoxContainer/ImageDisplay" to="." method="_on_image_display_toggled"]

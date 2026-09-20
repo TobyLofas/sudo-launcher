@@ -84,3 +84,7 @@ func _on_tags_changed(_tags: Variant) -> void:
 	tag_button.icon_settings.icon_color = Color(1.0, 1.0, 1.0, 1.0)
 	if selected_tags: tag_button.icon_settings.icon_color = Color(0.498, 0.777, 1.0, 1.0)
 		
+
+
+func _on_tags_list_mouse_exited() -> void:
+	tags_list.hide()
