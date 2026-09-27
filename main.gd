@@ -17,8 +17,8 @@ func _ready() -> void:
 	create_metadata()
 	library.build_library()
 	%Highlight.color = Global.top_bar_highlight_colour
+	%TabContainer.get_tab_bar().mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
 	
-
 
 func _on_metadata_updated() -> void:
 	library.build_library()
