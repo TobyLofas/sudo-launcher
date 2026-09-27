@@ -139,3 +139,6 @@ func get_pid(proc_name : String) -> int:
 	OS.execute("cmd.exe", ["/c", command], output)
 	var pid = int(output[0].get_slice("\n",1).strip_escapes())
 	return pid
+
+func get_center_position(object: Node) -> Vector2i:
+	return get_window().position + Vector2i(Vector2i(get_viewport().get_visible_rect().size/2)-Vector2i(object.size/2))
