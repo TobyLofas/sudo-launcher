@@ -1,16 +1,16 @@
 extends Control
 
-@onready var search_bar = %SearchBar
-@onready var tags_list = %TagsList
-@onready var tag_button = %TagButton
-@onready var image_toggle = %ImageDisplay
-@onready var sort_type = %SortType
-@onready var sort_button = %SortButton
-@onready var list_mode_toggle = %ListMode
-@onready var count = %Count
-@onready var total_count = %Total
+@onready var search_bar := %SearchBar as LineEdit
+@onready var tags_list := %TagsList as PopupMenu
+@onready var tag_button := %TagButton as FontIconButton
+@onready var image_toggle := %ImageDisplay as FontIconCheckButton
+@onready var sort_type := %SortType as OptionButton
+@onready var sort_button := %SortButton as FontIconCheckButton
+@onready var list_mode_toggle := %ListMode as FontIconCheckButton
+@onready var count := %Count as Label
+@onready var total_count := %Total as Label
 
-var tags = []
+var tags : Array = []
 var selected_tags : PackedStringArray
 
 var invert_sort : bool = false
@@ -21,13 +21,18 @@ signal sort_changed(keep_selected)
 func _ready() -> void:
 	list_mode_toggle.button_pressed = Global.library_list_mode
 	image_toggle.button_pressed = not Global.library_display_images
-	#sort_type.get_popup().mouse_exited.connect(
-		#func():
-			#sort_type.get_popup().set_visible(false)
-			#sort_type.button_pressed = false
-			#get_viewport().gui_release_focus()
-	#)
-	#
+	sort_type.get_popup().mouse_exited.connect(
+		func():
+			sort_type.get_popup().set_visible(false)
+			sort_type.set_pressed_no_signal(false)
+			get_viewport().gui_release_focus()
+	)
+	
+	tags_list.mouse_exited.connect(
+		func():
+			tags_list.hide()
+			get_viewport().gui_release_focus()
+	)
 
 func load_tags(_tags : PackedStringArray) -> void:
 	tags = _tags
@@ -36,7 +41,7 @@ func load_tags(_tags : PackedStringArray) -> void:
 func _on_tag_button_pressed() -> void:
 	if !tags_list.visible:
 		tags_list.show()
-		
+		tags_list.position = get_window().position + Vector2i(253,70)
 	else:
 		tags_list.hide()
 
@@ -48,8 +53,6 @@ func update_tag_display_list() -> void:
 		tag_button.show()
 	for index in tags.size():
 		tags_list.add_check_item(tags[index],index)
-	
-	for index in tags_list.item_count:
 		if selected_tags.has(tags_list.get_item_text(index)):
 			tags_list.set_item_checked(index, true)
 		
@@ -90,6 +93,3 @@ func _on_tags_changed(_tags: Variant) -> void:
 	tag_button.icon_settings.icon_color = Color(1.0, 1.0, 1.0, 1.0)
 	if selected_tags: tag_button.icon_settings.icon_color = Color(0.498, 0.777, 1.0, 1.0)
 		
-
-func _on_tags_list_focus_exited() -> void:
-	tags_list.hide()

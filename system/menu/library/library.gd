@@ -1,9 +1,9 @@
 extends Control
 
-@onready var game_list = %GameList
-@onready var detail_panel = %DetailPanel
-@onready var top_bar = %TopBar
-@onready var divider = %Divider
+@onready var game_list : ItemList = %GameList
+@onready var detail_panel : Control = %DetailPanel
+@onready var top_bar : Control = %TopBar
+@onready var divider : HSplitContainer = %Divider
 
 var library : Array[Game]
 var filtered_library : Array[Game]
@@ -43,6 +43,9 @@ func _on_game_list_item_selected(index: int) -> void:
 	detail_panel._refresh_from_data(selected)
 	Global.library_last_index = library.find(selected)
 	Global.library_last_game = selected
+	#game_list.remove_theme_color_override("font_selected_color")
+	#if filtered_library[index].pid > 0:
+		#game_list.add_theme_color_override("font_selected_color", Color(Global.running_game_colour))
 
 func filter_by_search(term : String) -> void:
 	_search_filtered = []
@@ -71,14 +74,17 @@ func refresh_game_list(keep_selected : bool = true) -> void:#
 	create_game_list_from_filtered_library()
 	top_bar.count.text = str(game_list.item_count)
 	
-	for index in game_list.item_count:
+	for index: int in game_list.item_count:
 		if filtered_library[index].pid > 0:
-			game_list.set_item_custom_fg_color(index, Color(0.0, 1.0, 0.0, 1.0))
+			var c : Color = Color(Global.running_game_colour)
+			c.a = 0.5
+			game_list.set_item_custom_bg_color(index, c)
 		else:
-			game_list.set_item_custom_fg_color(index, Color(1.0, 1.0, 1.0, 1.0))
+			game_list.set_item_custom_bg_color(index, Color(0.0, 0.0, 0.0, 0.0))
+			pass
 	
 	if game_list.item_count > 0 and keep_selected:
-		var selected_index = filtered_library.find(Global.library_last_game)
+		var selected_index : int = filtered_library.find(Global.library_last_game)
 		if selected_index > 0:
 			game_list.select(selected_index)
 			_on_game_list_item_selected(selected_index)
@@ -159,7 +165,7 @@ func create_library_from_metadata(directory : String) -> void:
 		file_name = dir.get_next()
 
 func start_game(_id: int = 0) -> void:
-	var manager = ProcessManager.new()
+	var manager : ProcessManager = ProcessManager.new()
 	manager.stopped.connect(stop_by_pid)
 	get_tree().root.add_child(manager)
 	manager.start_process(selected.path)
@@ -238,14 +244,14 @@ func _on_list_scroll_changed(new_value: float) -> void:
 	Global.library_scroll_value = new_value
 
 func _update_list_display() -> void:
-	game_list.texture_filter = Global.library_icon_filter + 1 ##Offset to account for godot inherit from parent
+	game_list.texture_filter = Global.library_icon_filter + 1 as TextureFilter ##Offset to account for godot inherit from parent
 	if game_list.has_theme_font_size_override("font_size"): game_list.remove_theme_font_size_override("font_size")
 	if Global.library_list_mode: ##Column (list) mode
 		game_list.max_columns = 1
 		game_list.icon_mode = game_list.ICON_MODE_LEFT
 		game_list.fixed_icon_size = Vector2i(Global.column_icon_size, Global.column_icon_size)
 		game_list.fixed_column_width = 0
-		game_list.text_overrun_behavior = Global.list_text_trim
+		game_list.text_overrun_behavior = Global.list_text_trim as TextServer.OverrunBehavior
 		if game_list.has_theme_color_override("font_color"): 
 			game_list.remove_theme_color_override("font_color")
 			game_list.remove_theme_color_override("font_hovered_color")
@@ -257,7 +263,7 @@ func _update_list_display() -> void:
 		game_list.icon_mode = game_list.ICON_MODE_TOP
 		game_list.fixed_icon_size = Vector2i(Global.grid_icon_size,Global.grid_icon_size)
 		game_list.fixed_column_width = Global.grid_icon_size + 32
-		game_list.text_overrun_behavior = Global.grid_text_trim
+		game_list.text_overrun_behavior = Global.grid_text_trim as TextServer.OverrunBehavior
 		if not Global.library_grid_text:
 			if !game_list.has_theme_font_size_override("font_size"): game_list.add_theme_font_size_override("font_size", 1)
 			if !game_list.has_theme_color_override("font_color"): 
@@ -292,9 +298,11 @@ func stop_by_pid(_pid:int = -1) -> void:
 
 func _on_game_stopped() -> void:
 	detail_panel._refresh_from_data(selected)
+	refresh_game_list(true)
 
 func _on_game_started() -> void:
 	detail_panel._refresh_from_data(selected)
+	refresh_game_list(true)
 
 func _on_detail_panel_refreshed() -> void:
 	for tag in selected.tags:

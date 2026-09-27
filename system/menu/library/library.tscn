@@ -5,7 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://bwp2plyvy6aql" path="res://system/menu/top_bar/top_bar.tscn" id="2_eg0do"]
 [ext_resource type="PackedScene" uid="uid://ccx5uldv5ys2n" path="res://system/menu/detail_panel/detail_panel.tscn" id="2_oi2bc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb5ri"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovwa2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jbwg"]
 
 [node name="Library" type="Control" unique_id=195522111]
 layout_mode = 3
@@ -41,6 +50,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 2
 
 [node name="TopBar" parent="Divider/Library" unique_id=2083442934 instance=ExtResource("2_eg0do")]
 unique_name_in_owner = true
@@ -53,7 +63,8 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bb5ri")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovwa2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6jbwg")
 allow_search = false
 text_overrun_behavior = 4
 item_count = 2

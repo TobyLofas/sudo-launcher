@@ -25,12 +25,48 @@ icon_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_2uydc"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8yt4f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
 [sub_resource type="Resource" id="Resource_c8tc3"]
 script = ExtResource("3_mq51i")
 icon_name = "tag"
 icon_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7ns8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uq5bu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hq8vf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lydc8"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2nxf"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c18m0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="Resource" id="Resource_r2ldb"]
 script = ExtResource("3_mq51i")
@@ -48,6 +84,18 @@ icon_name = "format-list-bulleted"
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rx8q"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g768m"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t8v1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
 [sub_resource type="Resource" id="Resource_7ks3p"]
 script = ExtResource("3_mq51i")
 icon_name = "close"
@@ -61,6 +109,12 @@ script = ExtResource("3_mq51i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_c18m0"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pkk0i"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
 [sub_resource type="Resource" id="Resource_aml8d"]
 script = ExtResource("3_mq51i")
 icon_name = "format-list-bulleted"
@@ -73,6 +127,18 @@ icon_name = "dots-grid"
 script = ExtResource("3_mq51i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pkk0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifcqm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgjkv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 
 [node name="TopBar" type="Control" unique_id=1528215481]
 clip_contents = true
@@ -147,18 +213,20 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Filter by tags"
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8yt4f")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_c8tc3")
 label_settings = SubResource("LabelSettings_m7ns8")
+style_normal = SubResource("StyleBoxEmpty_8yt4f")
+style_focus = SubResource("StyleBoxEmpty_uq5bu")
+style_pressed = SubResource("StyleBoxEmpty_hq8vf")
 
 [node name="TagsList" type="PopupMenu" parent="SF/Filters" unique_id=536419331]
 unique_name_in_owner = true
 oversampling_override = 1.0
 position = Vector2i(253, 70)
 size = Vector2i(77, 35)
-mouse_passthrough = true
 hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 allow_search = false
@@ -205,6 +273,8 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_behavior_recursive = 1
 mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lydc8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2nxf")
 selected = 0
 allow_reselect = true
 item_count = 3
@@ -220,7 +290,7 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Sort Direction"
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c18m0")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_r2ldb")
 off_icon_settings = SubResource("Resource_0yaop")
@@ -228,6 +298,9 @@ layout_order = "Toggle"
 icon_settings = SubResource("Resource_pgtyd")
 label_settings = SubResource("LabelSettings_4rx8q")
 toggle_mode = true
+style_normal = SubResource("StyleBoxEmpty_c18m0")
+style_focus = SubResource("StyleBoxEmpty_g768m")
+style_pressed = SubResource("StyleBoxEmpty_8t8v1")
 
 [node name="VSeparator4" type="VSeparator" parent="SF" unique_id=2109314793]
 clip_contents = true
@@ -267,7 +340,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 tooltip_text = "Switch library view mode"
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pkk0i")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_aml8d")
 off_icon_settings = SubResource("Resource_tdt6k")
@@ -275,6 +348,9 @@ layout_order = "Toggle"
 icon_settings = SubResource("Resource_g768m")
 label_settings = SubResource("LabelSettings_pkk0i")
 toggle_mode = true
+style_normal = SubResource("StyleBoxEmpty_pkk0i")
+style_focus = SubResource("StyleBoxEmpty_ifcqm")
+style_pressed = SubResource("StyleBoxEmpty_wgjkv")
 
 [node name="Control" type="Control" parent="HBoxContainer" unique_id=1496830363]
 custom_minimum_size = Vector2(4, 0)
@@ -283,8 +359,8 @@ layout_mode = 2
 [connection signal="tags_changed" from="." to="." method="_on_tags_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SF/Filters/TagButton" to="." method="_on_tag_button_pressed"]
-[connection signal="focus_exited" from="SF/Filters/TagsList" to="." method="_on_tags_list_focus_exited"]
 [connection signal="index_pressed" from="SF/Filters/TagsList" to="." method="_on_tags_list_index_pressed"]
+[connection signal="mouse_entered" from="SF/Filters/TagsList" to="." method="_on_tags_list_mouse_entered"]
 [connection signal="mouse_exited" from="SF/Filters/TagsList" to="." method="_on_tags_list_mouse_exited"]
 [connection signal="item_selected" from="SF/Sorting/SortType" to="." method="_on_sort_type_item_selected"]
 [connection signal="toggled" from="SF/Sorting/SortButton" to="." method="_on_sort_button_toggled"]

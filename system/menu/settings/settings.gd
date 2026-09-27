@@ -35,13 +35,20 @@ func _on_visibility_changed() -> void:
 	%GridFontSize.text = str(Global.grid_font_size)
 	%ListTextTrim.selected = Global.list_text_trim
 	%GridTextTrim.selected = Global.grid_text_trim
-	#%HighlightColour.text = Global.top_bar_highlight_colour.to_html()
-	var highlight_colour = Color(Global.top_bar_highlight_colour)
+	
+	var highlight_colour : Color = Color(Global.top_bar_highlight_colour)
 	%HighlightColorPicker.color = highlight_colour
 	%HighlightButton.add_theme_color_override("icon_normal_color", highlight_colour)
 	%HighlightButton.add_theme_color_override("icon_hover_color", highlight_colour)
 	%HighlightButton.add_theme_color_override("icon_pressed_color", highlight_colour)
 	%HighlightButton.add_theme_color_override("icon_hover_pressed_color", highlight_colour)
+	
+	var running_colour : Color = Color(Global.running_game_colour)
+	%RunningColorPicker.color = running_colour
+	%RunningColourButton.add_theme_color_override("icon_normal_color", running_colour)
+	%RunningColourButton.add_theme_color_override("icon_hover_color", running_colour)
+	%RunningColourButton.add_theme_color_override("icon_pressed_color", running_colour)
+	%RunningColourButton.add_theme_color_override("icon_hover_pressed_color", running_colour)
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
@@ -94,7 +101,9 @@ func _on_highlight_popup_hide() -> void:
 	%HighlightButton.button_pressed = false
 
 func _on_highlight_button_toggled(toggled_on: bool) -> void:
-	if toggled_on: %HighlightPopup.show()
+	if toggled_on: 
+		%HighlightPopup.show()
+		%HighlightPopup.position = Global.get_center_position(%HighlightPopup)
 	else: %HighlightPopup.hide()
 
 
@@ -105,3 +114,24 @@ func _on_highlight_color_picker_color_changed(color: Color) -> void:
 	%HighlightButton.add_theme_color_override("icon_hover_pressed_color", color)
 	Global.top_bar_highlight_colour = color.to_html()
 	highlight_colour_changed.emit()
+
+
+func _on_running_colour_button_toggled(toggled_on: bool) -> void:
+	if toggled_on: 
+		%RunningColourPopup.show()
+		%RunningColourPopup.position = Global.get_center_position(%RunningColourPopup)
+	else: %RunningColourPopup.hide()
+
+
+func _on_highlight_popup_mouse_exited() -> void:
+	#%HighlightPopup.hide()
+	#%HighlightButton.set_pressed_no_signal(false)
+	pass
+
+
+func _on_running_color_changed(color: Color) -> void:
+	%RunningColourButton.add_theme_color_override("icon_normal_color", color)
+	%RunningColourButton.add_theme_color_override("icon_hover_color", color)
+	%RunningColourButton.add_theme_color_override("icon_pressed_color", color)
+	%RunningColourButton.add_theme_color_override("icon_hover_pressed_color", color)
+	Global.running_game_colour = color.to_html()
