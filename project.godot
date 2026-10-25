@@ -43,7 +43,8 @@ file_logging/max_log_files=1
 
 [display]
 
-window/size/initial_position_type=3
+window/size/initial_position_type=4
+window/size/sharp_corners=true
 window/energy_saving/keep_screen_on=false
 window/subwindows/embed_subwindows=false
 

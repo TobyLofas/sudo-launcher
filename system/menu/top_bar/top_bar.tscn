@@ -12,11 +12,17 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcvsq"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
+corner_detail = 1
 
 [sub_resource type="Resource" id="Resource_xxsci"]
 script = ExtResource("3_mq51i")
@@ -196,13 +202,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 16)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_8t8v1")
 placeholder_text = "Search..."
 clear_button_enabled = true
 
 [node name="Search" type="PanelContainer" parent="SF/Filters" unique_id=1749212853]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_uxnv1")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_xxsci")
@@ -278,7 +285,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2nxf")
 selected = 0
 allow_reselect = true
 item_count = 3
-popup/item_0/text = "Name"
+popup/item_0/text = "Title"
 popup/item_0/id = 0
 popup/item_1/text = "Date"
 popup/item_1/id = 1
@@ -325,7 +332,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t8v1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("5_sh563")
 on_icon_settings = SubResource("Resource_7ks3p")
 off_icon_settings = SubResource("Resource_cl8kw")

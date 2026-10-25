@@ -24,6 +24,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.147672, 0.147672, 0.147672, 1)
 
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=324034507]
+visible = false
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 34.0
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=343614232]
 layout_mode = 1
 anchors_preset = 15

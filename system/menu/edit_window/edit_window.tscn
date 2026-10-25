@@ -11,17 +11,63 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vbn1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brhrk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcvsq"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
+corner_detail = 1
 
 [sub_resource type="Resource" id="Resource_cxqar"]
 script = ExtResource("3_aitlv")
 icon_name = "tag-plus"
 
 [sub_resource type="LabelSettings" id="LabelSettings_86uq3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2igyf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b8yi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_x2uvv"]
 script = ExtResource("3_aitlv")
@@ -34,6 +80,26 @@ script = ExtResource("3_aitlv")
 icon_name = "undo-variant"
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhbci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0oe"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahckc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_v4utu"]
 script = ExtResource("3_aitlv")
@@ -127,6 +193,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_clwua")
 
 [node name="Year" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer" unique_id=2019710600]
 layout_mode = 2
@@ -141,6 +208,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vbn1")
 
 [node name="Developer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer" unique_id=1974475557]
 layout_mode = 2
@@ -157,6 +225,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_brhrk")
 
 [node name="Tags" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer" unique_id=1980958578]
 layout_mode = 2
@@ -179,7 +248,7 @@ max_columns = 255
 [node name="AddTagButton" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Tags/Tags" unique_id=1206834944]
 layout_mode = 2
 tooltip_text = "Manage Tags"
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_cxqar")
@@ -195,16 +264,18 @@ text = "Icon:"
 
 [node name="IconPathDisplay" type="LineEdit" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon" unique_id=1479967665]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_2igyf")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_7b8yi")
 editable = false
 
 [node name="IconPathButton" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Icon" unique_id=196229597]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Choose new Icon file"
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_x2uvv")
@@ -214,7 +285,7 @@ label_settings = SubResource("LabelSettings_18h7x")
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Reset to default"
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_jkcvw")
@@ -230,16 +301,18 @@ text = "Executable Path:"
 
 [node name="ExePathDisplay" type="LineEdit" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Exe" unique_id=1136111114]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(256, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_0s0oe")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_ahckc")
 editable = false
 
 [node name="ExePathButton" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EditDetails/VBoxContainer/Exe" unique_id=144096956]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_v4utu")
@@ -266,6 +339,7 @@ text = "Launch Arguments:"
 [node name="LaunchArguments" type="LineEdit" parent="VBoxContainer/HBoxContainer/EditDetails/Args" unique_id=1082854961]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_brhrk")
 
 [node name="SaveButton" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EditDetails" unique_id=224912808]
 visible = false
@@ -280,7 +354,7 @@ offset_top = -34.0
 offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_clwua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcvsq")
 script = ExtResource("2_pakpl")
 layout_order = "Icon"
 icon_settings = SubResource("Resource_og0sr")
