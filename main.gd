@@ -10,15 +10,14 @@ func _ready() -> void:
 	library.detail_panel.edit_details.connect(_on_edit_details)
 	library.detail_panel.add_to_blacklist.connect(remove_game)
 	library.detail_panel.edit_tags.connect(_on_edit_tags)
-	DisplayServer.window_set_min_size(Vector2i(1101,620))
+	DisplayServer.window_set_min_size(Vector2i(1101,648))
 	get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 	if Global.window_preserve_mode: DisplayServer.window_set_mode(Global.display_mode)
 	check_for_files()
 	create_metadata()
 	library.build_library()
 	%Highlight.color = Global.top_bar_highlight_colour
-	%TabContainer.get_tab_bar().mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
-	
+	#%TabContainer.get_tab_bar().mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
 
 func _on_metadata_updated() -> void:
 	library.build_library()
