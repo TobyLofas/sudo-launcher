@@ -3,20 +3,9 @@ extends Control
 signal highlight_colour_changed
 
 func _ready() -> void:
-	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 	%Divider.split_offset = Global.settings_divider_offset
-
-func _on_list_mode_toggled(toggled_on: bool) -> void:
-	Global.library_list_mode = toggled_on
-	#Global.save_settings()
-
-func _on_open_to_last_toggled(toggled_on: bool) -> void:
-	Global.library_open_to_last_selected = toggled_on
-	#Global.save_settings()
-
-func _on_show_icons_toggled(toggled_on: bool) -> void:
-	Global.library_display_images = toggled_on
-	#Global.save_settings()
+	%VersionLabel.text = ProjectSettings.get_setting("application/config/version")
+	%LicenseText.text = %LicenseText.text.format({"ver": ProjectSettings.get_setting("application/config/version").right(5)})
 
 func _on_visibility_changed() -> void:
 	%ListMode.button_pressed = Global.library_list_mode
@@ -49,6 +38,17 @@ func _on_visibility_changed() -> void:
 	%RunningColourButton.add_theme_color_override("icon_hover_color", running_colour)
 	%RunningColourButton.add_theme_color_override("icon_pressed_color", running_colour)
 	%RunningColourButton.add_theme_color_override("icon_hover_pressed_color", running_colour)
+
+func _on_list_mode_toggled(toggled_on: bool) -> void:
+	Global.library_list_mode = toggled_on
+
+func _on_open_to_last_toggled(toggled_on: bool) -> void:
+	Global.library_open_to_last_selected = toggled_on
+
+func _on_show_icons_toggled(toggled_on: bool) -> void:
+	Global.library_display_images = toggled_on
+
+
 
 func _on_detail_icon_toggled(toggled_on: bool) -> void:
 	Global.detail_panel_show_icon = toggled_on
@@ -96,16 +96,14 @@ func _on_show_license_toggled(toggled_on: bool) -> void:
 func _on_license_popup_hide() -> void:
 	%ShowLicense.button_pressed = false
 
-
 func _on_highlight_popup_hide() -> void:
-	%HighlightButton.button_pressed = false
+	%HighlightButton.set_pressed_no_signal(false)
 
 func _on_highlight_button_toggled(toggled_on: bool) -> void:
 	if toggled_on: 
 		%HighlightPopup.show()
 		%HighlightPopup.position = Global.get_center_position(%HighlightPopup)
 	else: %HighlightPopup.hide()
-
 
 func _on_highlight_color_picker_color_changed(color: Color) -> void:
 	%HighlightButton.add_theme_color_override("icon_normal_color", color)
@@ -115,19 +113,11 @@ func _on_highlight_color_picker_color_changed(color: Color) -> void:
 	Global.top_bar_highlight_colour = color.to_html()
 	highlight_colour_changed.emit()
 
-
 func _on_running_colour_button_toggled(toggled_on: bool) -> void:
 	if toggled_on: 
 		%RunningColourPopup.show()
 		%RunningColourPopup.position = Global.get_center_position(%RunningColourPopup)
 	else: %RunningColourPopup.hide()
-
-
-func _on_highlight_popup_mouse_exited() -> void:
-	#%HighlightPopup.hide()
-	#%HighlightButton.set_pressed_no_signal(false)
-	pass
-
 
 func _on_running_color_changed(color: Color) -> void:
 	%RunningColourButton.add_theme_color_override("icon_normal_color", color)
@@ -135,3 +125,6 @@ func _on_running_color_changed(color: Color) -> void:
 	%RunningColourButton.add_theme_color_override("icon_pressed_color", color)
 	%RunningColourButton.add_theme_color_override("icon_hover_pressed_color", color)
 	Global.running_game_colour = color.to_html()
+
+func _on_running_colour_popup_hide() -> void:
+	%RunningColourButton.set_pressed_no_signal(false)
