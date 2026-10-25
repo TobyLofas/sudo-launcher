@@ -68,6 +68,14 @@ content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c18m0"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_detail = 5
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c18m0"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -282,6 +290,7 @@ focus_behavior_recursive = 1
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lydc8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2nxf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c18m0")
 selected = 0
 allow_reselect = true
 item_count = 3
